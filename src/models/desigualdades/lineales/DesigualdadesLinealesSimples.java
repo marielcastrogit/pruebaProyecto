@@ -2,6 +2,8 @@ package models.desigualdades.lineales;
 //@author Mariel Castro
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DesigualdadesLinealesSimples {
 
@@ -12,12 +14,15 @@ public class DesigualdadesLinealesSimples {
         Primera parte: la parte izquierda de la ecuacion
         Segunda parte: la parte que contiene el signo 
         Tercera parte: la parte derecha de la ecuacion
+    2- Crear 2 listas una para guardar las x y otra para guardar los numeros 
      */
     private final String desigualdad;
-    private ArrayList parte1;
+    private final ArrayList listaX;
+    private ArrayList listaN;
 
     public DesigualdadesLinealesSimples(String desigualdad) {
         this.desigualdad = desigualdad;
+        listaX = new ArrayList();
     }
 
     //Parte 1 de la desigualdad - lado izquierdo
@@ -36,6 +41,12 @@ public class DesigualdadesLinealesSimples {
         for (int i = 0; i < split.length; i++) {
             p1 = p1 + split[i];
         }
+
+        //Si no tiene signo entonces que le agregue un + 
+        if (!(p1.startsWith("+") || p1.startsWith("-"))) {
+            p1 = "+" + p1;
+        }
+
         return p1;
     }
 
@@ -55,11 +66,42 @@ public class DesigualdadesLinealesSimples {
     //Parte 3 de la desigualdad - lado derecho
     public String setParte3() {
         String[] split = desigualdad.split("([+-]*\\d*x*)*(<|>|≥|≤)");
+        /*
+        ([+-]*\d*x*)* signos aritmeticos, digitos entre 0-9 y una x
+        (<|>|≥|≤)debe de tener menor o mayor o mayor igual o menor igual 
+         */
         String p2 = "";
         for (int i = 0; i < split.length; i++) {
             p2 += split[i];
         }
+
+        if (!(p2.startsWith("+") || p2.startsWith("-"))) {
+            p2 = "+" + p2;
+        }
+
         return p2;
+    }
+
+    public String setTerminosX() {
+        //LADO IZQUIERDO - PARTE1:
+        String replace = (setParte1().replace("+", ",+"));
+        String remplazo = replace.replace("-", ",-");
+        String[] split1 = remplazo.split(",");
+        /*Todos los terminos con x deben de seguir el siguiente patron:*/
+        Pattern patron = Pattern.compile("[-+]\\d*x{1}");
+        for (int i = 0; i < split1.length; i++) {
+            if (patron.matcher(split1[i]).matches()) {
+                listaX.add(split1[i]);
+            }
+        }
+
+        for (int i = 0; i < listaX.size(); i++) {
+            System.out.println("Tamaño" + listaX.size() + "indice" + listaX.get(i));
+        }
+        
+        //LADO DERECHO - PARTE 3:
+        
+        return "";
 
     }
 

@@ -16,8 +16,10 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String dat = "-2x-3x+4+87<11+9x+76";
+        String dat = "-2x-3x+4+87<11+9x+76-2";
         System.out.println( new DesigualdadesLinealesSimples(dat).setParte1());
+        System.out.println( new DesigualdadesLinealesSimples(dat).setSigno());
+        System.out.println( new DesigualdadesLinealesSimples(dat).setParte3());
     }
 
 }

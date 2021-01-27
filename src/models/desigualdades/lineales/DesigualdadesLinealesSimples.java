@@ -44,10 +44,9 @@ public class DesigualdadesLinealesSimples {
         }
 
         //Si no tiene signo entonces que le agregue un + 
-        if (!(p1.startsWith("+") || p1.startsWith("-"))) {
-            p1 = "+" + p1;
-        }
-
+//        if (!(p1.startsWith("+") || p1.startsWith("-"))) {
+//            p1 = "+" + p1;
+//        }
         return p1;
     }
 
@@ -76,10 +75,9 @@ public class DesigualdadesLinealesSimples {
             p2 += split[i];
         }
 
-        if (!(p2.startsWith("+") || p2.startsWith("-"))) {
-            p2 = "+" + p2;
-        }
-
+//        if (!(p2.startsWith("+") || p2.startsWith("-"))) {
+//            p2 = "+" + p2;
+//        }
         return p2;
     }
 
@@ -118,18 +116,37 @@ public class DesigualdadesLinealesSimples {
             i++;
         }
 
-        return x;
+        //Elimo las x para que me queden solo los numeros:
+        String coeficientesX = "";
+        String[] split = x.split("x");
+
+        i = 0;
+        while (i < split.length) {
+            coeficientesX += split[i];
+            i++;
+        }
+
+        return coeficientesX;
 
     }
 
     public String setNumeros() {
-        //LADO IZQUIERDO - PARTE1:
-        String replace = (setParte1().replace("+", ",+"));
-        String remplazo = replace.replace("-", ",-");
-        String[] split1 = remplazo.split(",");
-
         /*Todos los terminos que no tienen que x deberan tener el siguiente patron:*/
         Pattern patronX = Pattern.compile("[+-]*\\d*(?!\\d*x)");
+        String replace = (setParte3().replace("+", ",+"));
+        String remplazo = replace.replace("-", ",-");
+        String[] split1 = remplazo.split(",");
+        //LADO DERECHO - PARTE 3:
+        for (int i = 0; i < split1.length; i++) {
+            if (patronX.matcher(split1[i]).matches()) {
+                listaN.add(split1[i]);
+            }
+        }
+
+        replace = (setParte1().replace("+", ",+"));
+        remplazo = replace.replace("-", ",-");
+        split1 = remplazo.split(",");
+        //LADO IZQUIERDO - PARTE1:
         for (int i = 0; i < split1.length; i++) {
             if (patronX.matcher(split1[i]).matches()) {
                 if (split1[i].startsWith("-")) {
@@ -141,24 +158,13 @@ public class DesigualdadesLinealesSimples {
             }
         }
 
-        //LADO DERECHO - PARTE 3:
-        replace = (setParte3().replace("+", ",+"));
-        remplazo = replace.replace("-", ",-");
-        split1 = remplazo.split(",");
-
-        for (int i = 0; i < split1.length; i++) {
-            if (patronX.matcher(split1[i]).matches()) {
-                    listaN.add(split1[i]);
-            }
-        }
-        
         String n = "";
         int i = 0;
         while (i < listaN.size()) {
             n += listaN.get(i).toString();
             i++;
         }
-        
+
         return n;
     }
 

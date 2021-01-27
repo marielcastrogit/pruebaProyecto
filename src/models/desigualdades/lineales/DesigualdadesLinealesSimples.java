@@ -18,11 +18,12 @@ public class DesigualdadesLinealesSimples {
      */
     private final String desigualdad;
     private final ArrayList listaX;
-    private ArrayList listaN;
+    private final ArrayList listaN;
 
     public DesigualdadesLinealesSimples(String desigualdad) {
         this.desigualdad = desigualdad;
         listaX = new ArrayList();
+        listaN = new ArrayList();
     }
 
     //Parte 1 de la desigualdad - lado izquierdo
@@ -88,21 +89,77 @@ public class DesigualdadesLinealesSimples {
         String remplazo = replace.replace("-", ",-");
         String[] split1 = remplazo.split(",");
         /*Todos los terminos con x deben de seguir el siguiente patron:*/
-        Pattern patron = Pattern.compile("[-+]\\d*x{1}");
+        Pattern patronX = Pattern.compile("[-+]\\d*x{1}");
         for (int i = 0; i < split1.length; i++) {
-            if (patron.matcher(split1[i]).matches()) {
+            if (patronX.matcher(split1[i]).matches()) {
                 listaX.add(split1[i]);
             }
         }
 
-        for (int i = 0; i < listaX.size(); i++) {
-            System.out.println("Tamaño" + listaX.size() + "indice" + listaX.get(i));
+        //LADO DERECHO - PARTE 3:
+        replace = (setParte3().replace("+", ",+"));
+        remplazo = replace.replace("-", ",-");
+        split1 = remplazo.split(",");
+
+        for (int i = 0; i < split1.length; i++) {
+            if (patronX.matcher(split1[i]).matches()) {
+                if (split1[i].startsWith("-")) {
+                    listaX.add(split1[i].replace("-", "+"));
+                }
+                if (split1[i].startsWith("+")) {
+                    listaX.add(split1[i].replace('+', '-'));
+                }
+            }
+        }
+        String x = "";
+        int i = 0;
+        while (i < listaX.size()) {
+            x += listaX.get(i).toString();
+            i++;
+        }
+
+        return x;
+
+    }
+
+    public String setNumeros() {
+        //LADO IZQUIERDO - PARTE1:
+        String replace = (setParte1().replace("+", ",+"));
+        String remplazo = replace.replace("-", ",-");
+        String[] split1 = remplazo.split(",");
+
+        /*Todos los terminos que no tienen que x deberan tener el siguiente patron:*/
+        Pattern patronX = Pattern.compile("[+-]*\\d*(?!\\d*x)");
+        for (int i = 0; i < split1.length; i++) {
+            if (patronX.matcher(split1[i]).matches()) {
+                if (split1[i].startsWith("-")) {
+                    listaN.add(split1[i].replace("-", "+"));
+                }
+                if (split1[i].startsWith("+")) {
+                    listaN.add(split1[i].replace('+', '-'));
+                }
+            }
+        }
+
+        //LADO DERECHO - PARTE 3:
+        replace = (setParte3().replace("+", ",+"));
+        remplazo = replace.replace("-", ",-");
+        split1 = remplazo.split(",");
+
+        for (int i = 0; i < split1.length; i++) {
+            if (patronX.matcher(split1[i]).matches()) {
+                    listaN.add(split1[i]);
+            }
         }
         
-        //LADO DERECHO - PARTE 3:
+        String n = "";
+        int i = 0;
+        while (i < listaN.size()) {
+            n += listaN.get(i).toString();
+            i++;
+        }
         
-        return "";
-
+        return n;
     }
 
 }

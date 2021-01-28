@@ -56,12 +56,15 @@ public class MainFrame extends javax.swing.JFrame {
         pnlMostrarMenu = new javax.swing.JPanel();
         lblMenu = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
+        desktop = new javax.swing.JDesktopPane();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(774, 581));
         setMinimumSize(new java.awt.Dimension(774, 581));
         setPreferredSize(new java.awt.Dimension(774, 581));
+        getContentPane().setLayout(null);
 
         pnlMenu.setMinimumSize(new java.awt.Dimension(250, 474));
         pnlMenu.setPreferredSize(new java.awt.Dimension(49, 474));
@@ -279,51 +282,54 @@ public class MainFrame extends javax.swing.JFrame {
             .addComponent(pnlMostrarMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        getContentPane().add(pnlMenu);
+        pnlMenu.setBounds(0, 96, 49, 503);
+
+        jPanel1.setLayout(null);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/LogoApp (3).png"))); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(190, 0, 350, 80);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 770, 78);
+
+        desktop.setPreferredSize(new java.awt.Dimension(518, 700));
+
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 409, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 71, Short.MAX_VALUE)
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 295, Short.MAX_VALUE)
         );
 
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(518, 481));
+        desktop.setLayer(jInternalFrame1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 709, Short.MAX_VALUE)
+        javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
+        desktop.setLayout(desktopLayout);
+        desktopLayout.setHorizontalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(desktopLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(273, Short.MAX_VALUE))
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 482, Short.MAX_VALUE)
+        desktopLayout.setVerticalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(desktopLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
+        getContentPane().add(desktop);
+        desktop.setBounds(65, 103, 690, 440);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -332,6 +338,9 @@ public class MainFrame extends javax.swing.JFrame {
         setControllers();
         setSombraPanel();
         setPanelsDegradados();
+        System.out.println(desktop.getWidth());
+        System.out.println(desktop.getLocation());
+        System.out.println(desktop.getHeight());
         setSombraMenu();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -348,15 +357,15 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void setSombraMenu() {
-            DropShadowBorder b = new DropShadowBorder();
-            b.setShadowSize(8);
-            b.setCornerSize(11);
-            b.setShadowOpacity(1.0f);
-            b.setShowBottomShadow(true);
-            b.setShowRightShadow(true);
-            b.setShowTopShadow(true);
-            pnlMenu.setBorder(b);
-        
+        DropShadowBorder b = new DropShadowBorder();
+        b.setShadowSize(8);
+        b.setCornerSize(11);
+        b.setShadowOpacity(1.0f);
+        b.setShowBottomShadow(true);
+        b.setShowRightShadow(true);
+        b.setShowTopShadow(true);
+        pnlMenu.setBorder(b);
+
     }
 
     private void setPanelsDegradados() {
@@ -535,7 +544,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public JDesktopPane getjDesktopPane1() {
-        return jDesktopPane1;
+        return desktop;
     }
 
     private MainFrameController mfc, mfc2;
@@ -548,7 +557,9 @@ public class MainFrame extends javax.swing.JFrame {
     private PanelDegradado p6;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane desktop;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAjustes;
     private javax.swing.JLabel lblDocumentos;

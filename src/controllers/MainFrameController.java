@@ -79,12 +79,12 @@ public class MainFrameController implements MouseListener {
 
     private void mostrarMenu() {
         mf.getPnlMenu().setSize(255, 502);
-        mf.getjDesktopPane1().setSize(718, 481);
+        mf.getjDesktopPane1().setBounds(285,103 , 470, 440);
     }
 
     private void ocultarMenu() {
         mf.getPnlMenu().setSize(49, 502);
-        mf.getjDesktopPane1().setSize(718, 503);
+        mf.getjDesktopPane1().setBounds(65,103 , 690, 440);
     }
 
     private void reproducirSonidoIcono() {

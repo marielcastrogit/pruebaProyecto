@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
@@ -37,7 +38,8 @@ public class MainFrameController implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         Object o = e.getSource();//o de origen del evento
-        System.out.println("MOUSECLICKED" + o);
+
+        System.out.println(o);
         if (o == mf.getLblMenu()) {
             clic++;
             if (clic % 2 != 0) {
@@ -45,7 +47,6 @@ public class MainFrameController implements MouseListener {
 
             }
             if (clic % 2 == 0) {
-                System.out.println("OCULTAR CLICK EVALUACION" + clic % 2);
                 ocultarMenu();
             }
         }
@@ -89,10 +90,11 @@ public class MainFrameController implements MouseListener {
     private void reproducirSonidoIcono() {
         try {
             efectoSonido = AudioSystem.getClip();
-            File archivoSonido = new File("C:\\Users\\Usuario\\Documents\\Ingenieria en sistemas\\III Cuatrimestre\\Programacion\\Proyecto\\MathProject\\src\\resources\\sonidos\\sonidoMenu (online-audio-converter.com).wav");
+            File archivoSonido = new File("src/resources/audio/sonidoMenu.wav");
             efectoSonido.open(AudioSystem.getAudioInputStream(archivoSonido));
             efectoSonido.start();
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException error) {
+            System.out.print("error sonido icono" + error);
         }
 
     }
@@ -100,7 +102,7 @@ public class MainFrameController implements MouseListener {
     private void reproducirSonidoEntrada() {
         try {
             efectoSonido = AudioSystem.getClip();
-            File archivoSonido = new File("C:\\Users\\Usuario\\Documents\\Ingenieria en sistemas\\III Cuatrimestre\\Programacion\\Proyecto\\MathProject\\src\\resources\\sonidos\\sonidoEntradaMenu.wav");
+            File archivoSonido = new File("src/resources/audio/sonidoEntradaMenu.wav");
             efectoSonido.open(AudioSystem.getAudioInputStream(archivoSonido));
             efectoSonido.start();
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException error) {
@@ -109,43 +111,47 @@ public class MainFrameController implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println("MOUSE ENTERED" + e.getSource());
+        System.out.println("CLIC: " + clic + "MOUSE ENTERED" + e.getSource());
         Object o = e.getSource();
 
         if (o == mf.getLblIconoUsuario() || o == mf.getLblInicioSesion() || o == mf.getPnlInicioSesion()) {
-            mf.getLblIconoUsuario().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-male-user-45.png")));
-            mf.getLblInicioSesion().setSize(83, 45);
+//            
+            mf.getLblIconoUsuario().setSize(83, 45);
+//            mf.getLblIconoUsuario().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-male-user-45.png")));
             reproducirSonidoIcono();
         }
 
         if (o == mf.getPnlAjustes() || o == mf.getLblAjustes() || o == mf.getLblIconoAjustes()) {
-            mf.getLblIconoAjustes().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-settings-45.png")));
+//            mf.getLblIconoAjustes().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-settings-45.png")));
             mf.getLblIconoAjustes().setSize(83, 45);
-//            reproducirSonidoIcono();
+            reproducirSonidoIcono();
         }
 
         if (o == mf.getPnlResolver() || o == mf.getLblResolver() || o == mf.getLblIconoResolver()) {
-            mf.getLblIconoResolver().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-approve-45.png")));
+//            mf.getLblIconoResolver().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-approve-45.png")));
             mf.getLblIconoResolver().setSize(83, 45);
-//            reproducirSonidoIcono();
+            reproducirSonidoIcono();
         }
 
         if (o == mf.getPnlDocumentos() || o == mf.getLblDocumentos() || o == mf.getLblIconoDocumentos()) {
-            mf.getLblIconoDocumentos().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-documents-40.png")));
+//            mf.getLblIconoDocumentos().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-documents-40.png")));
             mf.getLblIconoDocumentos().setSize(100, 45);
-//            reproducirSonidoIcono();
+            reproducirSonidoIcono();
         }
 
-        if (o == mf.getPnlPractica() || o == mf.getLblPractica() || o == mf.getLblIconoPractica()) {
-            mf.getLblIconoPractica().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-pencil-45.png")));
+        if (o== mf.getPnlPractica()
+                || o == mf.getLblPractica() || o == mf.getLblIconoPractica()) {
+//            mf.getLblIconoPractica().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-pencil-45.png")));
             mf.getLblIconoPractica().setSize(100, 45);
-//            reproducirSonidoIcono();
+            reproducirSonidoIcono();
         }
 
-        if (o == mf.getPnlExamen() || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {
-            mf.getLblIconoExamen().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-test-passed-45.png")));
+        if (o
+                == mf.getPnlExamen()
+                || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {
+//            mf.getLblIconoExamen().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-test-passed-45.png")));
             mf.getLblIconoExamen().setSize(100, 45);
-//            reproducirSonidoIcono();
+            reproducirSonidoIcono();
         }
 
     }
@@ -160,9 +166,9 @@ public class MainFrameController implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
-
         Object o = e.getSource();
-        System.out.println("MOUSE EXITED" + o);
+        System.out.println("CLIC: " + clic + "MOUSE EXITED" + o);
+
         if ((o == mf.getPnlInicioSesion() || o == mf.getLblIconoUsuario()
                 || o == mf.getLblInicioSesion())) {
             mf.getLblIconoUsuario().setSize(35, 35);
@@ -171,7 +177,7 @@ public class MainFrameController implements MouseListener {
 
         if (o == mf.getPnlAjustes() || o == mf.getLblAjustes() || o == mf.getLblIconoAjustes()) {
             mf.getLblIconoAjustes().setSize(35, 35);
-            mf.getLblIconoAjustes().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-settings-35.png")));
+//            mf.getLblIconoAjustes().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-settings-35.png")));
         }
 
         if (o == mf.getPnlResolver() || o == mf.getLblResolver() || o == mf.getLblIconoResolver()) {

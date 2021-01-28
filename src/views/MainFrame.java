@@ -406,29 +406,29 @@ public class MainFrame extends javax.swing.JFrame {
 
         lblMenu.addMouseListener(mfc);
 
-//        pnlIniciarSesion.addMouseListener(mfc);
-//        lblInicioSesion.addMouseListener(mfc);
-//        lblIconoUsuario.addMouseListener(mfc);
-//
-//        pnlAjustes.addMouseListener(mfc2);
-//        lblAjustes.addMouseListener(mfc2);
-//        lblIconoAjustes.addMouseListener(mfc2);
-//
-//        pnlResolver.addMouseListener(mfc2);
-//        lblResolver.addMouseListener(mfc2);
-//        lblIconoAjustes.addMouseListener(mfc2);
-//
-//        pnlDocumentos.addMouseListener(mfc2);
-//        lblDocumentos.addMouseListener(mfc2);
-//        lblIconoDocumentos.addMouseListener(mfc2);
-//
-//        pnlPractica.addMouseListener(mfc2);
-//        lblPractica.addMouseListener(mfc2);
-//        lblIconoPractica.addMouseListener(mfc2);
-//
-//        pnlExamen.addMouseListener(mfc2);
-//        lblExamen.addMouseListener(mfc2);
-//        lblIconoExamen.addMouseListener(mfc2);
+        pnlIniciarSesion.addMouseListener(mfc);
+        lblInicioSesion.addMouseListener(mfc);
+        lblIconoUsuario.addMouseListener(mfc);
+
+        pnlAjustes.addMouseListener(mfc2);
+        lblAjustes.addMouseListener(mfc2);
+        lblIconoAjustes.addMouseListener(mfc2);
+
+        pnlResolver.addMouseListener(mfc2);
+        lblResolver.addMouseListener(mfc2);
+        lblIconoAjustes.addMouseListener(mfc2);
+
+        pnlDocumentos.addMouseListener(mfc2);
+        lblDocumentos.addMouseListener(mfc2);
+        lblIconoDocumentos.addMouseListener(mfc2);
+
+        pnlPractica.addMouseListener(mfc2);
+        lblPractica.addMouseListener(mfc2);
+        lblIconoPractica.addMouseListener(mfc2);
+
+        pnlExamen.addMouseListener(mfc2);
+        lblExamen.addMouseListener(mfc2);
+        lblIconoExamen.addMouseListener(mfc2);
     }
 
     public JLabel getLblAjustes() {

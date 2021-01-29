@@ -38,6 +38,8 @@ public class MainFrame extends javax.swing.JFrame {
         pnlExamen = new javax.swing.JPanel();
         lblExamen = new javax.swing.JLabel();
         lblIconoExamen = new javax.swing.JLabel();
+        pnlMostrarMenu = new javax.swing.JPanel();
+        lblMenu = new javax.swing.JLabel();
         pnlIniciarSesion = new javax.swing.JPanel();
         lblInicioSesion = new javax.swing.JLabel();
         lblIconoUsuario = new javax.swing.JLabel();
@@ -47,14 +49,12 @@ public class MainFrame extends javax.swing.JFrame {
         pnlResolver = new javax.swing.JPanel();
         lblResolver = new javax.swing.JLabel();
         lblIconoResolver = new javax.swing.JLabel();
-        pnlDocumentos = new javax.swing.JPanel();
-        lblDocumentos = new javax.swing.JLabel();
-        lblIconoDocumentos = new javax.swing.JLabel();
         pnlPractica = new javax.swing.JPanel();
         lblPractica = new javax.swing.JLabel();
         lblIconoPractica = new javax.swing.JLabel();
-        pnlMostrarMenu = new javax.swing.JPanel();
-        lblMenu = new javax.swing.JLabel();
+        pnlDocumentos = new javax.swing.JPanel();
+        lblDocumentos = new javax.swing.JLabel();
+        lblIconoDocumentos = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -78,7 +78,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         pnlMenu.setMinimumSize(new java.awt.Dimension(250, 474));
-        pnlMenu.setPreferredSize(new java.awt.Dimension(49, 474));
+        pnlMenu.setPreferredSize(new java.awt.Dimension(255, 474));
 
         pnlExamen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -99,19 +99,33 @@ public class MainFrame extends javax.swing.JFrame {
         pnlExamenLayout.setVerticalGroup(
             pnlExamenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlExamenLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addGroup(pnlExamenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlExamenLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblExamen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlExamenLayout.createSequentialGroup()
-                        .addContainerGap(15, Short.MAX_VALUE)
-                        .addComponent(lblIconoExamen)))
+                    .addComponent(lblExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIconoExamen))
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+
+        lblMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-menu-42.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnlMostrarMenuLayout = new javax.swing.GroupLayout(pnlMostrarMenu);
+        pnlMostrarMenu.setLayout(pnlMostrarMenuLayout);
+        pnlMostrarMenuLayout.setHorizontalGroup(
+            pnlMostrarMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMostrarMenuLayout.createSequentialGroup()
+                .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addContainerGap())
+        );
+        pnlMostrarMenuLayout.setVerticalGroup(
+            pnlMostrarMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMostrarMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblMenu)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlIniciarSesion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblInicioSesion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblInicioSesion.setText("Iniciar sesión");
 
         lblIconoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-male-user-35.png"))); // NOI18N
@@ -128,12 +142,12 @@ public class MainFrame extends javax.swing.JFrame {
         );
         pnlIniciarSesionLayout.setVerticalGroup(
             pnlIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIniciarSesionLayout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addGroup(pnlIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblIconoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGroup(pnlIniciarSesionLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlIniciarSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIconoUsuario))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pnlAjustes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -157,9 +171,9 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(pnlAjustesLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(pnlAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAjustes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblIconoAjustes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(lblAjustes, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIconoAjustes))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pnlResolver.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -180,12 +194,38 @@ public class MainFrame extends javax.swing.JFrame {
         );
         pnlResolverLayout.setVerticalGroup(
             pnlResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlResolverLayout.createSequentialGroup()
+            .addGroup(pnlResolverLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblResolver, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIconoResolver))
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+
+        pnlPractica.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        lblPractica.setText("Práctica");
+
+        lblIconoPractica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-pencil-35.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnlPracticaLayout = new javax.swing.GroupLayout(pnlPractica);
+        pnlPractica.setLayout(pnlPracticaLayout);
+        pnlPracticaLayout.setHorizontalGroup(
+            pnlPracticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPracticaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlResolverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblIconoResolver, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                    .addComponent(lblResolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(lblIconoPractica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lblPractica, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnlPracticaLayout.setVerticalGroup(
+            pnlPracticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPracticaLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlPracticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPractica, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIconoPractica))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pnlDocumentos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -209,54 +249,9 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(pnlDocumentosLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(pnlDocumentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDocumentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblIconoDocumentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        pnlPractica.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        lblPractica.setText("Práctica");
-
-        lblIconoPractica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-pencil-35.png"))); // NOI18N
-
-        javax.swing.GroupLayout pnlPracticaLayout = new javax.swing.GroupLayout(pnlPractica);
-        pnlPractica.setLayout(pnlPracticaLayout);
-        pnlPracticaLayout.setHorizontalGroup(
-            pnlPracticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPracticaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblIconoPractica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(27, 27, 27)
-                .addComponent(lblPractica, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        pnlPracticaLayout.setVerticalGroup(
-            pnlPracticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPracticaLayout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(lblPractica, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(pnlPracticaLayout.createSequentialGroup()
-                .addComponent(lblIconoPractica)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        lblMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-menu-42.png"))); // NOI18N
-
-        javax.swing.GroupLayout pnlMostrarMenuLayout = new javax.swing.GroupLayout(pnlMostrarMenu);
-        pnlMostrarMenu.setLayout(pnlMostrarMenuLayout);
-        pnlMostrarMenuLayout.setHorizontalGroup(
-            pnlMostrarMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMostrarMenuLayout.createSequentialGroup()
-                .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlMostrarMenuLayout.setVerticalGroup(
-            pnlMostrarMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlMostrarMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblMenu)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblDocumentos, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIconoDocumentos))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
@@ -265,19 +260,20 @@ public class MainFrame extends javax.swing.JFrame {
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
                 .addComponent(pnlMostrarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlAjustes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlIniciarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlPractica, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(pnlResolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlDocumentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlExamen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pnlPractica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pnlDocumentos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pnlResolver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pnlAjustes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pnlIniciarSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(39, 39, 39)
                 .addComponent(pnlIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(pnlAjustes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,12 +285,12 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(pnlPractica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(pnlExamen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 123, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
             .addComponent(pnlMostrarMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(pnlMenu);
-        pnlMenu.setBounds(0, 96, 49, 503);
+        pnlMenu.setBounds(0, 96, 255, 503);
 
         jPanel1.setLayout(null);
 
@@ -466,7 +462,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblIconoUsuario.addMouseListener(mfc);
 
         pnlAjustes.addMouseListener(mfc);
-        lblAjustes.addMouseListener(mfc);
+        lblIconoAjustes.addMouseListener(mfc);
         lblIconoAjustes.addMouseListener(mfc);
 
         pnlResolver.addMouseListener(mfc);
@@ -487,7 +483,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public JLabel getLblAjustes() {
-        return lblAjustes;
+        return lblIconoAjustes;
     }
 
     public JLabel getLblIconoAjustes() {
@@ -620,9 +616,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAjustes;
+    private javax.swing.JLabel lblAjustes2;
     private javax.swing.JLabel lblDocumentos;
     private javax.swing.JLabel lblExamen;
     private javax.swing.JLabel lblIconoAjustes;
+    private javax.swing.JLabel lblIconoAjustes2;
     private javax.swing.JLabel lblIconoDocumentos;
     private javax.swing.JLabel lblIconoExamen;
     private javax.swing.JLabel lblIconoPractica;
@@ -633,6 +631,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblPractica;
     private javax.swing.JLabel lblResolver;
     private javax.swing.JPanel pnlAjustes;
+    private javax.swing.JPanel pnlAjustes2;
     private javax.swing.JPanel pnlDocumentos;
     private javax.swing.JPanel pnlExamen;
     private javax.swing.JPanel pnlIniciarSesion;

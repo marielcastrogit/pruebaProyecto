@@ -1,31 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controllers;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
-import org.jdesktop.swingx.border.DropShadowBorder;
+import views.MMResolver;
 import views.MainFrame;
+import views.OMResolver;
 
-/**
- *
- * @author Usuario
- */
 public class MainFrameController implements MouseListener {
 
+    private MMResolver resolverMM;
+    private OMResolver resolverOM;
     private final MainFrame mf;
     private int clic;
     private Clip efectoSonido;
@@ -33,6 +24,19 @@ public class MainFrameController implements MouseListener {
     public MainFrameController(MainFrame mf) {
         this.mf = mf;
         clic = 0;
+        resolverMM = new MMResolver();
+        resolverOM = new OMResolver();
+
+        //Cuando se oculte el menu:
+        resolverOM.setVisible(true);
+        resolverOM.setLocation(35, 18);
+        mf.getjDesktopPane1().add(resolverOM);
+
+        //Cuando se muestre el menu
+        resolverMM.setVisible(false);
+        resolverMM.setLocation(20, 18);
+        mf.getjDesktopPane1().add(resolverMM);
+
     }
 
     @Override
@@ -79,12 +83,17 @@ public class MainFrameController implements MouseListener {
 
     private void mostrarMenu() {
         mf.getPnlMenu().setSize(255, 502);
-        mf.getjDesktopPane1().setBounds(260,103 , 495, 440);
+        mf.getjDesktopPane1().setBounds(260, 103, 495, 440);
+        resolverOM.setVisible(false);
+        resolverMM.setVisible(true);
+
     }
 
     private void ocultarMenu() {
         mf.getPnlMenu().setSize(49, 502);
-        mf.getjDesktopPane1().setBounds(65,103 , 690, 440);
+        mf.getjDesktopPane1().setBounds(65, 103, 690, 440);
+        resolverMM.setVisible(false);
+        resolverOM.setVisible(true);
     }
 
     private void reproducirSonidoIcono() {
@@ -94,7 +103,6 @@ public class MainFrameController implements MouseListener {
             efectoSonido.open(AudioSystem.getAudioInputStream(archivoSonido));
             efectoSonido.start();
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException error) {
-            System.out.print("error sonido icono" + error);
         }
 
     }
@@ -111,6 +119,8 @@ public class MainFrameController implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        System.out.println(e.getPoint());
+
         System.out.println("CLIC: " + clic + "MOUSE ENTERED" + e.getSource());
         Object o = e.getSource();
 
@@ -139,7 +149,7 @@ public class MainFrameController implements MouseListener {
             reproducirSonidoIcono();
         }
 
-        if (o== mf.getPnlPractica()
+        if (o == mf.getPnlPractica()
                 || o == mf.getLblPractica() || o == mf.getLblIconoPractica()) {
 //            mf.getLblIconoPractica().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-pencil-45.png")));
             mf.getLblIconoPractica().setSize(100, 45);

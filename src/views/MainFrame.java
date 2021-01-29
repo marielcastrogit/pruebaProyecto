@@ -1,33 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
 
 import controllers.MainFrameController;
 import java.awt.Color;
-import java.awt.event.MouseEvent;
 import javax.swing.JDesktopPane;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import models.otros.PanelDegradado;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
-/**
- *
- * @author Usuario
- */
 public class MainFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainFrame
-     */
     public MainFrame() {
         initComponents();
-        iniciar();
+        iniciar();     
     }
 
     @SuppressWarnings("unchecked")
@@ -268,7 +254,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(pnlAjustes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(pnlIniciarSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlExamen, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,7 +276,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         getContentPane().add(pnlMenu);
-        pnlMenu.setBounds(0, 96, 255, 503);
+        pnlMenu.setBounds(0, 96, 49, 503);
 
         jPanel1.setLayout(null);
 
@@ -362,18 +348,6 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1.setBounds(0, 0, 770, 78);
 
         desktop.setPreferredSize(new java.awt.Dimension(518, 700));
-
-        javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
-        desktop.setLayout(desktopLayout);
-        desktopLayout.setHorizontalGroup(
-            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
-        );
-        desktopLayout.setVerticalGroup(
-            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
-        );
-
         getContentPane().add(desktop);
         desktop.setBounds(85, 103, 670, 440);
 
@@ -480,6 +454,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlExamen.addMouseListener(mfc);
         lblExamen.addMouseListener(mfc);
         lblIconoExamen.addMouseListener(mfc);
+        desktop.addMouseListener(mfc);
     }
 
     public JLabel getLblAjustes() {
@@ -616,11 +591,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAjustes;
-    private javax.swing.JLabel lblAjustes2;
     private javax.swing.JLabel lblDocumentos;
     private javax.swing.JLabel lblExamen;
     private javax.swing.JLabel lblIconoAjustes;
-    private javax.swing.JLabel lblIconoAjustes2;
     private javax.swing.JLabel lblIconoDocumentos;
     private javax.swing.JLabel lblIconoExamen;
     private javax.swing.JLabel lblIconoPractica;
@@ -631,7 +604,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblPractica;
     private javax.swing.JLabel lblResolver;
     private javax.swing.JPanel pnlAjustes;
-    private javax.swing.JPanel pnlAjustes2;
     private javax.swing.JPanel pnlDocumentos;
     private javax.swing.JPanel pnlExamen;
     private javax.swing.JPanel pnlIniciarSesion;

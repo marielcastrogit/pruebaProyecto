@@ -1,17 +1,21 @@
-
 package views;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
-
 public class OMResolver extends javax.swing.JInternalFrame {
-
 
     public OMResolver() {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+        setBorderInternal();
+    }
+
+    private void setBorderInternal() {
         DropShadowBorder border = (DropShadowBorder) this.getBorder();
         border.setShowBottomShadow(false);
         border.setShowRightShadow(true);
@@ -26,11 +30,11 @@ public class OMResolver extends javax.swing.JInternalFrame {
 
         jTextField2 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtProblema = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        listTemas = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCalcular = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         jTextField2.setText("jTextField2");
@@ -44,20 +48,21 @@ public class OMResolver extends javax.swing.JInternalFrame {
 
         jPanel1.setLayout(null);
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(6, 4, 428, 30);
+        txtProblema.setBackground(new java.awt.Color(255, 255, 255));
+        txtProblema.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(txtProblema);
+        txtProblema.setBounds(6, 4, 428, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(80, 180, 440, 40);
 
         jPanel2.setLayout(null);
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(10, 10, 330, 30);
+        listTemas.setBackground(new java.awt.Color(255, 255, 255));
+        listTemas.setForeground(new java.awt.Color(0, 0, 0));
+        listTemas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        jPanel2.add(listTemas);
+        listTemas.setBounds(10, 10, 330, 30);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(130, 260, 350, 50);
@@ -66,11 +71,11 @@ public class OMResolver extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(130, 240, 228, 16);
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Calcular");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(240, 340, 120, 24);
+        btnCalcular.setBackground(new java.awt.Color(0, 0, 0));
+        btnCalcular.setForeground(new java.awt.Color(255, 255, 255));
+        btnCalcular.setText("Calcular");
+        getContentPane().add(btnCalcular);
+        btnCalcular.setBounds(240, 340, 120, 24);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -80,15 +85,26 @@ public class OMResolver extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getBtnCalcular() {
+        return btnCalcular;
+    }
+
+    public JComboBox<String> getListTemas() {
+        return listTemas;
+    }
+
+    public JTextField getTxtProblema() {
+        return txtProblema;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnCalcular;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JComboBox<String> listTemas;
+    private javax.swing.JTextField txtProblema;
     // End of variables declaration//GEN-END:variables
 }

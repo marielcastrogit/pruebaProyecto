@@ -24,6 +24,12 @@ public class MainFrameController implements MouseListener {
     public MainFrameController(MainFrame mf) {
         this.mf = mf;
         clic = 0;
+        iniciarInternos();
+    }
+
+    private void iniciarInternos() {
+
+        //Resolver:
         resolverMM = new MMResolver();
         resolverOM = new OMResolver();
 
@@ -86,6 +92,8 @@ public class MainFrameController implements MouseListener {
         mf.getjDesktopPane1().setBounds(260, 103, 495, 440);
         resolverOM.setVisible(false);
         resolverMM.setVisible(true);
+        resolverMM.getTxtProblema().setText(resolverOM.getTxtProblema().getText());
+        resolverMM.getListTemas().setSelectedIndex(resolverOM.getListTemas().getSelectedIndex());
 
     }
 
@@ -94,6 +102,8 @@ public class MainFrameController implements MouseListener {
         mf.getjDesktopPane1().setBounds(65, 103, 690, 440);
         resolverMM.setVisible(false);
         resolverOM.setVisible(true);
+        resolverOM.getTxtProblema().setText(resolverMM.getTxtProblema().getText());
+        resolverOM.getListTemas().setSelectedIndex(resolverMM.getListTemas().getSelectedIndex());
     }
 
     private void reproducirSonidoIcono() {

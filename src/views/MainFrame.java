@@ -57,8 +57,19 @@ public class MainFrame extends javax.swing.JFrame {
         lblMenu = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         desktop = new javax.swing.JDesktopPane();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(774, 581));
@@ -289,47 +300,86 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/LogoApp (3).png"))); // NOI18N
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(190, 0, 350, 80);
+        jLabel1.setBounds(210, 0, 350, 80);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoLogo.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(590, 60, 60, 10);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoLogo.png"))); // NOI18N
+        jLabel3.setText("jLabel2");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(660, 0, 110, 40);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoLogo.png"))); // NOI18N
+        jLabel4.setText("jLabel2");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(0, 50, 50, 20);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoLogo.png"))); // NOI18N
+        jLabel5.setText("jLabel2");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(660, 50, 50, 20);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoLogo.png"))); // NOI18N
+        jLabel6.setText("jLabel2");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(590, 0, 60, 50);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoLogo.png"))); // NOI18N
+        jLabel7.setText("jLabel2");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(570, 0, 10, 70);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoLogo.png"))); // NOI18N
+        jLabel8.setText("jLabel2");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(120, 60, 60, 10);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoLogo.png"))); // NOI18N
+        jLabel9.setText("jLabel2");
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(0, 0, 110, 40);
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoLogo.png"))); // NOI18N
+        jLabel10.setText("jLabel2");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(720, 50, 50, 20);
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoLogo.png"))); // NOI18N
+        jLabel11.setText("jLabel2");
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(60, 50, 50, 20);
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoLogo.png"))); // NOI18N
+        jLabel12.setText("jLabel2");
+        jPanel1.add(jLabel12);
+        jLabel12.setBounds(120, 0, 60, 50);
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoLogo.png"))); // NOI18N
+        jLabel13.setText("jLabel2");
+        jPanel1.add(jLabel13);
+        jLabel13.setBounds(190, 0, 10, 70);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 770, 78);
 
         desktop.setPreferredSize(new java.awt.Dimension(518, 700));
 
-        jInternalFrame1.setVisible(true);
-
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 409, Short.MAX_VALUE)
-        );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 295, Short.MAX_VALUE)
-        );
-
-        desktop.setLayer(jInternalFrame1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(desktopLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(273, Short.MAX_VALUE))
+            .addGap(0, 670, Short.MAX_VALUE)
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(desktopLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+            .addGap(0, 440, Short.MAX_VALUE)
         );
 
         getContentPane().add(desktop);
-        desktop.setBounds(65, 103, 690, 440);
+        desktop.setBounds(85, 103, 670, 440);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -338,9 +388,6 @@ public class MainFrame extends javax.swing.JFrame {
         setControllers();
         setSombraPanel();
         setPanelsDegradados();
-        System.out.println(desktop.getWidth());
-        System.out.println(desktop.getLocation());
-        System.out.println(desktop.getHeight());
         setSombraMenu();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -558,8 +605,19 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAjustes;
     private javax.swing.JLabel lblDocumentos;

@@ -79,7 +79,7 @@ public class MainFrameController implements MouseListener {
 
     private void mostrarMenu() {
         mf.getPnlMenu().setSize(255, 502);
-        mf.getjDesktopPane1().setBounds(285,103 , 470, 440);
+        mf.getjDesktopPane1().setBounds(260,103 , 495, 440);
     }
 
     private void ocultarMenu() {

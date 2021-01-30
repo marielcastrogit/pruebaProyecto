@@ -9,39 +9,73 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
+import javax.swing.JInternalFrame;
+import views.MMAjustes;
+import views.MMInicioSesion;
 import views.MMResolver;
 import views.MainFrame;
+import views.OMAjustes;
+import views.OMInicioSesion;
 import views.OMResolver;
 
 public class MainFrameController implements MouseListener {
 
-    private MMResolver resolverMM;
-    private OMResolver resolverOM;
     private final MainFrame mf;
     private int clic;
     private Clip efectoSonido;
+    private JInternalFrame interno;
+
+    private OMInicioSesion iniciarSesionOM;
+    private OMResolver resolverOM;
+    private OMAjustes ajustesOM;
+
+    private MMInicioSesion iniciarSesionMM;
+    private MMResolver resolverMM;
+    private MMAjustes ajustesMM;
+
+    private JInternalFrame internoAnterior;
 
     public MainFrameController(MainFrame mf) {
         this.mf = mf;
         clic = 0;
+        internoAnterior = new JInternalFrame();
         iniciarInternos();
     }
 
     private void iniciarInternos() {
-
-        //Resolver:
-        resolverMM = new MMResolver();
+        //OM - Ocultar Menu
+        iniciarSesionOM = new OMInicioSesion();
         resolverOM = new OMResolver();
+        ajustesOM = new OMAjustes();
 
-        //Cuando se oculte el menu:
+        iniciarSesionOM.setVisible(false);
         resolverOM.setVisible(true);
-        resolverOM.setLocation(35, 18);
-        mf.getjDesktopPane1().add(resolverOM);
+        ajustesOM.setVisible(false);
 
-        //Cuando se muestre el menu
+        iniciarSesionOM.setLocation(35, 18);
+        resolverOM.setLocation(35, 18);
+        ajustesOM.setLocation(35, 18);;
+
+        mf.getjDesktopPane1().add(iniciarSesionOM);
+        mf.getjDesktopPane1().add(resolverOM);
+        mf.getjDesktopPane1().add(ajustesOM);
+
+        //MM - Mostrar Menu
+        iniciarSesionMM = new MMInicioSesion();
+        resolverMM = new MMResolver();
+        ajustesMM = new MMAjustes();
+
+        iniciarSesionMM.setVisible(false);
         resolverMM.setVisible(false);
+        ajustesMM.setVisible(false);
+
+        iniciarSesionMM.setLocation(20, 18);
         resolverMM.setLocation(20, 18);
+        ajustesMM.setLocation(20, 18);
+
+        mf.getjDesktopPane1().add(iniciarSesionMM);
         mf.getjDesktopPane1().add(resolverMM);
+        mf.getjDesktopPane1().add(ajustesMM);
 
     }
 
@@ -49,20 +83,47 @@ public class MainFrameController implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         Object o = e.getSource();//o de origen del evento
 
-        System.out.println(o);
         if (o == mf.getLblMenu()) {
             clic++;
-            if (clic % 2 != 0) {
-                mostrarMenu();
+            mostrarMenu();
+            ocultarMenu();
 
+            if (resolverOM.isVisible() && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
+                resolverOM.setVisible(false);
+                resolverMM.setVisible(true);
+                internoAnterior = resolverMM;
             }
-            if (clic % 2 == 0) {
-                ocultarMenu();
+            if (internoAnterior == resolverMM && mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                resolverOM.setVisible(true);
+                resolverMM.setVisible(false);
+                internoAnterior = resolverOM;
             }
+            if (internoAnterior == iniciarSesionOM && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
+                internoAnterior.setVisible(false);
+                iniciarSesionMM.setVisible(true);
+                internoAnterior = iniciarSesionMM;
+            }
+
+            if (internoAnterior == iniciarSesionMM && mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                internoAnterior.setVisible(false);
+                iniciarSesionOM.setVisible(true);
+                internoAnterior = iniciarSesionOM;
+            }
+
         }
 
         if (o == mf.getLblIconoUsuario() || o == mf.getLblInicioSesion() || o == mf.getPnlInicioSesion()) {
             reproducirSonidoEntrada();
+            clic--;
+            mostrarMenu();
+            ocultarMenu();
+
+            if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                internoAnterior.setVisible(false);
+                iniciarSesionOM.setVisible(true);
+                internoAnterior = iniciarSesionOM;
+            }
+
         }
 
         if (o == mf.getPnlAjustes() || o == mf.getLblAjustes() || o == mf.getLblIconoAjustes()) {
@@ -87,23 +148,19 @@ public class MainFrameController implements MouseListener {
 
     }
 
-    private void mostrarMenu() {
-        mf.getPnlMenu().setSize(255, 502);
-        mf.getjDesktopPane1().setBounds(260, 103, 495, 440);
-        resolverOM.setVisible(false);
-        resolverMM.setVisible(true);
-        resolverMM.getTxtProblema().setText(resolverOM.getTxtProblema().getText());
-        resolverMM.getListTemas().setSelectedIndex(resolverOM.getListTemas().getSelectedIndex());
+    private void mostrarMenu() {//frame pequeño
+        if (clic % 2 != 0) {
+            mf.getPnlMenu().setSize(255, 502);
+            mf.getjDesktopPane1().setBounds(260, 103, 495, 440);
+        }
 
     }
 
-    private void ocultarMenu() {
-        mf.getPnlMenu().setSize(49, 502);
-        mf.getjDesktopPane1().setBounds(65, 103, 690, 440);
-        resolverMM.setVisible(false);
-        resolverOM.setVisible(true);
-        resolverOM.getTxtProblema().setText(resolverMM.getTxtProblema().getText());
-        resolverOM.getListTemas().setSelectedIndex(resolverMM.getListTemas().getSelectedIndex());
+    private void ocultarMenu() {//frame grande
+        if (clic % 2 == 0) {
+            mf.getPnlMenu().setSize(49, 502);
+            mf.getjDesktopPane1().setBounds(65, 103, 690, 440);
+        }
     }
 
     private void reproducirSonidoIcono() {

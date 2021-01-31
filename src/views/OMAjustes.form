@@ -128,7 +128,7 @@
     <Container class="javax.swing.JPanel" name="pnlUsuario">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="340" y="40" width="250" height="70"/>
+          <AbsoluteConstraints x="340" y="40" width="230" height="70"/>
         </Constraint>
       </Constraints>
 
@@ -144,7 +144,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="16" y="0" width="-1" height="70"/>
+              <AbsoluteConstraints x="40" y="0" width="-1" height="70"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -222,7 +222,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="620" height="390"/>
+          <AbsoluteConstraints x="0" y="0" width="620" height="410"/>
         </Constraint>
       </Constraints>
     </Component>

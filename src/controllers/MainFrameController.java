@@ -84,9 +84,15 @@ public class MainFrameController implements MouseListener {
         Object o = e.getSource();//o de origen del evento
 
         if (o == mf.getLblMenu()) {
+
             clic++;
-            mostrarMenu();
-            ocultarMenu();
+            System.out.println("label Menu" + clic);
+            if (clic % 2 == 0) {
+                ocultarMenu();
+            }
+            if (clic % 2 != 0) {
+                mostrarMenu();
+            }
 
             if (resolverOM.isVisible() && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
                 resolverOM.setVisible(false);
@@ -110,24 +116,54 @@ public class MainFrameController implements MouseListener {
                 internoAnterior = iniciarSesionOM;
             }
 
+            if (internoAnterior == ajustesOM && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
+                internoAnterior.setVisible(false);
+                ajustesMM.setVisible(true);
+                internoAnterior = ajustesMM;
+            }
+
+            if (internoAnterior == ajustesMM && mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                internoAnterior.setVisible(false);
+                ajustesOM.setVisible(true);
+                internoAnterior = ajustesOM;
+            }
+
         }
 
         if (o == mf.getLblIconoUsuario() || o == mf.getLblInicioSesion() || o == mf.getPnlInicioSesion()) {
             reproducirSonidoEntrada();
-            clic--;
-            mostrarMenu();
             ocultarMenu();
-
             if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                if (clic % 2 == 0) {
+                    clic++;
+                }
+                if (clic % 2 != 0) {
+                    clic--;
+                }
                 internoAnterior.setVisible(false);
                 iniciarSesionOM.setVisible(true);
                 internoAnterior = iniciarSesionOM;
+
             }
 
         }
 
         if (o == mf.getPnlAjustes() || o == mf.getLblAjustes() || o == mf.getLblIconoAjustes()) {
             reproducirSonidoEntrada();
+            ocultarMenu();
+            if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+
+                if (clic % 2 == 0) {
+                    clic++;
+                }
+                if (clic % 2 != 0) {
+                    clic--;
+                }
+                System.out.println("ajustes:" + clic);
+                internoAnterior.setVisible(false);
+                ajustesOM.setVisible(true);
+                internoAnterior = ajustesOM;
+            }
         }
 
         if (o == mf.getPnlResolver() || o == mf.getLblResolver() || o == mf.getLblIconoResolver()) {
@@ -149,18 +185,13 @@ public class MainFrameController implements MouseListener {
     }
 
     private void mostrarMenu() {//frame pequeño
-        if (clic % 2 != 0) {
-            mf.getPnlMenu().setSize(255, 502);
-            mf.getjDesktopPane1().setBounds(260, 103, 495, 440);
-        }
-
+        mf.getPnlMenu().setSize(255, 502);
+        mf.getjDesktopPane1().setBounds(260, 103, 495, 440);
     }
 
     private void ocultarMenu() {//frame grande
-        if (clic % 2 == 0) {
-            mf.getPnlMenu().setSize(49, 502);
-            mf.getjDesktopPane1().setBounds(65, 103, 690, 440);
-        }
+        mf.getPnlMenu().setSize(49, 502);
+        mf.getjDesktopPane1().setBounds(65, 103, 690, 440);
     }
 
     private void reproducirSonidoIcono() {
@@ -186,9 +217,6 @@ public class MainFrameController implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println(e.getPoint());
-
-        System.out.println("CLIC: " + clic + "MOUSE ENTERED" + e.getSource());
         Object o = e.getSource();
 
         if (o == mf.getLblIconoUsuario() || o == mf.getLblInicioSesion() || o == mf.getPnlInicioSesion()) {
@@ -244,7 +272,6 @@ public class MainFrameController implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
         Object o = e.getSource();
-        System.out.println("CLIC: " + clic + "MOUSE EXITED" + o);
 
         if ((o == mf.getPnlInicioSesion() || o == mf.getLblIconoUsuario()
                 || o == mf.getLblInicioSesion())) {

@@ -13,7 +13,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {
         initComponents();
-        iniciar();     
+        iniciar();
     }
 
     @SuppressWarnings("unchecked")
@@ -441,7 +441,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         pnlResolver.addMouseListener(mfc);
         lblResolver.addMouseListener(mfc);
-        lblIconoAjustes.addMouseListener(mfc);
+        lblIconoResolver.addMouseListener(mfc);
 
         pnlDocumentos.addMouseListener(mfc);
         lblDocumentos.addMouseListener(mfc);

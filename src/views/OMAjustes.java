@@ -1,19 +1,31 @@
 package views;
 
+import java.awt.Color;
 import models.otros.LabelCircular;
 import models.otros.PanelDegradado;
 import org.jdesktop.swingx.border.DropShadowBorder;
 import java.awt.Dimension;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
-public class OMAjustes extends javax.swing.JInternalFrame {
+public class OMAjustes extends javax.swing.JInternalFrame implements MouseListener {
 
     public OMAjustes() {
         initComponents();
+        ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setBorderInternal();
         setPanelDegradado();
         setLabelFoto();
+       
     }
+
+    public JPanel getPnlUsuario() {
+        return pnlUsuario;
+    }
+    
 
     private void setBorderInternal() {
         DropShadowBorder border = (DropShadowBorder) this.getBorder();
@@ -25,31 +37,25 @@ public class OMAjustes extends javax.swing.JInternalFrame {
     }
 
     private void setPanelDegradado() {
+        pnlUsuario.addMouseListener(this);
         p = new PanelDegradado();
-        javax.swing.GroupLayout pnlPruebaLayout = new javax.swing.GroupLayout(p);
-        p.setLayout(pnlPruebaLayout);
-        pnlPruebaLayout.setHorizontalGroup(
-                pnlPruebaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 70, Short.MAX_VALUE)
-        );
-        pnlPruebaLayout.setVerticalGroup(
-                pnlPruebaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(p);
-        p.setBounds(340, 100, 70, 10);
+        p.setLocation(0, 54);
+        p.setSize(148,15);
+        pnlUsuario.add(p);
     }
+    
+    
     private LabelCircular lc;
 
     private void setLabelFoto() {
         lc = new LabelCircular();
-        lc.setLocation(103, 0);
-        Dimension d = new Dimension(141,70);
+        lc.setLocation(148, 0);
+        Dimension d = new Dimension(80, 70);
         lc.setSize(d);
-        lc.setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-unavailable-35.png")));
+        lc.setLineBorder(3);
+        lc.setLineColor(new java.awt.Color(20, 194, 115));
+        lc.setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-no-image-64.png")));
         pnlUsuario.add(lc);
-      
     }
 
     @SuppressWarnings("unchecked")
@@ -130,10 +136,10 @@ public class OMAjustes extends javax.swing.JInternalFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-audio-35.png"))); // NOI18N
         pnlUsuario.add(jLabel4);
-        jLabel4.setBounds(16, 0, 35, 70);
+        jLabel4.setBounds(40, 0, 35, 70);
 
         getContentPane().add(pnlUsuario);
-        pnlUsuario.setBounds(340, 40, 250, 70);
+        pnlUsuario.setBounds(340, 40, 230, 70);
 
         jLabel5.setText("Decimales fijos: ");
         getContentPane().add(jLabel5);
@@ -175,7 +181,7 @@ public class OMAjustes extends javax.swing.JInternalFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 620, 390);
+        jLabel1.setBounds(0, 0, 620, 410);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -196,4 +202,31 @@ public class OMAjustes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel pnlUsuario;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(e.getSource() == pnlUsuario ){
+            System.out.println(e.getPoint());
+            System.out.println(e.getLocationOnScreen());
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+       
+    }
+    @Override
+    public void mouseReleased(MouseEvent e) {
+     
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+       
+    }
 }

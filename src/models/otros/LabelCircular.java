@@ -19,8 +19,7 @@ public class LabelCircular extends JLabel {
         Dimension d = new Dimension(100,100);
         setSize(d);
         setPreferredSize(d);       
-        setText("CLabel");
-        setOpaque(true);
+        setOpaque(false);
         setHorizontalAlignment(CENTER);       
         setVisible(true);       
         setBorder(circleBorder); 

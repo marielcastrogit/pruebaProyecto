@@ -5,25 +5,29 @@
  */
 package models.desigualdades.lineales;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Usuario
  */
 public class NewMain {
 
-    /**lo que sale en azul es lo que se elimina
+    /**
+     * lo que sale en azul es lo que se elimina
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String dat = "-3x+4<11";
-        System.out.println( new DesigualdadesLinealesSimples(dat).setParte1());
-        System.out.println( new DesigualdadesLinealesSimples(dat).setSigno());
-        System.out.println( new DesigualdadesLinealesSimples(dat).setParte3());
-        System.out.println( new DesigualdadesLinealesSimples(dat).setTerminosX());
-        System.out.println( new DesigualdadesLinealesSimples(dat).setNumeros());
-        
-        
+        String dat = "-3x-3+8<23+5";
+        DesigualdadesLinealesSimples dls = new DesigualdadesLinealesSimples(dat);
+        System.out.println(dls.setParte1());
+        System.out.println(dls.setSigno());
+        System.out.println(dls.setParte3());
+        System.out.println(dls.setTerminosX());
+        dls.operar(dls.setNumeros());
+
     }
 
 }

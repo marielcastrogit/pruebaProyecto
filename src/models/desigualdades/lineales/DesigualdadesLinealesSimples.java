@@ -43,10 +43,10 @@ public class DesigualdadesLinealesSimples {
             p1 = p1 + split[i];
         }
 
-        //Si no tiene signo entonces que le agregue un + 
-//        if (!(p1.startsWith("+") || p1.startsWith("-"))) {
-//            p1 = "+" + p1;
-//        }
+//        Si no tiene signo entonces que le agregue un + 
+        if (!(p1.startsWith("+") || p1.startsWith("-"))) {
+            p1 = "+" + p1;
+        }
         return p1;
     }
 
@@ -75,9 +75,9 @@ public class DesigualdadesLinealesSimples {
             p2 += split[i];
         }
 
-//        if (!(p2.startsWith("+") || p2.startsWith("-"))) {
-//            p2 = "+" + p2;
-//        }
+        if (!(p2.startsWith("+") || p2.startsWith("-"))) {
+            p2 = "+" + p2;
+        }
         return p2;
     }
 
@@ -139,7 +139,9 @@ public class DesigualdadesLinealesSimples {
         //LADO DERECHO - PARTE 3:
         for (int i = 0; i < split1.length; i++) {
             if (patronX.matcher(split1[i]).matches()) {
-                listaN.add(split1[i]);
+                if (!split1[i].equals("")) {
+                    listaN.add(split1[i]);
+                }
             }
         }
 
@@ -149,11 +151,13 @@ public class DesigualdadesLinealesSimples {
         //LADO IZQUIERDO - PARTE1:
         for (int i = 0; i < split1.length; i++) {
             if (patronX.matcher(split1[i]).matches()) {
-                if (split1[i].startsWith("-")) {
-                    listaN.add(split1[i].replace("-", "+"));
-                }
-                if (split1[i].startsWith("+")) {
-                    listaN.add(split1[i].replace('+', '-'));
+                if (!split1[i].equals("")) {
+                    if (split1[i].startsWith("-")) {
+                        listaN.add(split1[i].replace("-", "+"));
+                    }
+                    if (split1[i].startsWith("+")) {
+                        listaN.add(split1[i].replace('+', '-'));
+                    }
                 }
             }
         }
@@ -166,6 +170,37 @@ public class DesigualdadesLinealesSimples {
         }
 
         return n;
+    }
+
+    public void operar(String operacion) {
+        Pattern patron = Pattern.compile("([+]\\d*)([+]\\d*)");
+
+        ArrayList listaNS = new ArrayList();
+        double sumar = 0;
+        for (int i = 0; i < listaN.size() - 1; i++) {
+            String p = listaN.get(i).toString() + listaN.get(i + 1).toString();
+
+            if (patron.matcher(p).matches()) {
+                String[] split = p.split("\\+");
+
+                int x = 0;
+                while (x < split.length) {
+                    if (!split[x].equals("")) {
+                        listaNS.add(split[x]);
+                    }
+                    x++;
+                }
+
+                try {
+                    Double num1 = Double.parseDouble(listaNS.get(i).toString());
+                    Double num2 = Double.parseDouble(listaNS.get(i + 1).toString());
+                    sumar = Operacion.sumar(num1, num2);
+                } catch (NumberFormatException ex) {
+
+                }
+            }
+        }
+        System.out.println(sumar);
     }
 
 }

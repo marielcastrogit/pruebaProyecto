@@ -14,13 +14,16 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String dat = "-3x-4-2-4<3+2+6+5x";
+        String dat = "x-4-2-4<3+2+6-2x-3x-3x";
         DesigualdadesLinealesSimples dls = new DesigualdadesLinealesSimples(dat);
         dls.setParte1();
         dls.setSigno();
         dls.setParte3();
-        dls.setTerminosX();
-        dls.operar(dls.setNumeros());
+        System.out.println("numeros:");
+        System.out.println(dls.operar(dls.setNumeros()));
+        System.out.println();
+        System.out.println("numeros x:");
+        System.out.println(dls.operar(dls.setTerminosX()));
 
     }
 

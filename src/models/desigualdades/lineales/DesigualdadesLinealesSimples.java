@@ -81,7 +81,7 @@ public class DesigualdadesLinealesSimples {
         return p2;
     }
 
-    public String setTerminosX() {
+    public ArrayList<String> setTerminosX() {
         //LADO IZQUIERDO - PARTE1:
         String replace = (setParte1().replace("+", ",+"));
         String remplazo = replace.replace("-", ",-");
@@ -90,6 +90,12 @@ public class DesigualdadesLinealesSimples {
         Pattern patronX = Pattern.compile("[-+]\\d*x{1}");
         for (int i = 0; i < split1.length; i++) {
             if (patronX.matcher(split1[i]).matches()) {
+                if (split1[i].equals("+x")) {
+                    split1[i] = "+1x";
+                }
+                if (split1[i].equals("-x")) {
+                    split1[i] = "-1x";
+                }
                 listaX.add(split1[i]);
             }
         }
@@ -102,9 +108,15 @@ public class DesigualdadesLinealesSimples {
         for (int i = 0; i < split1.length; i++) {
             if (patronX.matcher(split1[i]).matches()) {
                 if (split1[i].startsWith("-")) {
+                    if (split1[i].equals("-x")) {
+                        split1[i] = "-1x";
+                    }
                     listaX.add(split1[i].replace("-", "+"));
                 }
                 if (split1[i].startsWith("+")) {
+                    if (split1[i].equals("+x")) {
+                        split1[i] = "+1x";
+                    }
                     listaX.add(split1[i].replace('+', '-'));
                 }
             }
@@ -117,16 +129,15 @@ public class DesigualdadesLinealesSimples {
         }
 
         //Elimo las x para que me queden solo los numeros:
-        String coeficientesX = "";
         String[] split = x.split("x");
+        listaX.clear();
 
-        i = 0;
-        while (i < split.length) {
-            coeficientesX += split[i];
-            i++;
+        for (int s = 0; s < split.length; s++) {
+            if (!split[s].equals("")) {
+                listaX.add(split[s]);
+            }
         }
-
-        return coeficientesX;
+        return listaX;
 
     }
 
@@ -172,86 +183,35 @@ public class DesigualdadesLinealesSimples {
         return listaN;
     }
 
-    public void operar(ArrayList<String> operacion) {
+    public String operar(ArrayList<String> operacion) {
         Pattern patronmasAmasB = Pattern.compile("([+]\\d*)([+]\\d*)");
-
-        ArrayList listaNS = new ArrayList();
         int resultado = 0;
         String resultadoS = "";
         String p = operacion.get(0).toString() + operacion.get(1).toString();
-        System.out.println("p inicial" + p);
-        System.out.println();
-
         if (patronmasAmasB.matcher(p).matches()) {
-            String[] split = p.split("\\+");
-
-            int x = 0;
-            while (x < split.length) {
-                if (!split[x].equals("")) {
-                    listaNS.add(split[x]);
-                }
-                x++;
-            }
-            int t = 0;
-            while (t < listaNS.size()) {
-                System.out.println("lista [" + t + "] " + listaNS.get(t));
-                System.out.println();
-                t++;
-            }
-
             try {
-                Double num1 = Double.parseDouble(listaNS.get(0).toString());
-                Double num2 = Double.parseDouble(listaNS.get(1).toString());
+                Double num1 = Double.parseDouble(operacion.get(0).toString());
+                Double num2 = Double.parseDouble(operacion.get(1).toString());
                 resultado = (int) Operacion.sumar(num1, num2);
                 resultadoS = "+" + resultado;
-                listaNS.remove(0);
-                listaNS.remove(0);
-                listaNS.add(resultadoS);
             } catch (NumberFormatException ex) {
             }
-            int Y = 0;
-            while (Y < listaNS.size()) {
-                System.out.println("lista [" + Y + "] " + listaNS.get(Y));
-                System.out.println();
-                Y++;
-            }
 
         }
 
-        for (int i = 2; i < listaN.size(); i++) {
-            System.out.println();
-            System.out.println("valor i" + i);
-
-            p = resultadoS + listaN.get(i);
-            System.out.println("valor de p en " + i + ": " + p);
-            System.out.println(patronmasAmasB.matcher(p).matches());
+        for (int i = 2; i < operacion.size(); i++) {
+            p = resultadoS + operacion.get(i);
             if (patronmasAmasB.matcher(p).matches()) {
-                String[] split = p.split("\\+");
-                System.out.println("entrooo");
-                int x = 0;
-                while (x < split.length) {
-                    if (!split[x].equals("")) {
-                        listaNS.add(split[x]);
-                    }
-                    x++;
-                }
-
                 try {
                     Double num1 = Double.parseDouble(resultadoS);
-                    System.out.println("numero1: " + num1);
-                    Double num2 = Double.parseDouble(listaN.get(i).toString());
-                    System.out.println("numero2: " + num2);
+                    Double num2 = Double.parseDouble(operacion.get(i).toString());
                     resultado = (int) Operacion.sumar(num1, num2);
                     resultadoS = "+" + resultado;
-//                    listaNS.remove(0);
-//                    listaNS.add(resultadoS);
                 } catch (NumberFormatException ex) {
-                    System.out.println("error");
                 }
             }
-            System.out.println(resultadoS);
         }
-
+        return resultadoS;
     }
 
 }

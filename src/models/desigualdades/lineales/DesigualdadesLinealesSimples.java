@@ -2,7 +2,6 @@ package models.desigualdades.lineales;
 //@author Mariel Castro
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DesigualdadesLinealesSimples {
@@ -172,22 +171,21 @@ public class DesigualdadesLinealesSimples {
                 }
             }
         }
-
-        String n = "";
-        int i = 0;
-        while (i < listaN.size()) {
-            n += listaN.get(i).toString();
-            i++;
-        }
-
         return listaN;
     }
 
     public String operar(ArrayList<String> operacion) {
-        Pattern patronmasAmasB = Pattern.compile("([+]\\d*)([+]\\d*)");
+
+        Pattern patronmasAmasB = Pattern.compile("([+]\\d*)([+]\\d*)");//+a+b
+        Pattern patronmenosAmenosB = Pattern.compile("([-]\\d*)([-]\\d*)");//-a-b
+        Pattern patronmasAmenosB = Pattern.compile("([+]\\d*)([-]\\d*)");//+a-b
+        Pattern patronmenosAmasB = Pattern.compile("([-]\\d*)([+]\\d*)");//-a+b
+
         int resultado = 0;
         String resultadoS = "";
         String p = operacion.get(0).toString() + operacion.get(1).toString();
+        
+        //+a+b
         if (patronmasAmasB.matcher(p).matches()) {
             try {
                 Double num1 = Double.parseDouble(operacion.get(0).toString());
@@ -196,11 +194,53 @@ public class DesigualdadesLinealesSimples {
                 resultadoS = "+" + resultado;
             } catch (NumberFormatException ex) {
             }
+        }
 
+        //-a-b
+        if (patronmenosAmenosB.matcher(p).matches()) {
+            try {
+                Double num1 = Double.parseDouble(operacion.get(0).toString());
+                Double num2 = Double.parseDouble(operacion.get(1).toString());
+                resultado = (int) Operacion.sumar(num1, num2);
+                resultadoS = "-" + resultado;
+            } catch (NumberFormatException ex) {
+            }
+        }
+
+        //-a+b
+        if (patronmenosAmasB.matcher(p).matches()) {
+            try {
+                Double num1 = Double.parseDouble(operacion.get(0).toString());
+                Double num2 = Double.parseDouble(operacion.get(1).toString());
+                resultado = (int) Operacion.sumar(num1, num2);
+                if (Math.abs(num1) > Math.abs(num2)) {
+                    resultadoS = "" + resultado;
+                } else {
+                    resultadoS = "+" + resultado;
+                }
+            } catch (NumberFormatException ex) {
+            }
+        }
+
+        //+a-b
+        if (patronmasAmenosB.matcher(p).matches()) {
+            try {
+                Double num1 = Double.parseDouble(operacion.get(0).toString());
+                Double num2 = Double.parseDouble(operacion.get(1).toString());
+                resultado = (int) Operacion.sumar(num1, num2);
+                if (Math.abs(num1) > Math.abs(num2)) {
+                    resultadoS = "+" + resultado;
+                } else {
+                    resultadoS = "" + resultado;
+                }
+            } catch (NumberFormatException ex) {
+            }
         }
 
         for (int i = 2; i < operacion.size(); i++) {
             p = resultadoS + operacion.get(i);
+            
+            //+a+b
             if (patronmasAmasB.matcher(p).matches()) {
                 try {
                     Double num1 = Double.parseDouble(resultadoS);
@@ -210,8 +250,49 @@ public class DesigualdadesLinealesSimples {
                 } catch (NumberFormatException ex) {
                 }
             }
-        }
-        return resultadoS;
-    }
 
-}
+            //-a-b
+            if (patronmenosAmenosB.matcher(p).matches()) {
+                try {
+                    Double num1 = Double.parseDouble(resultadoS);
+                    Double num2 = Double.parseDouble(operacion.get(i).toString());
+                    resultado = (int) Operacion.sumar(num1, num2);
+                    resultadoS = "-" + resultado;
+                } catch (NumberFormatException ex) {
+                }
+            }
+
+            //-a+b
+            if (patronmenosAmasB.matcher(p).matches()) {
+                try {
+                    Double num1 = Double.parseDouble(resultadoS);
+                    Double num2 = Double.parseDouble(operacion.get(i).toString());
+                    resultado = (int) Operacion.sumar(num1, num2);
+                    if (Math.abs(num1) > Math.abs(num2)) {
+                        resultadoS = "" + resultado;
+                    } else {
+                        resultadoS = "+" + resultado;
+                    }
+                } catch (NumberFormatException ex) {
+                }
+            }
+
+            //+a-b
+            if (patronmasAmenosB.matcher(p).matches()) {
+                try {
+                    Double num1 = Double.parseDouble(resultadoS);
+                    Double num2 = Double.parseDouble(operacion.get(i).toString());
+                    resultado = (int) Operacion.sumar(num1, num2);
+                    if (Math.abs(num1) > Math.abs(num2)) {
+                        resultadoS = "+" + resultado;
+                    } else {
+                        resultadoS = "" + resultado;
+                    }
+                } catch (NumberFormatException ex) {
+                }
+            }
+        }
+            return resultadoS;
+        }
+
+    }

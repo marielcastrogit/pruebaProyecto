@@ -130,7 +130,7 @@ public class DesigualdadesLinealesSimples {
 
     }
 
-    public String setNumeros() {
+    public ArrayList<String> setNumeros() {
         /*Todos los terminos que no tienen que x deberan tener el siguiente patron:*/
         Pattern patronX = Pattern.compile("[+-]*\\d*(?!\\d*x)");
         String replace = (setParte3().replace("+", ",+"));
@@ -169,20 +169,65 @@ public class DesigualdadesLinealesSimples {
             i++;
         }
 
-        return n;
+        return listaN;
     }
 
-    public void operar(String operacion) {
-        Pattern patron = Pattern.compile("([+]\\d*)([+]\\d*)");
+    public void operar(ArrayList<String> operacion) {
+        Pattern patronmasAmasB = Pattern.compile("([+]\\d*)([+]\\d*)");
 
         ArrayList listaNS = new ArrayList();
-        double sumar = 0;
-        for (int i = 0; i < listaN.size() - 1; i++) {
-            String p = listaN.get(i).toString() + listaN.get(i + 1).toString();
+        int resultado = 0;
+        String resultadoS = "";
+        String p = operacion.get(0).toString() + operacion.get(1).toString();
+        System.out.println("p inicial" + p);
+        System.out.println();
 
-            if (patron.matcher(p).matches()) {
+        if (patronmasAmasB.matcher(p).matches()) {
+            String[] split = p.split("\\+");
+
+            int x = 0;
+            while (x < split.length) {
+                if (!split[x].equals("")) {
+                    listaNS.add(split[x]);
+                }
+                x++;
+            }
+            int t = 0;
+            while (t < listaNS.size()) {
+                System.out.println("lista [" + t + "] " + listaNS.get(t));
+                System.out.println();
+                t++;
+            }
+
+            try {
+                Double num1 = Double.parseDouble(listaNS.get(0).toString());
+                Double num2 = Double.parseDouble(listaNS.get(1).toString());
+                resultado = (int) Operacion.sumar(num1, num2);
+                resultadoS = "+" + resultado;
+                listaNS.remove(0);
+                listaNS.remove(0);
+                listaNS.add(resultadoS);
+            } catch (NumberFormatException ex) {
+            }
+            int Y = 0;
+            while (Y < listaNS.size()) {
+                System.out.println("lista [" + Y + "] " + listaNS.get(Y));
+                System.out.println();
+                Y++;
+            }
+
+        }
+
+        for (int i = 2; i < listaN.size(); i++) {
+            System.out.println();
+            System.out.println("valor i" + i);
+
+            p = resultadoS + listaN.get(i);
+            System.out.println("valor de p en " + i + ": " + p);
+            System.out.println(patronmasAmasB.matcher(p).matches());
+            if (patronmasAmasB.matcher(p).matches()) {
                 String[] split = p.split("\\+");
-
+                System.out.println("entrooo");
                 int x = 0;
                 while (x < split.length) {
                     if (!split[x].equals("")) {
@@ -192,15 +237,21 @@ public class DesigualdadesLinealesSimples {
                 }
 
                 try {
-                    Double num1 = Double.parseDouble(listaNS.get(i).toString());
-                    Double num2 = Double.parseDouble(listaNS.get(i + 1).toString());
-                    sumar = Operacion.sumar(num1, num2);
+                    Double num1 = Double.parseDouble(resultadoS);
+                    System.out.println("numero1: " + num1);
+                    Double num2 = Double.parseDouble(listaN.get(i).toString());
+                    System.out.println("numero2: " + num2);
+                    resultado = (int) Operacion.sumar(num1, num2);
+                    resultadoS = "+" + resultado;
+//                    listaNS.remove(0);
+//                    listaNS.add(resultadoS);
                 } catch (NumberFormatException ex) {
-
+                    System.out.println("error");
                 }
             }
+            System.out.println(resultadoS);
         }
-        System.out.println(sumar);
+
     }
 
 }

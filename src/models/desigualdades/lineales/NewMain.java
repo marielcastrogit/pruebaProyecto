@@ -5,12 +5,6 @@
  */
 package models.desigualdades.lineales;
 
-import java.util.ArrayList;
-
-/**
- *
- * @author Usuario
- */
 public class NewMain {
 
     /**
@@ -20,12 +14,12 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String dat = "-3x-3+8<23+5";
+        String dat = "-3x-4-2-4<3+2+6+5x";
         DesigualdadesLinealesSimples dls = new DesigualdadesLinealesSimples(dat);
-        System.out.println(dls.setParte1());
-        System.out.println(dls.setSigno());
-        System.out.println(dls.setParte3());
-        System.out.println(dls.setTerminosX());
+        dls.setParte1();
+        dls.setSigno();
+        dls.setParte3();
+        dls.setTerminosX();
         dls.operar(dls.setNumeros());
 
     }

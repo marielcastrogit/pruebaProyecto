@@ -11,10 +11,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import views.MMAjustes;
+import views.MMDocumento;
 import views.MMInicioSesion;
 import views.MMResolver;
 import views.MainFrame;
 import views.OMAjustes;
+import views.OMDocumento;
 import views.OMInicioSesion;
 import views.OMResolver;
 
@@ -28,10 +30,12 @@ public class MainFrameController implements MouseListener {
     private OMInicioSesion iniciarSesionOM;
     private OMResolver resolverOM;
     private OMAjustes ajustesOM;
+    private OMDocumento documentoOM;
 
     private MMInicioSesion iniciarSesionMM;
     private MMResolver resolverMM;
     private MMAjustes ajustesMM;
+    private MMDocumento documentoMM;
 
     private JInternalFrame internoAnterior;
 
@@ -47,35 +51,43 @@ public class MainFrameController implements MouseListener {
         iniciarSesionOM = new OMInicioSesion();
         resolverOM = new OMResolver();
         ajustesOM = new OMAjustes();
+        documentoOM = new OMDocumento();
 
         iniciarSesionOM.setVisible(false);
         resolverOM.setVisible(true);
         ajustesOM.setVisible(false);
+        documentoOM.setVisible(false);
 
         iniciarSesionOM.setLocation(35, 18);
         resolverOM.setLocation(35, 18);
         ajustesOM.setLocation(35, 18);;
+        documentoOM.setLocation(35, 18);;
 
         mf.getjDesktopPane1().add(iniciarSesionOM);
         mf.getjDesktopPane1().add(resolverOM);
         mf.getjDesktopPane1().add(ajustesOM);
+        mf.getjDesktopPane1().add(documentoOM);
 
         //MM - Mostrar Menu
         iniciarSesionMM = new MMInicioSesion();
         resolverMM = new MMResolver();
         ajustesMM = new MMAjustes();
+        documentoMM = new MMDocumento();
 
         iniciarSesionMM.setVisible(false);
         resolverMM.setVisible(false);
         ajustesMM.setVisible(false);
+        documentoMM.setVisible(false);
 
         iniciarSesionMM.setLocation(20, 18);
         resolverMM.setLocation(20, 18);
         ajustesMM.setLocation(20, 18);
+        documentoMM.setLocation(20, 18);
 
         mf.getjDesktopPane1().add(iniciarSesionMM);
         mf.getjDesktopPane1().add(resolverMM);
         mf.getjDesktopPane1().add(ajustesMM);
+        mf.getjDesktopPane1().add(documentoMM);
 
     }
 
@@ -127,6 +139,22 @@ public class MainFrameController implements MouseListener {
                 ajustesOM.setVisible(true);
                 internoAnterior = ajustesOM;
             }
+             if (internoAnterior == documentoOM && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
+                internoAnterior.setVisible(false);
+                documentoMM.setVisible(true);
+                internoAnterior = documentoMM;
+            }
+
+            if (internoAnterior == documentoMM && mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                internoAnterior.setVisible(false);
+                documentoOM.setVisible(true);
+                internoAnterior = documentoOM;
+            }
+//            if (internoAnterior == documentoOM && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
+//                internoAnterior.setVisible(false);
+//                ajustesMM.setVisible(true);
+//                internoAnterior = ajustesMM;
+//            }
 
         }
 
@@ -172,6 +200,20 @@ public class MainFrameController implements MouseListener {
 
         if (o == mf.getPnlDocumentos() || o == mf.getLblDocumentos() || o == mf.getLblIconoDocumentos()) {
             reproducirSonidoEntrada();
+            ocultarMenu();
+            if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+
+                if (clic % 2 == 0) {
+                    clic++;
+                }
+                if (clic % 2 != 0) {
+                    clic--;
+                }
+                System.out.println("ajustes:" + clic);
+                internoAnterior.setVisible(false);
+                documentoOM.setVisible(true);
+                internoAnterior = documentoOM;
+            }
         }
 
         if (o == mf.getPnlPractica() || o == mf.getLblPractica() || o == mf.getLblIconoPractica()) {

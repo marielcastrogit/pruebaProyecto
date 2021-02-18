@@ -26,7 +26,7 @@ public class DesigualdadesLinealesSimples {
     }
 
     //Parte 1 de la desigualdad - lado izquierdo
-    public String setParte1() {
+    public String getParte1() {
         String[] split = desigualdad.split("(<|>|≥|≤)([+-]?\\d*x?)*");
         String p1 = "";
         /*
@@ -49,8 +49,10 @@ public class DesigualdadesLinealesSimples {
         return p1;
     }
 
+    private String signo;
+
     //Parte 2 signo
-    public String setSigno() {
+    public String getSigno() {
         int posicionSigno = 0;
         for (int i = 0; i < desigualdad.length(); i++) {
             if (desigualdad.charAt(i) == '<' || desigualdad.charAt(i) == '>' || desigualdad.charAt(i) == '≤' || desigualdad.charAt(i) == '≥') {
@@ -58,12 +60,16 @@ public class DesigualdadesLinealesSimples {
             }
         }
         char[] toCharArray = desigualdad.toCharArray();
+        this.signo = toCharArray[posicionSigno] + "";
+        return signo;
+    }
 
-        return toCharArray[posicionSigno] + "";
+    public void setSigno(String signo) {
+        this.signo = signo;
     }
 
     //Parte 3 de la desigualdad - lado derecho
-    public String setParte3() {
+    public String getParte3() {
         String[] split = desigualdad.split("([+-]*\\d*x*)*(<|>|≥|≤)");
         /*
         ([+-]*\d*x*)* signos aritmeticos, digitos entre 0-9 y una x
@@ -80,9 +86,9 @@ public class DesigualdadesLinealesSimples {
         return p2;
     }
 
-    public ArrayList<String> setTerminosX() {
+    public ArrayList<String> getTerminosX() {
         //LADO IZQUIERDO - PARTE1:
-        String replace = (setParte1().replace("+", ",+"));
+        String replace = (getParte1().replace("+", ",+"));
         String remplazo = replace.replace("-", ",-");
         String[] split1 = remplazo.split(",");
         /*Todos los terminos con x deben de seguir el siguiente patron:*/
@@ -100,7 +106,7 @@ public class DesigualdadesLinealesSimples {
         }
 
         //LADO DERECHO - PARTE 3:
-        replace = (setParte3().replace("+", ",+"));
+        replace = (getParte3().replace("+", ",+"));
         remplazo = replace.replace("-", ",-");
         split1 = remplazo.split(",");
 
@@ -140,10 +146,10 @@ public class DesigualdadesLinealesSimples {
 
     }
 
-    public ArrayList<String> setNumeros() {
+    public ArrayList<String> getNumeros() {
         /*Todos los terminos que no tienen que x deberan tener el siguiente patron:*/
         Pattern patronX = Pattern.compile("[+-]*\\d*(?!\\d*x)");
-        String replace = (setParte3().replace("+", ",+"));
+        String replace = (getParte3().replace("+", ",+"));
         String remplazo = replace.replace("-", ",-");
         String[] split1 = remplazo.split(",");
         //LADO DERECHO - PARTE 3:
@@ -155,7 +161,7 @@ public class DesigualdadesLinealesSimples {
             }
         }
 
-        replace = (setParte1().replace("+", ",+"));
+        replace = (getParte1().replace("+", ",+"));
         remplazo = replace.replace("-", ",-");
         split1 = remplazo.split(",");
         //LADO IZQUIERDO - PARTE1:
@@ -174,125 +180,29 @@ public class DesigualdadesLinealesSimples {
         return listaN;
     }
 
-    public String operar(ArrayList<String> operacion) {
+    public String resultado() {
+        String x = Operacion.operar(getTerminosX());
+        String n = Operacion.operar(getNumeros());
 
-        Pattern patronmasAmasB = Pattern.compile("([+]\\d*)([+]\\d*)");//+a+b
-        Pattern patronmenosAmenosB = Pattern.compile("([-]\\d*)([-]\\d*)");//-a-b
-        Pattern patronmasAmenosB = Pattern.compile("([+]\\d*)([-]\\d*)");//+a-b
-        Pattern patronmenosAmasB = Pattern.compile("([-]\\d*)([+]\\d*)");//-a+b
+        if (x.startsWith("-")) {
+            System.out.println("Entro en el if");
+            //Si el coeficiente de la x es un numero negativo entonces se cambia el signo
+            //≤' || desigualdad.charAt(i) == '≥'
+            if (getSigno().equals("<")) {
+                setSigno(">");
 
-        int resultado = 0;
-        String resultadoS = "";
-        String p = operacion.get(0).toString() + operacion.get(1).toString();
-        
-        //+a+b
-        if (patronmasAmasB.matcher(p).matches()) {
-            try {
-                Double num1 = Double.parseDouble(operacion.get(0).toString());
-                Double num2 = Double.parseDouble(operacion.get(1).toString());
-                resultado = (int) Operacion.sumar(num1, num2);
-                resultadoS = "+" + resultado;
-            } catch (NumberFormatException ex) {
+            } else if (getSigno().equals(">")) {
+                setSigno("<");
+            } else if (getSigno().equals("≤")) {
+                setSigno("≥");
+            } else if (getSigno().equals("≥")) {
+                setSigno("≤");
             }
         }
-
-        //-a-b
-        if (patronmenosAmenosB.matcher(p).matches()) {
-            try {
-                Double num1 = Double.parseDouble(operacion.get(0).toString());
-                Double num2 = Double.parseDouble(operacion.get(1).toString());
-                resultado = (int) Operacion.sumar(num1, num2);
-                resultadoS = "-" + resultado;
-            } catch (NumberFormatException ex) {
-            }
-        }
-
-        //-a+b
-        if (patronmenosAmasB.matcher(p).matches()) {
-            try {
-                Double num1 = Double.parseDouble(operacion.get(0).toString());
-                Double num2 = Double.parseDouble(operacion.get(1).toString());
-                resultado = (int) Operacion.sumar(num1, num2);
-                if (Math.abs(num1) > Math.abs(num2)) {
-                    resultadoS = "" + resultado;
-                } else {
-                    resultadoS = "+" + resultado;
-                }
-            } catch (NumberFormatException ex) {
-            }
-        }
-
-        //+a-b
-        if (patronmasAmenosB.matcher(p).matches()) {
-            try {
-                Double num1 = Double.parseDouble(operacion.get(0).toString());
-                Double num2 = Double.parseDouble(operacion.get(1).toString());
-                resultado = (int) Operacion.sumar(num1, num2);
-                if (Math.abs(num1) > Math.abs(num2)) {
-                    resultadoS = "+" + resultado;
-                } else {
-                    resultadoS = "" + resultado;
-                }
-            } catch (NumberFormatException ex) {
-            }
-        }
-
-        for (int i = 2; i < operacion.size(); i++) {
-            p = resultadoS + operacion.get(i);
-            
-            //+a+b
-            if (patronmasAmasB.matcher(p).matches()) {
-                try {
-                    Double num1 = Double.parseDouble(resultadoS);
-                    Double num2 = Double.parseDouble(operacion.get(i).toString());
-                    resultado = (int) Operacion.sumar(num1, num2);
-                    resultadoS = "+" + resultado;
-                } catch (NumberFormatException ex) {
-                }
-            }
-
-            //-a-b
-            if (patronmenosAmenosB.matcher(p).matches()) {
-                try {
-                    Double num1 = Double.parseDouble(resultadoS);
-                    Double num2 = Double.parseDouble(operacion.get(i).toString());
-                    resultado = (int) Operacion.sumar(num1, num2);
-                    resultadoS = "-" + resultado;
-                } catch (NumberFormatException ex) {
-                }
-            }
-
-            //-a+b
-            if (patronmenosAmasB.matcher(p).matches()) {
-                try {
-                    Double num1 = Double.parseDouble(resultadoS);
-                    Double num2 = Double.parseDouble(operacion.get(i).toString());
-                    resultado = (int) Operacion.sumar(num1, num2);
-                    if (Math.abs(num1) > Math.abs(num2)) {
-                        resultadoS = "" + resultado;
-                    } else {
-                        resultadoS = "+" + resultado;
-                    }
-                } catch (NumberFormatException ex) {
-                }
-            }
-
-            //+a-b
-            if (patronmasAmenosB.matcher(p).matches()) {
-                try {
-                    Double num1 = Double.parseDouble(resultadoS);
-                    Double num2 = Double.parseDouble(operacion.get(i).toString());
-                    resultado = (int) Operacion.sumar(num1, num2);
-                    if (Math.abs(num1) > Math.abs(num2)) {
-                        resultadoS = "+" + resultado;
-                    } else {
-                        resultadoS = "" + resultado;
-                    }
-                } catch (NumberFormatException ex) {
-                }
-            }
-        }
-            return resultadoS;
-        }
+        Fraccion f = new Fraccion();
+        String dividirFraccion = f.dividirFraccion(n, x);
+        return "x " + signo + " " + dividirFraccion;
 
     }
+
+}

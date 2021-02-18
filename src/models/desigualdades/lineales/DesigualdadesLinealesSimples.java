@@ -183,9 +183,8 @@ public class DesigualdadesLinealesSimples {
     public String resultado() {
         String x = Operacion.operar(getTerminosX());
         String n = Operacion.operar(getNumeros());
-
+        
         if (x.startsWith("-")) {
-            System.out.println("Entro en el if");
             //Si el coeficiente de la x es un numero negativo entonces se cambia el signo
             //≤' || desigualdad.charAt(i) == '≥'
             if (getSigno().equals("<")) {

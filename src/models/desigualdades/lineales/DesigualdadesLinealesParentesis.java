@@ -57,16 +57,12 @@ public class DesigualdadesLinealesParentesis {
         if (numParentesisApertura == numParentesisCierre) {
             numParentesis = numParentesisCierre;
             for (int a = 0; a < numParentesis; a++) {
-                 toCharArray = cadena.toCharArray();
-                System.out.println("ITERANDO EL FOR : " + a);
-                System.out.println();
+                toCharArray = cadena.toCharArray();
 
                 bf:
                 for (int i = 0; i < toCharArray.length; i++) {
-                    System.out.println("tocharArray: " + i + " " + toCharArray[i]);
                     if (toCharArray[i] == '(') {
                         comienzo = i;
-                        System.out.println("comienzo: " + i+ " " + comienzo);
                         break bf;
                     }
                 }
@@ -75,7 +71,6 @@ public class DesigualdadesLinealesParentesis {
                 for (int i = 0; i < toCharArray.length; i++) {
                     if (toCharArray[i] == ')') {
                         fin = i;
-                        System.out.println("fin: " + i + " " + fin);
                         break bf2;
                     }
                 }
@@ -86,31 +81,25 @@ public class DesigualdadesLinealesParentesis {
                     while (x >= 0) {
                         if (toCharArray[x] == '-' || toCharArray[x] == '+') {
                             signo = x;
-                            System.out.println("signo: " + signo);
                             break bw;
                         }
                         x--;
                     }
-                    terminoParentesis = cadena.substring(signo, fin+1);
-                    System.out.println("termino parentesis comienzo diferente de 0: " + terminoParentesis);
+                    terminoParentesis = cadena.substring(signo, fin + 1);
 
                 } else {
                     terminoParentesis = cadena.substring(comienzo, fin + 1);
-                     System.out.println("termino parentesis comienzo 0: " + terminoParentesis);
                 }
                 tParentesis += terminoParentesis;
 
-                System.out.println(cadena);
                 String reemplazo = cadena.replace(terminoParentesis, "");
                 cadena = reemplazo;
-                System.out.println("cadena:"  + cadena);
-                System.out.println("split:" + reemplazo);
             }
         }
-        return "tPARENTESIS:" + tParentesis;
+        return tParentesis;
     }
-
     //        if (!terminoParentesis.startsWith("-") && !terminoParentesis.startsWith("+")) {
 //            terminoParentesis = "+" + terminoParentesis;
 //        }
+
 }

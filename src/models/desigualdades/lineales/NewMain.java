@@ -16,33 +16,13 @@ public class NewMain {
         dls.getParte3();
         System.out.println(dls.resultado());
         System.out.println();
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
         System.out.println("DESIGUALDADES LINEALES PARENTESIS");
-        String lp = "4(x+2)-3x-5";
-        /*
-        3x+2(x-2)>4x
-        -(x+1)(x+2)(x+3)<0
-        5x-(3-2x)+8>9+3(2x-4)
-        */
-        boolean contieneParentesis = lp.contains("(") && lp.contains(")");
-        int numApertura = 0;
-        int numCierre = 0;
-        //Determinar si los parentesis estan completos:
-        char[] toCharArray = lp.toCharArray();
-        for (int i = 0; i < toCharArray.length; i++) {
-            if (toCharArray[i] == '(') {
-                numApertura++;
-            }
-            if (toCharArray[i] == ')') {
-                numCierre++;
-            }
-        }
-
-        if (numApertura == numCierre) {//Si los parentesis estan completos
-         
-        }
-        
-        System.out.println(contieneParentesis);
+        String lp = "-(x+1)<(x+2)";
+        DesigualdadesLinealesParentesis dlp = new DesigualdadesLinealesParentesis(lp);
+        dlp.setPartes();
+        System.out.println(dlp.getTerminosParentesis(dlp.getParte1()));
+        System.out.println(dlp.getTerminosParentesis(dlp.getParte2()));
     }
-
 }

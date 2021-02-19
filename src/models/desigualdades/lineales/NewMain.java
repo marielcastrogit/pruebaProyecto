@@ -19,30 +19,10 @@ public class NewMain {
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
         System.out.println("DESIGUALDADES LINEALES PARENTESIS");
-        String lp = "-(x+1)(x-2)<0";
+        String lp = "-(x+1)+3(x-2)-(x+8)+9+7<0";
         DesigualdadesLinealesParentesis dlp = new DesigualdadesLinealesParentesis(lp);
         dlp.setPartes();
         System.out.println(dlp.getTerminosParentesis(dlp.getParte1()));
-
-        char[] toCharArray = lp.toCharArray();
-        int numParentesisApertura = 0;
-        int numParentesisCierre = 0;
-        int numParentesis = 0;
-        String terminoParentesis = "";
-        for (int i = 0; i < toCharArray.length; i++) {
-            if (toCharArray[i] == '(') {
-                numParentesisApertura++;
-            }
-            if (toCharArray[i] == ')') {
-                numParentesisCierre++;
-            }
-        }
-        if (numParentesisApertura == numParentesisCierre) {
-            numParentesis = (numParentesisApertura + numParentesisCierre )/2;
-            for (int i = 0; i < numParentesis; i++) {
-System.out.println(numParentesis);
-            }
-        }
         //System.out.println(dlp.getTerminosParentesis(dlp.getParte2()));
     }
 }

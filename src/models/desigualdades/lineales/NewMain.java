@@ -1,5 +1,7 @@
 package models.desigualdades.lineales;
 
+import java.util.ArrayList;
+
 public class NewMain {
 
     public static void main(String[] args) {
@@ -19,10 +21,11 @@ public class NewMain {
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
         System.out.println("DESIGUALDADES LINEALES PARENTESIS");
-        String lp = "5x-(3-2x)+8>9+3(2x-4)";
+        String lp = "3x+2(x-2)-(x+1)>4x";
         DesigualdadesLinealesParentesis dlp = new DesigualdadesLinealesParentesis(lp);
         dlp.setPartes();
         System.out.println(dlp.getTerminosParentesis(dlp.getParte1()));
         System.out.println(dlp.getTerminosParentesis(dlp.getParte2()));
+        dlp.multiplicacionParentesis("2(x+3)");
     }
 }

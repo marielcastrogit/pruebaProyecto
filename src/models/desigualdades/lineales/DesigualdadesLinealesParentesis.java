@@ -98,8 +98,52 @@ public class DesigualdadesLinealesParentesis {
         }
         return tParentesis;
     }
+
+    public void multiplicacionParentesis(String cadena) {
+        String coeficiente = "", cadenaParentesis = "";
+        ArrayList l = new ArrayList();
+        char[] toCharArray = cadena.toCharArray();
+        int posParentesisInicio = 0, posParentesisFinal = 0;
+        int x = 0;
+
+        b1:
+        for (int i = 0; i < toCharArray.length; i++) {
+            if (toCharArray[i] == '(') {
+                posParentesisInicio = i;
+                break b1;
+            }
+        }
+
+        while (x <= posParentesisInicio - 1) {
+            coeficiente += toCharArray[x];
+            x++;
+        }
+
+        b2:
+        for (int i = 0; i < toCharArray.length; i++) {
+            if (toCharArray[i] == ')') {
+                posParentesisFinal = i;
+                break b2;
+            }
+        }
+
+        cadenaParentesis = cadena.substring(posParentesisInicio, posParentesisFinal + 1);
+        String replace = cadenaParentesis.replace("+", ",+").replace("-", ",-").replace("(", ",").replace(")", ",");
+        String[] split = replace.split(",");
+        
+        for(int i=0; i<split.length; i++){
+            if(!split[i].equals("")){
+                l.add(split[i]);
+            }
+        }
+        
+        
+        
+        System.out.println(l.toString());
+
+    }
+
     //        if (!terminoParentesis.startsWith("-") && !terminoParentesis.startsWith("+")) {
 //            terminoParentesis = "+" + terminoParentesis;
 //        }
-
 }

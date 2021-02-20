@@ -1,6 +1,8 @@
 package models.desigualdades.lineales;
 
 import java.util.ArrayList;
+import org.matheclipse.core.eval.EvalUtilities;
+import org.matheclipse.core.interfaces.IExpr;
 
 public class NewMain {
 
@@ -21,11 +23,18 @@ public class NewMain {
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
         System.out.println("DESIGUALDADES LINEALES PARENTESIS");
-        String lp = "3x+2(x-2)-(x+1)>4x";
+        //2(x-2)-(x+1)(x-2+x)
+        String lp = "3(x+1)<0";
         DesigualdadesLinealesParentesis dlp = new DesigualdadesLinealesParentesis(lp);
         dlp.setPartes();
-        System.out.println(dlp.getTerminosParentesis(dlp.getParte1()));
-        System.out.println(dlp.getTerminosParentesis(dlp.getParte2()));
-        dlp.multiplicacionParentesis("2(x+3)");
+//        System.out.println(dlp.getTerminosParentesis(dlp.getParte1()));
+//        System.out.println(dlp.getTerminosParentesis(dlp.getParte2()));
+//        dlp.getMulti(dlp.getTerminosParentesis(dlp.getParte1()));
+        EvalUtilities util = new EvalUtilities(false, true);
+        String g = dlp.getMulti(dlp.getTerminosParentesis(dlp.getParte1()));
+        System.out.println(g);
+        IExpr result = util.evaluate(g);
+        System.out.println(result);
+
     }
 }

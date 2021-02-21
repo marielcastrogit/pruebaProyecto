@@ -2,17 +2,21 @@ package models.desigualdades.lineales;
 
 import java.util.ArrayList;
 import org.matheclipse.core.eval.EvalUtilities;
+import org.matheclipse.core.interfaces.IExpr;
 
 public class DesigualdadesLinealesParentesis {
 
-    private String cadena;
+    private String cadena, c, t, signo;
     private String listaLI;
     private String listaLD;
+    private String tParentesis;
 
     public DesigualdadesLinealesParentesis(String cadena) {
         this.cadena = cadena;
         listaLI = "";
         listaLD = "";
+        signo = "";
+        tParentesis = "";
     }
 
     public void setPartes() {
@@ -34,10 +38,10 @@ public class DesigualdadesLinealesParentesis {
         3x+2(x-2)>4x
         -(x+1)(x+2)(x+3)<0
         5x-(3-2x)+8>9+3(2x-4)
+        (7x)-(8x)-2(x+3)+5-x(2+4)-6<0
          */
         //ejemplo:hola -> substring(0,2)-> resultado ->ho
 
-        String tParentesis = "";
         int comienzo = 0, fin = 0, signo = 0, v = 0;
         char[] toCharArray = cadena.toCharArray();
         int numParentesisApertura = 0;
@@ -106,20 +110,26 @@ public class DesigualdadesLinealesParentesis {
                 tParentesis += terminoParentesis;
 
                 int y = 0;
-                while (y < fin - 1) {
-                    l.remove(v);
-                    y++;
-
+                if (a != (numParentesis - 1)) {
+                    while (y <= fin) {
+                        l.remove(v);
+                        y++;
+                    }
                 }
-
                 for (int i = 0; i < l.size(); i++) {
                     reemplazo += l.get(i).toString();
 
                 }
 
                 cadena = reemplazo;
+                if (a == numParentesis - 1) {
+                    c = cadena;
+                    t = terminoParentesis;
+                }
                 reemplazo = "";
+
             }
+
         }
         return lp;
     }
@@ -130,9 +140,11 @@ public class DesigualdadesLinealesParentesis {
         String valorParentesis, replaceParentesis;
         String[] splitParentesis;
         String substringNum = "";
-        String resultado = "",r="";
+        String resultado = "", r = "";
         for (int i = 0; i < l.size(); i++) {
             char[] toCharArray = l.get(i).toString().toCharArray();
+            for (int b = 0; b < toCharArray.length; b++) {
+            }
             //obtengo la posicion del parentesis de apertura:
             b1:
             for (int x = 0; x < toCharArray.length; x++) {
@@ -153,76 +165,83 @@ public class DesigualdadesLinealesParentesis {
             if (comienzanConParentesisNeg) {
                 substringNum = "-1";
             }
-            if (comienzanConParentesisSolo) {
-
-                resultado += l.get(i).toString();
-            }
 
             if (comienzanConParentesisPos) {
                 substringNum = "+1";
             }
 
-            if (!comienzanConParentesisNeg && !comienzanConParentesisSolo) {
+            if (!comienzanConParentesisNeg && !comienzanConParentesisSolo && !comienzanConParentesisPos) {
                 substringNum = l.get(i).toString().substring(0, posParentesisInicial);
             }
 
-            if (!comienzanConParentesisSolo) {
-                for (int x = 1; x < splitParentesis.length; x++) {
-                    resultado = substringNum + splitParentesis[x]+"*";
-                    if(x==splitParentesis.length-1){
-                        resultado = substringNum + splitParentesis[x];
-                    }
-                    r += resultado;
-                    System.out.print(resultado);
+            for (int x = 1; x < splitParentesis.length; x++) {
+
+                if (comienzanConParentesisSolo) {
+                    resultado += splitParentesis[x];
+                } else {
+                    resultado += substringNum + "*" + splitParentesis[x];
                 }
             }
         }
-        return (r);
+        return (resultado);
     }
 
-    public void multiplicacionParentesis(String cadena) {
-        String coeficiente = "", cadenaParentesis = "";
-        ArrayList l = new ArrayList();
+    public String evaluarMulti(String valorParentesis) {
+        EvalUtilities evaluador = new EvalUtilities(false, true);
+        IExpr resultado = evaluador.evaluate(valorParentesis);
+        return resultado.toString().replace("*", "");
+    }
+
+    public String resultadoLinealParentesis(String evaluarMulti) {
+        String replace = c.replace(t, evaluarMulti);
+        return replace;
+    }
+
+    public String getSigno() {
+        int posicionSigno = 0;
+        for (int i = 0; i < cadena.length(); i++) {
+            if (cadena.charAt(i) == '<' || cadena.charAt(i) == '>' || cadena.charAt(i) == '≤' || cadena.charAt(i) == '≥') {
+                posicionSigno = i;
+            }
+        }
         char[] toCharArray = cadena.toCharArray();
-        int posParentesisInicio = 0, posParentesisFinal = 0;
-        int x = 0;
+        this.signo = toCharArray[posicionSigno] + "";
+        return signo;
+    }
 
-        b1:
-        for (int i = 0; i < toCharArray.length; i++) {
-            if (toCharArray[i] == '(') {
-                posParentesisInicio = i;
-                break b1;
-            }
+    public String getDesigualdadSimple() {
+        ArrayList terminosParentesisli, terminosParentesisld;
+        String multili, multild, resultadoMultiParentesisli, resultadoMultiParentesisld, resultadoLinealParentesisli, resultadoLinealParentesisld;
+        setPartes();
+        String parte1 = getParte1();
+        String sig = getSigno();
+        String parte2 = getParte2();
+
+        terminosParentesisli = getTerminosParentesis(parte1);
+        if (!parte1.equals("0")) {
+            multili = getMulti(terminosParentesisli);
+            resultadoMultiParentesisli = evaluarMulti(multili);
+            resultadoLinealParentesisli = resultadoLinealParentesis(resultadoMultiParentesisli);
+        } else {
+            resultadoLinealParentesisli = "0";
         }
-
-        while (x <= posParentesisInicio - 1) {
-            coeficiente += toCharArray[x];
-            x++;
+        terminosParentesisld = getTerminosParentesis(parte2);
+        if (!parte2.equals("0")) {
+            multild = getMulti(terminosParentesisld);
+            resultadoMultiParentesisld = evaluarMulti(multild);
+            resultadoLinealParentesisld = resultadoLinealParentesis(resultadoMultiParentesisld);
+        } else {
+            resultadoLinealParentesisld = "0";
         }
-
-        b2:
-        for (int i = 0; i < toCharArray.length; i++) {
-            if (toCharArray[i] == ')') {
-                posParentesisFinal = i;
-                break b2;
-            }
-        }
-
-        cadenaParentesis = cadena.substring(posParentesisInicio, posParentesisFinal + 1);
-        String replace = cadenaParentesis.replace("+", ",+").replace("-", ",-").replace("(", ",").replace(")", ",");
-        String[] split = replace.split(",");
-
-        for (int i = 0; i < split.length; i++) {
-            if (!split[i].equals("")) {
-                l.add(split[i]);
-            }
-        }
-
-        System.out.println(l.toString());
+        return resultadoLinealParentesisli + getSigno() + resultadoLinealParentesisld;
 
     }
 
-    //        if (!terminoParentesis.startsWith("-") && !terminoParentesis.startsWith("+")) {
-//            terminoParentesis = "+" + terminoParentesis;
-//        }
+    public String getResultadoFinal() {
+        DesigualdadesLinealesSimples dls = new DesigualdadesLinealesSimples(getDesigualdadSimple());
+        dls.getParte1();
+        dls.getSigno();
+        dls.getParte3();
+        return dls.resultado();
+    }
 }

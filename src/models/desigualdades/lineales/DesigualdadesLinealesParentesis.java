@@ -187,7 +187,7 @@ public class DesigualdadesLinealesParentesis {
     }
 
     public String evaluarMulti(String valorParentesis) {
-        EvalUtilities evaluador = new EvalUtilities(false, true);
+        EvalUtilities evaluador = new EvalUtilities(false, false);
         IExpr resultado = evaluador.evaluate(valorParentesis);
         return resultado.toString().replace("*", "");
     }

@@ -30,9 +30,8 @@ public class NewMain {
         //////////////////////////////////////////////////////////////////////////////////
         System.out.println();
         System.out.println("DESIGUALDADES CUADRATICAS");
-        String desigualdadCuadratica = "x+7x-3x-1-12x^2≤";
+        String desigualdadCuadratica = "-1-x^2+7x-x^2+2x^2≤";
         DesigualdadesCuadraticasSimples dcs = new DesigualdadesCuadraticasSimples(desigualdadCuadratica);
-        String replace = "";
         String name = dcs.getA();
         System.out.println(name);
         String cadenaSignoCambiado = "";
@@ -62,6 +61,9 @@ public class NewMain {
                 cadenaSignoCambiado += toCharArray[i];
             }
         }
+        EvalUtilities evaluador = new EvalUtilities(false, false);
+        IExpr resultado = evaluador.evaluate("-12x^2-12x^2");
+        System.out.println(resultado);
 
         System.out.println(cadenaSignoCambiado);
     }

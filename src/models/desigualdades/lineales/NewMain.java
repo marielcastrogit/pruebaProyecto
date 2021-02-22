@@ -30,41 +30,41 @@ public class NewMain {
         //////////////////////////////////////////////////////////////////////////////////
         System.out.println();
         System.out.println("DESIGUALDADES CUADRATICAS");
-        String desigualdadCuadratica = "-1-x^2+7x-x^2+2x^2≤";
+        String desigualdadCuadratica = "3x^2-1-x^2+7x-x^2-3x^2";
         DesigualdadesCuadraticasSimples dcs = new DesigualdadesCuadraticasSimples(desigualdadCuadratica);
         String name = dcs.getA();
         System.out.println(name);
-        String cadenaSignoCambiado = "";
-        if (name.startsWith("-")) {
-            char[] toCharArray = desigualdadCuadratica.toCharArray();
-            for (int i = 0; i < desigualdadCuadratica.length(); i++) {
-                if (toCharArray[i] == '-') {
-                    toCharArray[i] = '+';
-                } else if (toCharArray[i] == '+') {
-                    toCharArray[i] = '-';
-                }
-
-                if (toCharArray[i] == '<') {
-                    toCharArray[i] = '>';
-                } else if (toCharArray[i] == '>') {
-                    toCharArray[i] = '<';
-                }
-                if (toCharArray[i] == '≤') {
-                    toCharArray[i] = '≥';
-                } else if (toCharArray[i] == '≥') {
-                    toCharArray[i] = '≤';
-                }
-
-            }
-
-            for (int i = 0; i < toCharArray.length; i++) {
-                cadenaSignoCambiado += toCharArray[i];
-            }
-        }
-        EvalUtilities evaluador = new EvalUtilities(false, false);
-        IExpr resultado = evaluador.evaluate("-12x^2-12x^2");
-        System.out.println(resultado);
-
-        System.out.println(cadenaSignoCambiado);
+//        String cadenaSignoCambiado = "";
+//        if (name.startsWith("-")) {
+//            char[] toCharArray = desigualdadCuadratica.toCharArray();
+//            for (int i = 0; i < desigualdadCuadratica.length(); i++) {
+//                if (toCharArray[i] == '-') {
+//                    toCharArray[i] = '+';
+//                } else if (toCharArray[i] == '+') {
+//                    toCharArray[i] = '-';
+//                }
+//
+//                if (toCharArray[i] == '<') {
+//                    toCharArray[i] = '>';
+//                } else if (toCharArray[i] == '>') {
+//                    toCharArray[i] = '<';
+//                }
+//                if (toCharArray[i] == '≤') {
+//                    toCharArray[i] = '≥';
+//                } else if (toCharArray[i] == '≥') {
+//                    toCharArray[i] = '≤';
+//                }
+//
+//            }
+//
+//            for (int i = 0; i < toCharArray.length; i++) {
+//                cadenaSignoCambiado += toCharArray[i];
+//            }
+//        }
+//        EvalUtilities evaluador = new EvalUtilities(false, false);
+//        IExpr resultado = evaluador.evaluate("-12x^2-12x^2");
+//        System.out.println(resultado);
+//
+//        System.out.println(cadenaSignoCambiado);
     }
 }

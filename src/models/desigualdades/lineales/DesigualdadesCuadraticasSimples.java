@@ -12,6 +12,9 @@ public class DesigualdadesCuadraticasSimples {
 
     public DesigualdadesCuadraticasSimples(String cadena) {
         this.cadena = cadena;
+        System.out.println("esta es la cadena: " + cadena);
+        cadena = getParte1() + getParte3();
+        System.out.println("esta es la cadena: " + cadena);
         terminoA = "";
         c1 = cadena;
         a = "";
@@ -137,8 +140,6 @@ public class DesigualdadesCuadraticasSimples {
 
     public void setABC() {
         String desigualdadC = getA() + c1;
-        System.out.println("terminoA :" + terminoA);
-        System.out.println("desigualdadC :" + desigualdadC);
         if (!esLineal()) {
             if (terminoA.startsWith("-")) {
                 char[] toCharArray = desigualdadC.toCharArray();
@@ -163,14 +164,12 @@ public class DesigualdadesCuadraticasSimples {
                 }
                 desigualdadC = "";
                 for (int i = 0; i < toCharArray.length; i++) {
-                    System.out.println("toCharArray: " + toCharArray[i]);
                     desigualdadC += toCharArray[i];
                 }
             }
-            System.out.println("c1: " + c1);
+          
             EvalUtilities evaluador = new EvalUtilities(false, true);
             IExpr resultado = evaluador.evaluate(desigualdadC);
-            System.out.println("resultado: " + resultado.toString());
             String r = resultado.toString().replace("*", "").replace("(", "").replace(")", "");
             desigualdadC = r.toString();
             String c2 = "";
@@ -188,12 +187,7 @@ public class DesigualdadesCuadraticasSimples {
             Pattern patronA = Pattern.compile("[+-]*\\d*x{1}\\^2");
             Pattern patronB = Pattern.compile("[+-]?\\d*x{1}");
             Pattern patronC = Pattern.compile("[+-]?\\d*");
-
-            for (int i = 0; i < split.length; i++) {
-                System.out.println();
-                System.out.println(split[i]);
-            }
-
+            
             for (int i = 1; i < split.length; i++) {
                 if (patronA.matcher(split[i]).matches()) {
                     String[] split1 = split[i].split("x");
@@ -224,29 +218,19 @@ public class DesigualdadesCuadraticasSimples {
 
             }
         }
-
-        System.out.println("discriminante: " + discriminante);
-        System.out.println(desigualdadC);
-        System.out.println("a: " + a);
-        System.out.println("b: " + b);
-        System.out.println("c: " + c);
     }
 
     private double getDiscriminante() {
         setABC();
         int a = 0, b = 0, c = 0;
-        boolean esEntero = false;
         try {
             a = Integer.parseInt(this.a);
             b = Integer.parseInt(this.b);
             c = Integer.parseInt(this.c);
-        } catch (NumberFormatException ex) {
-            System.out.println("error al convertir");
-        }
+        } catch (NumberFormatException ex) {}
         discriminante = Math.pow(b, 2) - ((4) * (a) * (c));
 
         if (discriminante == 0.0) {
-            System.out.println("es 0.0");
             return 0;
         } else {
             return discriminante;
@@ -261,10 +245,8 @@ public class DesigualdadesCuadraticasSimples {
             a = Integer.parseInt(this.a);
             b = Integer.parseInt(this.b);
             c = Integer.parseInt(this.c);
-        } catch (NumberFormatException ex) {
-            System.out.println("error al convertir");
-        }
-        double x = (((-1 * (b)) + Math.sqrt(getDiscriminante())) / 2 * (a));
+        } catch (NumberFormatException ex) {}
+        double x = (((-1 * (b)) + Math.sqrt(getDiscriminante())) / (2 * (a)));
         fx = String.valueOf(x);
         return fx;
     }
@@ -276,16 +258,14 @@ public class DesigualdadesCuadraticasSimples {
             a = Integer.parseInt(this.a);
             b = Integer.parseInt(this.b);
             c = Integer.parseInt(this.c);
-        } catch (NumberFormatException ex) {
-            System.out.println("error al convertir");
-        }
-        double x = (((-1 * (b)) - Math.sqrt(getDiscriminante())) / 2 * (a));
+        } catch (NumberFormatException ex) {}
+        double x = (((-1 * (b)) - Math.sqrt(getDiscriminante())) / (2 * (a)));
         fx = String.valueOf(x);
         return fx;
     }
 
     public String resolver() {
-        System.out.println("DISCRIMINANTE: " + getDiscriminante());
+        
         getDiscriminante();
         String resultado = "", x1 = "", x2, x;
         if (discriminante < 0) {
@@ -301,4 +281,64 @@ public class DesigualdadesCuadraticasSimples {
         }
         return resultado;
     }
+
+    public String getParte1() {
+        String[] split = cadena.split("(<|>|≥|≤)([+-]*\\d*x*\\^*2*)*");
+        String p1 = "";
+        /*
+        ("(<|>|≥|≤)([+-]?\\d*x?)*")
+        (<|>|≥|≤) debe tener um signo de comparacion 
+         */
+
+        p1 = split[0];
+
+//        Si no tiene signo entonces que le agregue un + 
+        if (!(p1.startsWith("+") || p1.startsWith("-"))) {
+            p1 = "+" + p1;
+        }
+        return p1;
+    }
+
+    public String getParte3() {
+        String[] split = cadena.split("([+-]*\\d*x*\\^*2*)*(<|>|≥|≤)");
+        /*
+        ([+-]*\d*x*)* signos aritmeticos, digitos entre 0-9 y una x
+        (<|>|≥|≤)debe de tener menor o mayor o mayor igual o menor igual 
+         */
+        String p2 = "";
+        for (int i = 0; i < split.length; i++) {
+            p2 += split[i];
+        }
+
+        if (!(p2.startsWith("+") || p2.startsWith("-"))) {
+            p2 = "+" + p2;
+        }
+
+        char[] toCharArray = p2.toCharArray();
+        for (int i = 0; i < toCharArray.length; i++) {
+            if (toCharArray[i] == '-') {
+                toCharArray[i] = '+';
+            } else if (toCharArray[i] == '+') {
+                toCharArray[i] = '-';
+            }
+
+        }
+        p2 = "";
+        for (int i = 0; i < toCharArray.length; i++) {
+            p2 += toCharArray[i];
+        }
+        return p2;
+    }
+
+    public String getSigno() {
+        int posicionSigno = 0;
+        for (int i = 0; i < cadena.length(); i++) {
+            if (cadena.charAt(i) == '<' || cadena.charAt(i) == '>' || cadena.charAt(i) == '≤' || cadena.charAt(i) == '≥') {
+                posicionSigno = i;
+            }
+        }
+        char[] toCharArray = cadena.toCharArray();
+        return toCharArray[posicionSigno] + "";
+    }
+
 }

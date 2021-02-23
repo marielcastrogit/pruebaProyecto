@@ -8,6 +8,7 @@ import org.matheclipse.core.interfaces.IExpr;
 public class DesigualdadesCuadraticasSimples {
 
     private String cadena, terminoA, c1, a, b, c;
+    private double discriminante;
 
     public DesigualdadesCuadraticasSimples(String cadena) {
         this.cadena = cadena;
@@ -16,6 +17,7 @@ public class DesigualdadesCuadraticasSimples {
         a = "";
         b = "";
         c = "";
+        discriminante = 0;
     }
 
     public String getCadena() {
@@ -133,7 +135,7 @@ public class DesigualdadesCuadraticasSimples {
         }
     }
 
-    public void getDiscriminante() {
+    public void setABC() {
         String desigualdadC = getA() + c1;
         System.out.println("terminoA :" + terminoA);
         System.out.println("desigualdadC :" + desigualdadC);
@@ -165,76 +167,138 @@ public class DesigualdadesCuadraticasSimples {
                     desigualdadC += toCharArray[i];
                 }
             }
-        }
-        System.out.println("c1: " + c1);
-        EvalUtilities evaluador = new EvalUtilities(false, true);
-        IExpr resultado = evaluador.evaluate(desigualdadC);
-        System.out.println("resultado: " + resultado.toString());
-        String r = resultado.toString().replace("*", "").replace("(", "").replace(")", "");
-        desigualdadC = r.toString();
-        String c2 = "";
+            System.out.println("c1: " + c1);
+            EvalUtilities evaluador = new EvalUtilities(false, true);
+            IExpr resultado = evaluador.evaluate(desigualdadC);
+            System.out.println("resultado: " + resultado.toString());
+            String r = resultado.toString().replace("*", "").replace("(", "").replace(")", "");
+            desigualdadC = r.toString();
+            String c2 = "";
 
-        if (!desigualdadC.startsWith("-") && !desigualdadC.startsWith("+")) {
-            c2 = "+" + desigualdadC;
-        } else {
-            c2 = desigualdadC;
-        }
+            if (!desigualdadC.startsWith("-") && !desigualdadC.startsWith("+")) {
+                c2 = "+" + desigualdadC;
+            } else {
+                c2 = desigualdadC;
+            }
 
-        String r2 = c2.replace("+", ",+").replace("-", ",-");
+            String r2 = c2.replace("+", ",+").replace("-", ",-");
 
-        String[] split = r2.split(",");
+            String[] split = r2.split(",");
 
-        Pattern patronA = Pattern.compile("[+-]*\\d*x{1}\\^2");
-        Pattern patronB = Pattern.compile("[+-]?\\d*x{1}");
-        Pattern patronC = Pattern.compile("[+-]?\\d*");
+            Pattern patronA = Pattern.compile("[+-]*\\d*x{1}\\^2");
+            Pattern patronB = Pattern.compile("[+-]?\\d*x{1}");
+            Pattern patronC = Pattern.compile("[+-]?\\d*");
 
-        for (int i = 0; i < split.length; i++) {
-            System.out.println();
-            System.out.println(split[i]);
-        }
+            for (int i = 0; i < split.length; i++) {
+                System.out.println();
+                System.out.println(split[i]);
+            }
 
-        for (int i = 1; i < split.length; i++) {
-            if (patronA.matcher(split[i]).matches()) {
-                String[] split1 = split[i].split("x");
-                if ("+".equals(split1[0])) {
-                    a = "1";
-                } else if ("-".equals(split1[0])) {
-                    a = "-1";
-                } else {
-                    a = split1[0];
+            for (int i = 1; i < split.length; i++) {
+                if (patronA.matcher(split[i]).matches()) {
+                    String[] split1 = split[i].split("x");
+                    if ("+".equals(split1[0])) {
+                        a = "1";
+                    } else if ("-".equals(split1[0])) {
+                        a = "-1";
+                    } else {
+                        a = split1[0];
+                    }
                 }
 
-//                int x =0; 
-//                while(x<=0){
-//                    System.out.println("SPLIT: ");
-//                    System.out.println(split1[x]);
-//                    x++;
-//                }
-            }
-            if (patronB.matcher(split[i]).matches()) {
-                String[] split1 = split[i].split("x");
-                if ("+".equals(split1[0])) {
-                    b = "1";
-                } else if ("-".equals(split1[0])) {
-                    b = "-1";
-                } else {
-                    b = split1[0];
+                if (patronB.matcher(split[i]).matches()) {
+                    String[] split1 = split[i].split("x");
+                    if ("+".equals(split1[0])) {
+                        b = "1";
+                    } else if ("-".equals(split1[0])) {
+                        b = "-1";
+                    } else {
+                        b = split1[0];
+                    }
+
+                }
+
+                if (patronC.matcher(split[i]).matches()) {
+                    c = split[i];
                 }
 
             }
-
-            if (patronC.matcher(split[i]).matches()) {
-                c = split[i];
-            }
-
         }
 
+        System.out.println("discriminante: " + discriminante);
         System.out.println(desigualdadC);
         System.out.println("a: " + a);
         System.out.println("b: " + b);
         System.out.println("c: " + c);
-        
-        
-        
+    }
+
+    private double getDiscriminante() {
+        setABC();
+        int a = 0, b = 0, c = 0;
+        boolean esEntero = false;
+        try {
+            a = Integer.parseInt(this.a);
+            b = Integer.parseInt(this.b);
+            c = Integer.parseInt(this.c);
+        } catch (NumberFormatException ex) {
+            System.out.println("error al convertir");
+        }
+        discriminante = Math.pow(b, 2) - ((4) * (a) * (c));
+
+        if (discriminante == 0.0) {
+            System.out.println("es 0.0");
+            return 0;
+        } else {
+            return discriminante;
+        }
+
+    }
+
+    private String formulaX1() {
+        int a = 0, b = 0, c = 0;
+        String fx = "";
+        try {
+            a = Integer.parseInt(this.a);
+            b = Integer.parseInt(this.b);
+            c = Integer.parseInt(this.c);
+        } catch (NumberFormatException ex) {
+            System.out.println("error al convertir");
+        }
+        double x = (((-1 * (b)) + Math.sqrt(getDiscriminante())) / 2 * (a));
+        fx = String.valueOf(x);
+        return fx;
+    }
+
+    private String formulaX2() {
+        int a = 0, b = 0, c = 0;
+        String fx = "";
+        try {
+            a = Integer.parseInt(this.a);
+            b = Integer.parseInt(this.b);
+            c = Integer.parseInt(this.c);
+        } catch (NumberFormatException ex) {
+            System.out.println("error al convertir");
+        }
+        double x = (((-1 * (b)) - Math.sqrt(getDiscriminante())) / 2 * (a));
+        fx = String.valueOf(x);
+        return fx;
+    }
+
+    public String resolver() {
+        System.out.println("DISCRIMINANTE: " + getDiscriminante());
+        getDiscriminante();
+        String resultado = "", x1 = "", x2, x;
+        if (discriminante < 0) {
+            resultado = " Este trinomio no es factorizable\n en los reales, posee\n raices imaginarias";
+        }
+
+        if (discriminante == 0) {
+            resultado = "x = " + formulaX1();
+        }
+
+        if (discriminante > 0) {
+            resultado = "x = " + formulaX1() + " x = " + formulaX2();
+        }
+        return resultado;
     }
 }

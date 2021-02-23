@@ -29,9 +29,10 @@ public class NewMain {
         System.out.println();
         System.out.println("DESIGUALDADES CUADRATICAS");
         //-3x^2-3+41+x^2+7x-3x-8x
-        String desigualdadCuadratica = "2x^2-3+41-x^2+7x-3x-8x";
+        //2x^2-3+41-x^2+7x-3x-8x
+        String desigualdadCuadratica = "x^2-5x+4<32-x^2";
         DesigualdadesCuadraticasSimples dcs = new DesigualdadesCuadraticasSimples(desigualdadCuadratica);
-        dcs.getDiscriminante();
+        System.out.println(dcs.resolver());
         //        EvalUtilities evaluador = new EvalUtilities(false, false);
         //        IExpr resultado = evaluador.evaluate("-12x^2-12x^2");
         //        System.out.println(resultado);

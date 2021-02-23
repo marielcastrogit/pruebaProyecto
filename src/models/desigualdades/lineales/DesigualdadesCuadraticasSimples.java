@@ -1,16 +1,21 @@
 package models.desigualdades.lineales;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import org.matheclipse.core.eval.EvalUtilities;
 import org.matheclipse.core.interfaces.IExpr;
 
 public class DesigualdadesCuadraticasSimples {
 
-    private String cadena, terminoA;
+    private String cadena, terminoA, c1, a, b, c;
 
     public DesigualdadesCuadraticasSimples(String cadena) {
         this.cadena = cadena;
         terminoA = "";
+        c1 = cadena;
+        a = "";
+        b = "";
+        c = "";
     }
 
     public String getCadena() {
@@ -18,7 +23,7 @@ public class DesigualdadesCuadraticasSimples {
     }
 
     public String getA() {
-        String c1 = cadena;
+
         int numXAlCuadrado = 0, posSigno = 0;
         ArrayList al = new ArrayList();
 
@@ -42,9 +47,8 @@ public class DesigualdadesCuadraticasSimples {
                 for (int c = 0; c < al.size(); c++) {
                     if (al.get(c).toString().equals("x") && !(c == al.size() - 1)) {
                         if (al.get(c + 1).toString().equals("^") && al.get(c + 2).toString().equals("2")) {
-
                             int z = c - 1;
-                            System.out.println("c: " + c + " z: " + z);
+
                             w1:
                             while (z >= 0) {
                                 if (al.get(z).toString().equals("-")) {
@@ -79,9 +83,9 @@ public class DesigualdadesCuadraticasSimples {
             EvalUtilities evaluador = new EvalUtilities(false, false);
             IExpr resultado = evaluador.evaluate(terminoA);
             if (resultado.toString() != "0") {
-                String replace = resultado.toString().replace("(", "").replace("*", "").replace(")","");
+                String replace = resultado.toString().replace("(", "").replace("*", "").replace(")", "");
                 terminoA = replace;
-            }else{
+            } else {
                 terminoA = resultado.toString();
             }
         } else {
@@ -121,11 +125,116 @@ public class DesigualdadesCuadraticasSimples {
 
     }
 
-    public boolean esLineal() {
+    private boolean esLineal() {
         if (terminoA.equals("0")) {
             return true;
         } else {
             return false;
         }
+    }
+
+    public void getDiscriminante() {
+        String desigualdadC = getA() + c1;
+        System.out.println("terminoA :" + terminoA);
+        System.out.println("desigualdadC :" + desigualdadC);
+        if (!esLineal()) {
+            if (terminoA.startsWith("-")) {
+                char[] toCharArray = desigualdadC.toCharArray();
+                for (int i = 0; i < desigualdadC.length(); i++) {
+                    if (toCharArray[i] == '-') {
+                        toCharArray[i] = '+';
+                    } else if (toCharArray[i] == '+') {
+                        toCharArray[i] = '-';
+                    }
+
+                    if (toCharArray[i] == '<') {
+                        toCharArray[i] = '>';
+                    } else if (toCharArray[i] == '>') {
+                        toCharArray[i] = '<';
+                    }
+                    if (toCharArray[i] == '≤') {
+                        toCharArray[i] = '≥';
+                    } else if (toCharArray[i] == '≥') {
+                        toCharArray[i] = '≤';
+                    }
+
+                }
+                desigualdadC = "";
+                for (int i = 0; i < toCharArray.length; i++) {
+                    System.out.println("toCharArray: " + toCharArray[i]);
+                    desigualdadC += toCharArray[i];
+                }
+            }
+        }
+        System.out.println("c1: " + c1);
+        EvalUtilities evaluador = new EvalUtilities(false, true);
+        IExpr resultado = evaluador.evaluate(desigualdadC);
+        System.out.println("resultado: " + resultado.toString());
+        String r = resultado.toString().replace("*", "").replace("(", "").replace(")", "");
+        desigualdadC = r.toString();
+        String c2 = "";
+
+        if (!desigualdadC.startsWith("-") && !desigualdadC.startsWith("+")) {
+            c2 = "+" + desigualdadC;
+        } else {
+            c2 = desigualdadC;
+        }
+
+        String r2 = c2.replace("+", ",+").replace("-", ",-");
+
+        String[] split = r2.split(",");
+
+        Pattern patronA = Pattern.compile("[+-]*\\d*x{1}\\^2");
+        Pattern patronB = Pattern.compile("[+-]?\\d*x{1}");
+        Pattern patronC = Pattern.compile("[+-]?\\d*");
+
+        for (int i = 0; i < split.length; i++) {
+            System.out.println();
+            System.out.println(split[i]);
+        }
+
+        for (int i = 1; i < split.length; i++) {
+            if (patronA.matcher(split[i]).matches()) {
+                String[] split1 = split[i].split("x");
+                if ("+".equals(split1[0])) {
+                    a = "1";
+                } else if ("-".equals(split1[0])) {
+                    a = "-1";
+                } else {
+                    a = split1[0];
+                }
+
+//                int x =0; 
+//                while(x<=0){
+//                    System.out.println("SPLIT: ");
+//                    System.out.println(split1[x]);
+//                    x++;
+//                }
+            }
+            if (patronB.matcher(split[i]).matches()) {
+                String[] split1 = split[i].split("x");
+                if ("+".equals(split1[0])) {
+                    b = "1";
+                } else if ("-".equals(split1[0])) {
+                    b = "-1";
+                } else {
+                    b = split1[0];
+                }
+
+            }
+
+            if (patronC.matcher(split[i]).matches()) {
+                c = split[i];
+            }
+
+        }
+
+        System.out.println(desigualdadC);
+        System.out.println("a: " + a);
+        System.out.println("b: " + b);
+        System.out.println("c: " + c);
+        
+        
+        
     }
 }

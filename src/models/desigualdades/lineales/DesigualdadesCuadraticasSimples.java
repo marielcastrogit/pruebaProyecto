@@ -7,7 +7,7 @@ import org.matheclipse.core.interfaces.IExpr;
 
 public class DesigualdadesCuadraticasSimples {
 
-    private String cadena, terminoA, c1, a, b, c;
+    private String cadena, terminoA, c1, a, b, c, resultado;
     private double discriminante;
 
     public DesigualdadesCuadraticasSimples(String cadena) {
@@ -20,6 +20,7 @@ public class DesigualdadesCuadraticasSimples {
         a = "";
         b = "";
         c = "";
+        resultado = "";
         discriminante = 0;
     }
 
@@ -167,7 +168,7 @@ public class DesigualdadesCuadraticasSimples {
                     desigualdadC += toCharArray[i];
                 }
             }
-          
+
             EvalUtilities evaluador = new EvalUtilities(false, true);
             IExpr resultado = evaluador.evaluate(desigualdadC);
             String r = resultado.toString().replace("*", "").replace("(", "").replace(")", "");
@@ -187,7 +188,7 @@ public class DesigualdadesCuadraticasSimples {
             Pattern patronA = Pattern.compile("[+-]*\\d*x{1}\\^2");
             Pattern patronB = Pattern.compile("[+-]?\\d*x{1}");
             Pattern patronC = Pattern.compile("[+-]?\\d*");
-            
+
             for (int i = 1; i < split.length; i++) {
                 if (patronA.matcher(split[i]).matches()) {
                     String[] split1 = split[i].split("x");
@@ -227,7 +228,8 @@ public class DesigualdadesCuadraticasSimples {
             a = Integer.parseInt(this.a);
             b = Integer.parseInt(this.b);
             c = Integer.parseInt(this.c);
-        } catch (NumberFormatException ex) {}
+        } catch (NumberFormatException ex) {
+        }
         discriminante = Math.pow(b, 2) - ((4) * (a) * (c));
 
         if (discriminante == 0.0) {
@@ -245,7 +247,8 @@ public class DesigualdadesCuadraticasSimples {
             a = Integer.parseInt(this.a);
             b = Integer.parseInt(this.b);
             c = Integer.parseInt(this.c);
-        } catch (NumberFormatException ex) {}
+        } catch (NumberFormatException ex) {
+        }
         double x = (((-1 * (b)) + Math.sqrt(getDiscriminante())) / (2 * (a)));
         fx = String.valueOf(x);
         return fx;
@@ -258,18 +261,18 @@ public class DesigualdadesCuadraticasSimples {
             a = Integer.parseInt(this.a);
             b = Integer.parseInt(this.b);
             c = Integer.parseInt(this.c);
-        } catch (NumberFormatException ex) {}
+        } catch (NumberFormatException ex) {
+        }
         double x = (((-1 * (b)) - Math.sqrt(getDiscriminante())) / (2 * (a)));
         fx = String.valueOf(x);
         return fx;
     }
 
     public String resolver() {
-        
         getDiscriminante();
         String resultado = "", x1 = "", x2, x;
         if (discriminante < 0) {
-            resultado = " Este trinomio no es factorizable\n en los reales, posee\n raices imaginarias";
+            resultado = " No hay valores de\n x que hagan a la  \n ecuacion verdadera";
         }
 
         if (discriminante == 0) {
@@ -279,6 +282,15 @@ public class DesigualdadesCuadraticasSimples {
         if (discriminante > 0) {
             resultado = "x = " + formulaX1() + " x = " + formulaX2();
         }
+
+        if (terminoA.equals("0")) {
+            String ec = getA() + c1 + getSigno() + 0;
+            EvalUtilities evaluador = new EvalUtilities(false, true);
+            IExpr res = evaluador.evaluate(ec);
+            String r = res.toString().replace("*", "").replace("(", "").replace(")", "");
+            resultado = r.toString();
+        }
+
         return resultado;
     }
 

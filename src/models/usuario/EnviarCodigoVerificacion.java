@@ -7,15 +7,15 @@ import javax.mail.Message;
 import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.MimeMessage;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class EnviarCodigoVerificacion {
 
     private int codigoAleatorio;
-    private static String codigo;
+    private String codigo;
     private ArrayList codigos;
     private Pattern patronCodigo;
     private String mekAppCorreo;
@@ -58,7 +58,7 @@ public class EnviarCodigoVerificacion {
         Properties configPropiedades = new Properties();
         configPropiedades.put("mail.smtp.host", "smtp.gmail.com");
         configPropiedades.put("mail.smtp.starttls.enable", "true");
-        configPropiedades.put("mail.smtp.port", "587");
+        configPropiedades.put("mail.smtp.port", "587");//587
         configPropiedades.put("mail.smtp.auth", "true");
         configPropiedades.put("mail.user", mekAppCorreo);
         configPropiedades.put("mail.password", mekAppContraseña);

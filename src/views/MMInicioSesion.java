@@ -1,6 +1,6 @@
-
 package views;
 
+import java.awt.Color;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
@@ -10,13 +10,15 @@ public class MMInicioSesion extends javax.swing.JInternalFrame {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setBorderInternal();
+        kGradientPanel1.setkStartColor(new Color(59, 10, 86));
+        kGradientPanel1.setkEndColor(new Color(20, 194, 115));
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        kGradientPanel1 = new keeptoo.KGradientPanel();
+        kGradientPanel1 = new models.otros.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         password = new javax.swing.JPasswordField();
@@ -152,7 +154,7 @@ public class MMInicioSesion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private keeptoo.KGradientPanel kGradientPanel1;
+    private models.otros.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel lblCrearCuenta;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField txtUsuario;

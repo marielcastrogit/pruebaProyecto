@@ -1,17 +1,26 @@
 package views;
 
+import controllers.InicioSesionController;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
 public class OMInicioSesion extends javax.swing.JInternalFrame {
-
+    
     public OMInicioSesion() {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
 //        password.setEchoChar((0));
         setBorderInternal();
+        kGradientPanel2.setkStartColor(new Color(59, 10, 86));
+        kGradientPanel2.setkEndColor(new Color(20, 194, 115));
+        setControllers();
     }
-
+    
     private void setBorderInternal() {
         DropShadowBorder border = (DropShadowBorder) this.getBorder();
         border.setShowBottomShadow(false);
@@ -20,12 +29,12 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
         border.setShowTopShadow(true);
         border.setShadowSize(15);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        kGradientPanel2 = new keeptoo.KGradientPanel();
+        kGradientPanel2 = new models.otros.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         password = new javax.swing.JPasswordField();
@@ -45,9 +54,6 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
         setMinimumSize(new java.awt.Dimension(622, 408));
         setPreferredSize(new java.awt.Dimension(622, 408));
         getContentPane().setLayout(null);
-
-        kGradientPanel2.setkEndColor(new java.awt.Color(0, 255, 153));
-        kGradientPanel2.setkStartColor(new java.awt.Color(51, 0, 51));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-checked-user-male-35.png"))); // NOI18N
 
@@ -76,7 +82,8 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
 
         txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        txtUsuario.setText("nombreUsuario");
+        txtUsuario.setText("usuario@gmail.com");
+        txtUsuario.setActionCommand("txtCorreo");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -183,7 +190,35 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setControllers() {
+        isc = new InicioSesionController(this);
+        txtUsuario.addKeyListener(isc);
+        password.addKeyListener(isc);
+        checkContraseña.addActionListener(isc);
+        lblCrearCuenta.addMouseListener(isc);
+        btnIngresar.addMouseListener(isc);
+        
+    }
+    
+    public JLabel getLblCrearCuenta() {
+        return lblCrearCuenta;
+    }
+    
+    public JCheckBox getCheckContraseña() {
+        return checkContraseña;
+    }
+    
+    public JPasswordField getPassword() {
+        return password;
+    }
 
+    public JButton getBtnIngresar() {
+        return btnIngresar;
+    }
+    
+    
+    
+    private InicioSesionController isc;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JCheckBox checkContraseña;
@@ -194,7 +229,7 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private keeptoo.KGradientPanel kGradientPanel2;
+    private models.otros.KGradientPanel kGradientPanel2;
     private javax.swing.JLabel lblCrearCuenta;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField txtUsuario;

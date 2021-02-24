@@ -15,14 +15,18 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JCheckBox;
+import models.otros.Sonido;
 import views.MMInicioSesion;
+import views.MainFrame;
 import views.OMInicioSesion;
+import views.OMRegistroUsuario;
 
 public class InicioSesionController implements KeyListener, ActionListener, MouseListener {
 
     private OMInicioSesion om;
     private MMInicioSesion mm;
     private Pattern patronEmail;
+    private OMRegistroUsuario omRegistrarUsuario;
 
     public InicioSesionController(OMInicioSesion om) {
         this.om = om;
@@ -33,27 +37,16 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
     public InicioSesionController(MMInicioSesion mm) {
         this.mm = mm;
         om = new OMInicioSesion();
+        patronEmail = Pattern.compile("");
+        omRegistrarUsuario = new OMRegistroUsuario();
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        reproducirSonidoTeclado();
+        Sonido.teclado();
         if (e.getKeyChar() == ' ') {
             e.consume();
         }
-    }
-
-    private void reproducirSonidoTeclado() {
-
-        Clip efectoSonido;
-        try {
-            efectoSonido = AudioSystem.getClip();
-            File archivoSonido = new File("src/resources/audio/teclado (2).wav");
-            efectoSonido.open(AudioSystem.getAudioInputStream(archivoSonido));
-            efectoSonido.start();
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException error) {
-        }
-
     }
 
     @Override
@@ -76,8 +69,7 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
                     } else {
                         om.getPassword().setEchoChar('\u2022');
                     }
-                    
-                    
+
                 }
 
                 if (mm.isVisible()) {
@@ -90,10 +82,15 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
         if (om.isVisible()) {
-            if (e.getSource() == om.getLblCrearCuenta()) {
-                
+            System.out.println("om es visible");
+            if (e.getSource() == om.getLblRegistrarse()) {
+                System.out.println("om es visible");
+                omRegistrarUsuario = new OMRegistroUsuario();
+                om.setVisible(false);
+                MainFrame.desktop.add(omRegistrarUsuario);;
+                omRegistrarUsuario.setLocation(35, 18);
+                omRegistrarUsuario.setVisible(true);
             }
         }
     }
@@ -110,8 +107,8 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
     @Override
     public void mouseEntered(MouseEvent e) {
         if (om.isVisible()) {
-            if (e.getSource() == om.getLblCrearCuenta()) {
-                om.getLblCrearCuenta().setForeground(new Color(66, 11, 156));
+            if (e.getSource() == om.getLblRegistrarse()) {
+                om.getLblRegistrarse().setForeground(new Color(66, 11, 156));
             }
         }
     }
@@ -119,8 +116,8 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
     @Override
     public void mouseExited(MouseEvent e) {
         if (om.isVisible()) {
-            if (e.getSource() == om.getLblCrearCuenta()) {
-                om.getLblCrearCuenta().setForeground(new Color(255, 255, 255));
+            if (e.getSource() == om.getLblRegistrarse()) {
+                om.getLblRegistrarse().setForeground(new Color(255, 255, 255));
             }
         }
     }

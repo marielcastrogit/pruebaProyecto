@@ -2,14 +2,9 @@ package controllers;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
+import models.otros.Sonido;
 import views.MMAjustes;
 import views.MMDocumento;
 import views.MMInicioSesion;
@@ -24,7 +19,6 @@ public class MainFrameController implements MouseListener {
 
     private final MainFrame mf;
     private int clic;
-    private Clip efectoSonido;
     private JInternalFrame interno;
 
     private OMInicioSesion iniciarSesionOM;
@@ -46,6 +40,9 @@ public class MainFrameController implements MouseListener {
         iniciarInternos();
     }
 
+//    public MainFrameController() {
+//
+//    }
     private void iniciarInternos() {
         //OM - Ocultar Menu
         iniciarSesionOM = new OMInicioSesion();
@@ -139,7 +136,7 @@ public class MainFrameController implements MouseListener {
                 ajustesOM.setVisible(true);
                 internoAnterior = ajustesOM;
             }
-             if (internoAnterior == documentoOM && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
+            if (internoAnterior == documentoOM && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
                 internoAnterior.setVisible(false);
                 documentoMM.setVisible(true);
                 internoAnterior = documentoMM;
@@ -159,7 +156,7 @@ public class MainFrameController implements MouseListener {
         }
 
         if (o == mf.getLblIconoUsuario() || o == mf.getLblInicioSesion() || o == mf.getPnlInicioSesion()) {
-            reproducirSonidoEntrada();
+            Sonido.entrada();
             ocultarMenu();
             if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
                 if (clic % 2 == 0) {
@@ -177,7 +174,7 @@ public class MainFrameController implements MouseListener {
         }
 
         if (o == mf.getPnlAjustes() || o == mf.getLblAjustes() || o == mf.getLblIconoAjustes()) {
-            reproducirSonidoEntrada();
+            Sonido.entrada();
             ocultarMenu();
             if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
 
@@ -195,11 +192,11 @@ public class MainFrameController implements MouseListener {
         }
 
         if (o == mf.getPnlResolver() || o == mf.getLblResolver() || o == mf.getLblIconoResolver()) {
-            reproducirSonidoEntrada();
+            Sonido.entrada();
         }
 
         if (o == mf.getPnlDocumentos() || o == mf.getLblDocumentos() || o == mf.getLblIconoDocumentos()) {
-            reproducirSonidoEntrada();
+            Sonido.entrada();
             ocultarMenu();
             if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
 
@@ -217,11 +214,11 @@ public class MainFrameController implements MouseListener {
         }
 
         if (o == mf.getPnlPractica() || o == mf.getLblPractica() || o == mf.getLblIconoPractica()) {
-            reproducirSonidoEntrada();
+            Sonido.entrada();
         }
 
         if (o == mf.getPnlExamen() || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {
-            reproducirSonidoEntrada();
+            Sonido.entrada();
         }
 
     }
@@ -236,69 +233,41 @@ public class MainFrameController implements MouseListener {
         mf.getjDesktopPane1().setBounds(65, 103, 690, 440);
     }
 
-    private void reproducirSonidoIcono() {
-        try {
-            efectoSonido = AudioSystem.getClip();
-            File archivoSonido = new File("src/resources/audio/sonidoMenu.wav");
-            efectoSonido.open(AudioSystem.getAudioInputStream(archivoSonido));
-            efectoSonido.start();
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException error) {
-        }
-
-    }
-
-    private void reproducirSonidoEntrada() {
-        try {
-            efectoSonido = AudioSystem.getClip();
-            File archivoSonido = new File("src/resources/audio/sonidoEntradaMenu.wav");
-            efectoSonido.open(AudioSystem.getAudioInputStream(archivoSonido));
-            efectoSonido.start();
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException error) {
-        }
-    }
-
     @Override
     public void mouseEntered(MouseEvent e) {
         Object o = e.getSource();
 
         if (o == mf.getLblIconoUsuario() || o == mf.getLblInicioSesion() || o == mf.getPnlInicioSesion()) {
-//            
             mf.getLblIconoUsuario().setSize(83, 45);
-//            mf.getLblIconoUsuario().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-male-user-45.png")));
-            reproducirSonidoIcono();
+            Sonido.icono();
         }
 
         if (o == mf.getPnlAjustes() || o == mf.getLblAjustes() || o == mf.getLblIconoAjustes()) {
-//            mf.getLblIconoAjustes().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-settings-45.png")));
             mf.getLblIconoAjustes().setSize(83, 45);
-            reproducirSonidoIcono();
+            Sonido.icono();
         }
 
         if (o == mf.getPnlResolver() || o == mf.getLblResolver() || o == mf.getLblIconoResolver()) {
-//            mf.getLblIconoResolver().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-approve-45.png")));
             mf.getLblIconoResolver().setSize(83, 45);
-            reproducirSonidoIcono();
+            Sonido.icono();
         }
 
         if (o == mf.getPnlDocumentos() || o == mf.getLblDocumentos() || o == mf.getLblIconoDocumentos()) {
-//            mf.getLblIconoDocumentos().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-documents-40.png")));
             mf.getLblIconoDocumentos().setSize(100, 45);
-            reproducirSonidoIcono();
+            Sonido.icono();
         }
 
         if (o == mf.getPnlPractica()
                 || o == mf.getLblPractica() || o == mf.getLblIconoPractica()) {
-//            mf.getLblIconoPractica().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-pencil-45.png")));
             mf.getLblIconoPractica().setSize(100, 45);
-            reproducirSonidoIcono();
+            Sonido.icono();
         }
 
         if (o
                 == mf.getPnlExamen()
                 || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {
-//            mf.getLblIconoExamen().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-test-passed-45.png")));
             mf.getLblIconoExamen().setSize(100, 45);
-            reproducirSonidoIcono();
+            Sonido.icono();
         }
 
     }
@@ -323,7 +292,6 @@ public class MainFrameController implements MouseListener {
 
         if (o == mf.getPnlAjustes() || o == mf.getLblAjustes() || o == mf.getLblIconoAjustes()) {
             mf.getLblIconoAjustes().setSize(35, 35);
-//            mf.getLblIconoAjustes().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-settings-35.png")));
         }
 
         if (o == mf.getPnlResolver() || o == mf.getLblResolver() || o == mf.getLblIconoResolver()) {
@@ -347,4 +315,6 @@ public class MainFrameController implements MouseListener {
 
         }
     }
+
+
 }

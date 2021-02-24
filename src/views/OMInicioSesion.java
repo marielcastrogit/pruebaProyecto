@@ -55,27 +55,14 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(110, 90, 35, 35);
 
+        jPanel2.setLayout(null);
+
         txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
         txtUsuario.setText("usuario@gmail.com");
         txtUsuario.setActionCommand("txtCorreo");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
+        jPanel2.add(txtUsuario);
+        txtUsuario.setBounds(6, 15, 318, 30);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(200, 80, 330, 60);
@@ -94,25 +81,12 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(110, 190, 35, 35);
 
+        jPanel1.setLayout(null);
+
         password.setBackground(new java.awt.Color(255, 255, 255));
         password.setForeground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
+        jPanel1.add(password);
+        password.setBounds(6, 13, 318, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(200, 180, 330, 60);
@@ -134,11 +108,11 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
         lblCrearCuenta.setForeground(new java.awt.Color(255, 255, 255));
         lblCrearCuenta.setText("Registrate en MekApp");
         getContentPane().add(lblCrearCuenta);
-        lblCrearCuenta.setBounds(250, 340, 270, 16);
+        lblCrearCuenta.setBounds(250, 326, 270, 30);
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
         getContentPane().add(lblFondo);
-        lblFondo.setBounds(1, 6, 620, 380);
+        lblFondo.setBounds(1, -4, 620, 390);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -153,7 +127,7 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
         
     }
     
-    public JLabel getLblCrearCuenta() {
+    public JLabel getLblRegistrarse() {
         return lblCrearCuenta;
     }
     

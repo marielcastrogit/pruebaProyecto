@@ -14,8 +14,6 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         iniciar();
-        
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -577,7 +575,7 @@ public class MainFrame extends javax.swing.JFrame {
     private PanelDegradado p6;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane desktop;
+    public static javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

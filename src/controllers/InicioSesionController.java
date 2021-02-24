@@ -69,12 +69,15 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
         switch (e.getActionCommand()) {
             case "Mostrar contraseña":
                 if (om.isVisible()) {
+                    //Muestro la contraseña si es seleccionado, sino que oculte la contraseña.
                     JCheckBox checkContraseña = om.getCheckContraseña();
                     if (checkContraseña.isSelected()) {
                         om.getPassword().setEchoChar((char) 0);
                     } else {
                         om.getPassword().setEchoChar('\u2022');
                     }
+                    
+                    
                 }
 
                 if (mm.isVisible()) {

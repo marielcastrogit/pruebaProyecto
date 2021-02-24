@@ -93,5 +93,13 @@ public class EnviarCodigoVerificacion {
             ex.printStackTrace();
         }
     }
+    
+    public boolean esCodigoCorrecto(String codigo){
+        if(this.codigo.equals(codigo)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }

@@ -34,7 +34,7 @@ public class OMResolver extends javax.swing.JInternalFrame {
         listTemas = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         btnCalcular = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         jTextField2.setText("jTextField2");
 
@@ -76,10 +76,9 @@ public class OMResolver extends javax.swing.JInternalFrame {
         getContentPane().add(btnCalcular);
         btnCalcular.setBounds(240, 340, 120, 24);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 630, 390);
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
+        getContentPane().add(lblFondo);
+        lblFondo.setBounds(0, 0, 620, 390);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -99,10 +98,10 @@ public class OMResolver extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JComboBox<String> listTemas;
     private javax.swing.JTextField txtProblema;
     // End of variables declaration//GEN-END:variables

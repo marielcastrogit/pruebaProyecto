@@ -1,6 +1,11 @@
 package views;
 
+import controllers.VerificarCodigoController;
 import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
@@ -11,6 +16,9 @@ public class OMVerificarCodigo extends javax.swing.JInternalFrame {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setBordeClickAqui();
+        setControllers();
+        lblIconoCodigoIncorrecto.setVisible(false);
+        lblCodigoIncorrecto.setVisible(false);
     }
 
     private void setBordeClickAqui() {
@@ -28,15 +36,16 @@ public class OMVerificarCodigo extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        lblCodigoIncorrecto = new javax.swing.JLabel();
+        lblIconoCodigoIncorrecto = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btnAcceder = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         pnlReenviarCodigo = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        lblReenviarCodigo = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         lblFondo = new javax.swing.JLabel();
 
         setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
@@ -52,13 +61,32 @@ public class OMVerificarCodigo extends javax.swing.JInternalFrame {
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setOpaque(true);
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 220, 390);
+        jLabel2.setBounds(0, 0, 220, 400);
+
+        lblCodigoIncorrecto.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblCodigoIncorrecto.setForeground(new java.awt.Color(102, 0, 102));
+        lblCodigoIncorrecto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCodigoIncorrecto.setText("Codigo incorrecto");
+        getContentPane().add(lblCodigoIncorrecto);
+        lblCodigoIncorrecto.setBounds(380, 320, 130, 30);
+
+        lblIconoCodigoIncorrecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-high-priority-64.png"))); // NOI18N
+        lblIconoCodigoIncorrecto.setToolTipText("");
+        lblIconoCodigoIncorrecto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(lblIconoCodigoIncorrecto);
+        lblIconoCodigoIncorrecto.setBounds(320, 310, 60, 60);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Hemos enviado un código de verificacion a tu correo ");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(260, 40, 310, 20);
+
+        btnAcceder.setBackground(new java.awt.Color(0, 0, 0));
+        btnAcceder.setForeground(new java.awt.Color(255, 255, 255));
+        btnAcceder.setText("Acceder");
+        getContentPane().add(btnAcceder);
+        btnAcceder.setBounds(380, 270, 100, 30);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -70,11 +98,11 @@ public class OMVerificarCodigo extends javax.swing.JInternalFrame {
         pnlReenviarCodigo.setOpaque(false);
         pnlReenviarCodigo.setLayout(null);
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Reenviar código");
-        pnlReenviarCodigo.add(jLabel5);
-        jLabel5.setBounds(10, 5, 100, 20);
+        lblReenviarCodigo.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        lblReenviarCodigo.setForeground(new java.awt.Color(255, 255, 255));
+        lblReenviarCodigo.setText("Reenviar código");
+        pnlReenviarCodigo.add(lblReenviarCodigo);
+        lblReenviarCodigo.setBounds(10, 5, 100, 20);
 
         getContentPane().add(pnlReenviarCodigo);
         pnlReenviarCodigo.setBounds(490, 70, 120, 30);
@@ -85,20 +113,10 @@ public class OMVerificarCodigo extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(310, 130, 250, 16);
 
-        jPanel2.setLayout(null);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-play-64.png"))); // NOI18N
-        jLabel7.setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
-        jPanel2.add(jLabel7);
-        jLabel7.setBounds(0, 0, 60, 60);
-
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(390, 270, 60, 60);
-
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodigo.setBackground(new java.awt.Color(255, 255, 255));
+        txtCodigo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtCodigo.setForeground(new java.awt.Color(0, 0, 0));
+        txtCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,14 +124,14 @@ public class OMVerificarCodigo extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addComponent(txtCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -122,24 +140,48 @@ public class OMVerificarCodigo extends javax.swing.JInternalFrame {
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
         getContentPane().add(lblFondo);
-        lblFondo.setBounds(220, 0, 400, 380);
+        lblFondo.setBounds(220, 0, 410, 400);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JTextField getTxtCodigo() {
+        return txtCodigo;
+    }
 
+    public JButton getBtnAcceder() {
+        return btnAcceder;
+    }
+
+    public JLabel getLblReenviarCodigo() {
+        return lblReenviarCodigo;
+    }
+
+    public JPanel getPnlReenviarCodigo() {
+        return pnlReenviarCodigo;
+    }
+    
+
+    private void setControllers() {
+        vcc = new VerificarCodigoController(this);
+        txtCodigo.addKeyListener(vcc);
+        btnAcceder.addMouseListener(vcc);
+    }
+
+    private VerificarCodigoController vcc;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAcceder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    public static javax.swing.JLabel lblCodigoIncorrecto;
     private javax.swing.JLabel lblFondo;
+    public static javax.swing.JLabel lblIconoCodigoIncorrecto;
+    private javax.swing.JLabel lblReenviarCodigo;
     private javax.swing.JPanel pnlReenviarCodigo;
+    private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }

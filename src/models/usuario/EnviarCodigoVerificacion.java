@@ -95,7 +95,7 @@ public class EnviarCodigoVerificacion {
     }
     
     public boolean esCodigoCorrecto(String codigo){
-        if(this.codigo.equals(codigo)){
+        if(patronCodigo.matcher(codigo).matches()){
             return true;
         }else{
             return false;

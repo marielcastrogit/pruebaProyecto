@@ -21,7 +21,7 @@ public class MainFrameController implements MouseListener {
     private int clic;
     private JInternalFrame interno;
 
-    private OMInicioSesion iniciarSesionOM;
+    public static OMInicioSesion iniciarSesionOM;
     private OMResolver resolverOM;
     private OMAjustes ajustesOM;
     private OMDocumento documentoOM;

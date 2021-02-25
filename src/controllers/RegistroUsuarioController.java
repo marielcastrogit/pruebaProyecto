@@ -40,9 +40,14 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == registrarUsuario.getLblRetroceder()) {
             registrarUsuario.getLblRetroceder().setBackground(new Color(255, 255, 255, 50));
+            registrarUsuario.setVisible(false);
             InicioSesionController.sesion.setVisible(true);
+            InicioSesionController.sesion.redimensionar(false);
+//            InicioSesionController.sesion.setVisible(true);
+            MainFrame.pnlMenu.setSize(49, 502);
             MainFrame.pnlMenu.setVisible(true);
-            
+//            MainFrame.desktop.setBounds(65, 103, 690, 440);
+
         }
 
         if (e.getSource() == registrarUsuario.getBtnRegistrarse()) {

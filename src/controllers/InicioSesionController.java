@@ -58,16 +58,19 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (sesion.isVisible()) {
-            if (e.getSource() == sesion.getLblRegistrarse()) {;
-                registrarUsuario = new RegistroUsuario();
-                sesion.setVisible(false);
-                MainFrame.desktop.add(registrarUsuario);;
-                registrarUsuario.setLocation(35, 18);
-                registrarUsuario.setVisible(true);
-                MainFrame.pnlMenu.setVisible(false);
+        if (e.getSource() == sesion.getLblRegistrarse()) {;
+
+            if (MainFrame.desktop.getWidth() == 495) {
+                MainFrame.desktop.setBounds(65, 103, 690, 440);
             }
+            registrarUsuario = new RegistroUsuario();
+            sesion.setVisible(false);
+            MainFrame.desktop.add(registrarUsuario);;
+            registrarUsuario.setLocation(35, 18);
+            registrarUsuario.setVisible(true);
+            MainFrame.pnlMenu.setVisible(false);
         }
+
     }
 
     @Override

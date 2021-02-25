@@ -5,97 +5,80 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import models.otros.Sonido;
-import views.MMAjustes;
+import views.Ajustes;
+import views.Documento;
 import views.MMDocumento;
-import views.MMInicioSesion;
 import views.MMResolver;
 import views.MainFrame;
-import views.OMAjustes;
-import views.OMDocumento;
-import views.OMInicioSesion;
-import views.OMResolver;
+import views.InicioSesion;
+import views.Resolver;
 
 public class MainFrameController implements MouseListener {
 
     private final MainFrame mf;
     private int clic;
-    private JInternalFrame interno;
+    private JInternalFrame internoAnterior;
+    public static InicioSesion iniciarSesion;
+    private Resolver resolver;
+    private Ajustes ajustes;
+    private Documento documento;
 
-    public static OMInicioSesion iniciarSesionOM;
-    private OMResolver resolverOM;
-    private OMAjustes ajustesOM;
-    private OMDocumento documentoOM;
-
-    private MMInicioSesion iniciarSesionMM;
     private MMResolver resolverMM;
-    private MMAjustes ajustesMM;
     private MMDocumento documentoMM;
 
-    private JInternalFrame internoAnterior;
+    private String interno;
 
     public MainFrameController(MainFrame mf) {
         this.mf = mf;
         clic = 0;
-        internoAnterior = new JInternalFrame();
+        interno = "";
         iniciarInternos();
     }
 
-//    public MainFrameController() {
-//
-//    }
     private void iniciarInternos() {
         //OM - Ocultar Menu
-        iniciarSesionOM = new OMInicioSesion();
-        resolverOM = new OMResolver();
-        ajustesOM = new OMAjustes();
-        documentoOM = new OMDocumento();
+        iniciarSesion = new InicioSesion();
+        resolver = new Resolver();
+        ajustes = new Ajustes();
+        documento = new Documento();
 
-        iniciarSesionOM.setVisible(false);
-        resolverOM.setVisible(true);
-        ajustesOM.setVisible(false);
-        documentoOM.setVisible(false);
+        iniciarSesion.setVisible(false);
+        resolver.setVisible(true);
+        ajustes.setVisible(false);
+        documento.setVisible(false);
 
-        iniciarSesionOM.setLocation(35, 18);
-        resolverOM.setLocation(35, 18);
-        ajustesOM.setLocation(35, 18);;
-        documentoOM.setLocation(35, 18);;
+        iniciarSesion.setLocation(35, 18);
+        resolver.setLocation(35, 18);
+        ajustes.setLocation(35, 18);;
+        documento.setLocation(35, 18);;
 
-        mf.getjDesktopPane1().add(iniciarSesionOM);
-        mf.getjDesktopPane1().add(resolverOM);
-        mf.getjDesktopPane1().add(ajustesOM);
-        mf.getjDesktopPane1().add(documentoOM);
+        mf.getjDesktopPane1().add(iniciarSesion);
+        mf.getjDesktopPane1().add(resolver);
+        mf.getjDesktopPane1().add(ajustes);
+        mf.getjDesktopPane1().add(documento);
 
         //MM - Mostrar Menu
-        iniciarSesionMM = new MMInicioSesion();
         resolverMM = new MMResolver();
-        ajustesMM = new MMAjustes();
         documentoMM = new MMDocumento();
 
-        iniciarSesionMM.setVisible(false);
         resolverMM.setVisible(false);
-        ajustesMM.setVisible(false);
         documentoMM.setVisible(false);
 
-        iniciarSesionMM.setLocation(20, 18);
         resolverMM.setLocation(20, 18);
-        ajustesMM.setLocation(20, 18);
         documentoMM.setLocation(20, 18);
 
-        mf.getjDesktopPane1().add(iniciarSesionMM);
         mf.getjDesktopPane1().add(resolverMM);
-        mf.getjDesktopPane1().add(ajustesMM);
         mf.getjDesktopPane1().add(documentoMM);
+        internoAnterior = resolver;
 
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         Object o = e.getSource();//o de origen del evento
-
+/////////////////////////////CLICK EN EL LABEL DEL MENU///////////////////////////////////
         if (o == mf.getLblMenu()) {
-
             clic++;
-            System.out.println("label Menu" + clic);
             if (clic % 2 == 0) {
                 ocultarMenu();
             }
@@ -103,122 +86,145 @@ public class MainFrameController implements MouseListener {
                 mostrarMenu();
             }
 
-            if (resolverOM.isVisible() && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
-                resolverOM.setVisible(false);
-                resolverMM.setVisible(true);
-                internoAnterior = resolverMM;
-            }
-            if (internoAnterior == resolverMM && mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
-                resolverOM.setVisible(true);
-                resolverMM.setVisible(false);
-                internoAnterior = resolverOM;
-            }
-            if (internoAnterior == iniciarSesionOM && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
-                internoAnterior.setVisible(false);
-                iniciarSesionMM.setVisible(true);
-                internoAnterior = iniciarSesionMM;
+            System.out.println("INTERNO ANTERIOR: " + internoAnterior);
+            if (mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
+                System.out.println("PANEL DE 495 POR 440");
+
+                if (interno.equals("Iniciar Sesion")) {
+                    iniciarSesion.redimensionar(true);
+                }
+                if (interno.equals("Ajustes")) {
+                    ajustes.redimensionar(true);
+                }
+//                if (interno.equals("Resolver")) {
+//                    iniciarSesion.redimensionar();
+//                }
+//                if (interno.equals("Documentos")) {
+//                    iniciarSesion.redimensionar();
+//                }
+//                if (interno.equals("Practica")) {
+//                    iniciarSesion.redimensionar();
+//                }
+//                if (interno.equals("Examen")) {
+//                    iniciarSesion.redimensionar();
+//                }
+            } else if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                System.out.println("PANEL DE 690 POR 440");
+
+                if (interno.equals("Iniciar Sesion")) {
+                    iniciarSesion.redimensionar(false);
+                }
+                if (interno.equals("Ajustes")) {
+                    ajustes.redimensionar(false);
+                }
             }
 
-            if (internoAnterior == iniciarSesionMM && mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
-                internoAnterior.setVisible(false);
-                iniciarSesionOM.setVisible(true);
-                internoAnterior = iniciarSesionOM;
-            }
-
-            if (internoAnterior == ajustesOM && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
-                internoAnterior.setVisible(false);
-                ajustesMM.setVisible(true);
-                internoAnterior = ajustesMM;
-            }
-
-            if (internoAnterior == ajustesMM && mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
-                internoAnterior.setVisible(false);
-                ajustesOM.setVisible(true);
-                internoAnterior = ajustesOM;
-            }
-            if (internoAnterior == documentoOM && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
-                internoAnterior.setVisible(false);
-                documentoMM.setVisible(true);
-                internoAnterior = documentoMM;
-            }
-
-            if (internoAnterior == documentoMM && mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
-                internoAnterior.setVisible(false);
-                documentoOM.setVisible(true);
-                internoAnterior = documentoOM;
-            }
         }
-
+/////////////////////////////CLICK EN EL LABEL DEL USUARIO INICIO SESION///////////////////////////////////
         if (o == mf.getLblIconoUsuario() || o == mf.getLblInicioSesion() || o == mf.getPnlInicioSesion()) {
             Sonido.entrada();
             ocultarMenu();
-            if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
-                if (clic % 2 == 0) {
-                    clic++;
-                }
-                if (clic % 2 != 0) {
-                    clic--;
-                }
-                internoAnterior.setVisible(false);
-                iniciarSesionOM.setVisible(true);
-                internoAnterior = iniciarSesionOM;
+            System.out.println("INTERNO ANTERIOR: " + internoAnterior);
 
+            internoAnterior.setVisible(false);
+            iniciarSesion.setVisible(true);
+            if (clic % 2 == 0) {
+                clic++;
             }
+            if (clic % 2 != 0) {
+                clic--;
+            }
+            if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                iniciarSesion.redimensionar(false);
+            } else {
+                iniciarSesion.redimensionar(true);
+            }
+            interno = "Iniciar Sesion";
 
+            internoAnterior = iniciarSesion;
         }
-
+/////////////////////////////CLICK EN EL LABEL DE AJUSTES///////////////////////////////////
         if (o == mf.getPnlAjustes() || o == mf.getLblAjustes() || o == mf.getLblIconoAjustes()) {
             Sonido.entrada();
             ocultarMenu();
-            if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+            System.out.println("INTERNO ANTERIOR: " + internoAnterior);
 
-                if (clic % 2 == 0) {
-                    clic++;
-                }
-                if (clic % 2 != 0) {
-                    clic--;
-                }
-                System.out.println("ajustes:" + clic);
-                internoAnterior.setVisible(false);
-                ajustesOM.setVisible(true);
-                internoAnterior = ajustesOM;
+            internoAnterior.setVisible(false);
+            ajustes.setVisible(true);
+            if (clic % 2 == 0) {
+                clic++;
             }
-        }
-
-        if (o == mf.getPnlResolver() || o == mf.getLblResolver() || o == mf.getLblIconoResolver()) {
-            Sonido.entrada();
-        }
-
-        if (o == mf.getPnlDocumentos() || o == mf.getLblDocumentos() || o == mf.getLblIconoDocumentos()) {
-            Sonido.entrada();
-            ocultarMenu();
-            if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
-
-                if (clic % 2 == 0) {
-                    clic++;
-                }
-                if (clic % 2 != 0) {
-                    clic--;
-                }
-                System.out.println("ajustes:" + clic);
-                internoAnterior.setVisible(false);
-                documentoOM.setVisible(true);
-                internoAnterior = documentoOM;
+            if (clic % 2 != 0) {
+                clic--;
             }
+            if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                ajustes.redimensionar(false);
+            } else {
+                ajustes.redimensionar(true);
+            }
+            interno = "Ajustes";
+            internoAnterior = ajustes;
         }
-
-        if (o == mf.getPnlPractica() || o == mf.getLblPractica() || o == mf.getLblIconoPractica()) {
-            Sonido.entrada();
-        }
-
-        if (o == mf.getPnlExamen() || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {
-            Sonido.entrada();
-        }
+/////////////////////////////CLICK EN EL PANEL DE RESOLVER///////////////////////////////////
+//        if (o == mf.getPnlResolver() || o == mf.getLblResolver() || o == mf.getLblIconoResolver()) {
+//            Sonido.entrada();
+//            ocultarMenu();
+//            resolver.setVisible(true);
+//            if (clic % 2 == 0) {
+//                clic++;
+//            }
+//            if (clic % 2 != 0) {
+//                clic--;
+//            }
+//
+//            interno = "Resolver";
+//        }
+/////////////////////////////CLICK EN EL PANEL DE DOCUMENTOS//////////////////////////////////
+//        if (o == mf.getPnlDocumentos() || o == mf.getLblDocumentos() || o == mf.getLblIconoDocumentos()) {
+//            Sonido.entrada();
+//            ocultarMenu();
+//            resolver.setVisible(true);
+//            if (clic % 2 == 0) {
+//                clic++;
+//            }
+//            if (clic % 2 != 0) {
+//                clic--;
+//            }
+//
+//            interno = "Documentos";
+//        }
+///////////////////////////////CLICK EN EL PANEL DE PRACTICA//////////////////////////////////
+//        if (o == mf.getPnlPractica() || o == mf.getLblPractica() || o == mf.getLblIconoPractica()) {
+//            Sonido.entrada();
+//            ocultarMenu();
+//            resolver.setVisible(true);
+//            if (clic % 2 == 0) {
+//                clic++;
+//            }
+//            if (clic % 2 != 0) {
+//                clic--;
+//            }
+//
+//            interno = "Practica";
+//        }
+/////////////////////////////CLICK EN EL PANEL DE EXAMENES//////////////////////////////////
+//        if (o == mf.getPnlExamen() || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {
+//            Sonido.entrada();
+//            ocultarMenu();
+//            resolver.setVisible(true);
+//            if (clic % 2 == 0) {
+//                clic++;
+//            }
+//            if (clic % 2 != 0) {
+//                clic--;
+//            }
+//            interno = "Examen";
+//        }
 
     }
 
     private void mostrarMenu() {//frame pequeño
-        mf.getPnlMenu().setSize(255, 502);
+        mf.getPnlMenu().setSize(250, 502);
         mf.getjDesktopPane1().setBounds(260, 103, 495, 440);
     }
 
@@ -309,6 +315,5 @@ public class MainFrameController implements MouseListener {
 
         }
     }
-
 
 }

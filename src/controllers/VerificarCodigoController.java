@@ -8,13 +8,13 @@ import java.awt.event.MouseListener;
 import models.otros.Sonido;
 import models.usuario.EnviarCodigoVerificacion;
 import views.MainFrame;
-import views.OMVerificarCodigo;
+import views.VerificarCodigo;
 
 public class VerificarCodigoController implements KeyListener, MouseListener {
 
-    private OMVerificarCodigo verificarCodigo;
+    private VerificarCodigo verificarCodigo;
 
-    public VerificarCodigoController(OMVerificarCodigo verificarCodigo) {
+    public VerificarCodigoController(VerificarCodigo verificarCodigo) {
         this.verificarCodigo = verificarCodigo;
     }
 
@@ -47,10 +47,10 @@ public class VerificarCodigoController implements KeyListener, MouseListener {
             boolean codCorrecto = codigoVerificar.esCodigoCorrecto(verificarCodigo.getTxtCodigo().getText());
 
             if (codCorrecto) {
-                MainFrameController.iniciarSesionOM.setVisible(true);
+                MainFrameController.iniciarSesion.setVisible(true);
             } else {
-                OMVerificarCodigo.lblCodigoIncorrecto.setVisible(true);
-                OMVerificarCodigo.lblIconoCodigoIncorrecto.setVisible(true);
+                VerificarCodigo.lblCodigoIncorrecto.setVisible(true);
+                VerificarCodigo.lblIconoCodigoIncorrecto.setVisible(true);
             }
         }
     }

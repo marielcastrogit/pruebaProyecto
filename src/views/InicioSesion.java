@@ -1,7 +1,6 @@
 package views;
 
 import controllers.InicioSesionController;
-import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -9,15 +8,15 @@ import javax.swing.JPasswordField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
-public class OMInicioSesion extends javax.swing.JInternalFrame {
-    
-    public OMInicioSesion() {
+public class InicioSesion extends javax.swing.JInternalFrame {
+
+    public InicioSesion() {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setBorderInternal();
         setControllers();
     }
-    
+
     private void setBorderInternal() {
         DropShadowBorder border = (DropShadowBorder) this.getBorder();
         border.setShowBottomShadow(false);
@@ -26,18 +25,18 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
         border.setShowTopShadow(true);
         border.setShadowSize(15);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        lblIconoUsuario = new javax.swing.JLabel();
+        pnlEmail = new javax.swing.JPanel();
         txtUsuario = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        lblEmail = new javax.swing.JLabel();
+        lblContraseña = new javax.swing.JLabel();
+        lblIconoContraseña = new javax.swing.JLabel();
+        pnlContraseña = new javax.swing.JPanel();
         password = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
         checkContraseña = new javax.swing.JCheckBox();
@@ -51,45 +50,45 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(622, 408));
         getContentPane().setLayout(null);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-checked-user-male-35.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(110, 90, 35, 35);
+        lblIconoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-checked-user-male-35.png"))); // NOI18N
+        getContentPane().add(lblIconoUsuario);
+        lblIconoUsuario.setBounds(110, 90, 35, 35);
 
-        jPanel2.setLayout(null);
+        pnlEmail.setLayout(null);
 
         txtUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
         txtUsuario.setText("usuario@gmail.com");
         txtUsuario.setActionCommand("txtCorreo");
-        jPanel2.add(txtUsuario);
+        pnlEmail.add(txtUsuario);
         txtUsuario.setBounds(6, 15, 318, 30);
 
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(200, 80, 330, 60);
+        getContentPane().add(pnlEmail);
+        pnlEmail.setBounds(200, 80, 330, 60);
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Email");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(200, 60, 32, 16);
+        lblEmail.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmail.setText("Email");
+        getContentPane().add(lblEmail);
+        lblEmail.setBounds(200, 60, 32, 16);
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Contraseña");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(200, 160, 70, 16);
+        lblContraseña.setForeground(new java.awt.Color(255, 255, 255));
+        lblContraseña.setText("Contraseña");
+        getContentPane().add(lblContraseña);
+        lblContraseña.setBounds(200, 160, 70, 16);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-password-1-35.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(110, 190, 35, 35);
+        lblIconoContraseña.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-password-1-35.png"))); // NOI18N
+        getContentPane().add(lblIconoContraseña);
+        lblIconoContraseña.setBounds(110, 190, 35, 35);
 
-        jPanel1.setLayout(null);
+        pnlContraseña.setLayout(null);
 
         password.setBackground(new java.awt.Color(255, 255, 255));
         password.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(password);
+        pnlContraseña.add(password);
         password.setBounds(6, 13, 318, 30);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(200, 180, 330, 60);
+        getContentPane().add(pnlContraseña);
+        pnlContraseña.setBounds(200, 180, 330, 60);
 
         btnIngresar.setBackground(new java.awt.Color(0, 0, 0));
         btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,17 +123,17 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
         checkContraseña.addActionListener(isc);
         lblCrearCuenta.addMouseListener(isc);
         btnIngresar.addMouseListener(isc);
-        
+
     }
-    
+
     public JLabel getLblRegistrarse() {
         return lblCrearCuenta;
     }
-    
+
     public JCheckBox getCheckContraseña() {
         return checkContraseña;
     }
-    
+
     public JPasswordField getPassword() {
         return password;
     }
@@ -142,22 +141,47 @@ public class OMInicioSesion extends javax.swing.JInternalFrame {
     public JButton getBtnIngresar() {
         return btnIngresar;
     }
-    
-    
-    
+
+    public void redimensionar(boolean redimensionar) {
+        if (redimensionar) {
+            setSize(459, 412);
+            lblEmail.setBounds(117, 80, 258, 60);
+            pnlEmail.setBounds(117, 83, 258, 60);
+            lblContraseña.setBounds(117, 158, 258, 60);
+            pnlContraseña.setBounds(117, 161, 258, 60);
+            lblIconoUsuario.setBounds(64, 98, 35, 35);
+            lblIconoContraseña.setBounds(64, 194, 35, 35);
+            lblCrearCuenta.setBounds(203, 302, 120, 16);
+        } else {
+            setSize(622, 408);
+            lblIconoUsuario.setBounds(110, 90, 35, 35);
+            txtUsuario.setBounds(6, 15, 318, 30);
+            pnlEmail.setBounds(200, 80, 330, 60);
+            lblEmail.setBounds(200, 60, 32, 16);
+            lblContraseña.setBounds(200, 160, 70, 16);
+            lblIconoContraseña.setBounds(110, 190, 35, 35);
+            password.setBounds(6, 13, 318, 30);
+            pnlContraseña.setBounds(200, 180, 330, 60);
+            btnIngresar.setBounds(280, 290, 90, 30);
+            checkContraseña.setBounds(240, 240, 190, 24);
+            lblCrearCuenta.setBounds(250, 326, 270, 30);
+            lblFondo.setBounds(1, -4, 620, 390);
+        }
+    }
+
     private InicioSesionController isc;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JCheckBox checkContraseña;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblCrearCuenta;
+    private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblIconoContraseña;
+    private javax.swing.JLabel lblIconoUsuario;
     private javax.swing.JPasswordField password;
+    private javax.swing.JPanel pnlContraseña;
+    private javax.swing.JPanel pnlEmail;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,9 +10,9 @@ import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
-public class OMVerificarCodigo extends javax.swing.JInternalFrame {
+public class VerificarCodigo extends javax.swing.JInternalFrame {
 
-    public OMVerificarCodigo() {
+    public VerificarCodigo() {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setBordeClickAqui();

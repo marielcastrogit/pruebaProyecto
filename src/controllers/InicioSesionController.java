@@ -10,29 +10,19 @@ import java.awt.event.MouseListener;
 import java.util.regex.Pattern;
 import javax.swing.JCheckBox;
 import models.otros.Sonido;
-import views.MMInicioSesion;
 import views.MainFrame;
-import views.OMInicioSesion;
-import views.OMRegistroUsuario;
+import views.InicioSesion;
+import views.RegistroUsuario;
 
 public class InicioSesionController implements KeyListener, ActionListener, MouseListener {
 
-    public static OMInicioSesion om;
-    private MMInicioSesion mm;
+    public static InicioSesion sesion;
     private Pattern patronEmail;
-    private OMRegistroUsuario omRegistrarUsuario;
+    private RegistroUsuario registrarUsuario;
 
-    public InicioSesionController(OMInicioSesion om) {
-        this.om = om;
-        mm = new MMInicioSesion();
+    public InicioSesionController(InicioSesion sesion) {
+        this.sesion = sesion;
         patronEmail = Pattern.compile("");
-    }
-
-    public InicioSesionController(MMInicioSesion mm) {
-        this.mm = mm;
-        om = new OMInicioSesion();
-        patronEmail = Pattern.compile("");
-        omRegistrarUsuario = new OMRegistroUsuario();
     }
 
     @Override
@@ -55,34 +45,26 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Mostrar contraseña":
-                if (om.isVisible()) {
-                    //Muestro la contraseña si es seleccionado, sino que oculte la contraseña.
-                    JCheckBox checkContraseña = om.getCheckContraseña();
-                    if (checkContraseña.isSelected()) {
-                        om.getPassword().setEchoChar((char) 0);
-                    } else {
-                        om.getPassword().setEchoChar('\u2022');
-                    }
-
+                //Muestro la contraseña si es seleccionado, sino que oculte la contraseña.
+                JCheckBox checkContraseña = sesion.getCheckContraseña();
+                if (checkContraseña.isSelected()) {
+                    sesion.getPassword().setEchoChar((char) 0);
+                } else {
+                    sesion.getPassword().setEchoChar('\u2022');
                 }
 
-                if (mm.isVisible()) {
-
-                }
-
-                break;
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (om.isVisible()) {
-            if (e.getSource() == om.getLblRegistrarse()) {;
-                omRegistrarUsuario = new OMRegistroUsuario();
-                om.setVisible(false);
-                MainFrame.desktop.add(omRegistrarUsuario);;
-                omRegistrarUsuario.setLocation(35, 18);
-                omRegistrarUsuario.setVisible(true);
+        if (sesion.isVisible()) {
+            if (e.getSource() == sesion.getLblRegistrarse()) {;
+                registrarUsuario = new RegistroUsuario();
+                sesion.setVisible(false);
+                MainFrame.desktop.add(registrarUsuario);;
+                registrarUsuario.setLocation(35, 18);
+                registrarUsuario.setVisible(true);
                 MainFrame.pnlMenu.setVisible(false);
             }
         }
@@ -99,20 +81,19 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        if (om.isVisible()) {
-            if (e.getSource() == om.getLblRegistrarse()) {
-                om.getLblRegistrarse().setForeground(new Color(66, 11, 156));
-            }
+
+        if (e.getSource() == sesion.getLblRegistrarse()) {
+            sesion.getLblRegistrarse().setForeground(new Color(66, 11, 156));
         }
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (om.isVisible()) {
-            if (e.getSource() == om.getLblRegistrarse()) {
-                om.getLblRegistrarse().setForeground(new Color(255, 255, 255));
-            }
+        if (e.getSource() == sesion.getLblRegistrarse()) {
+            sesion.getLblRegistrarse().setForeground(new Color(255, 255, 255));
         }
+
     }
 
 }

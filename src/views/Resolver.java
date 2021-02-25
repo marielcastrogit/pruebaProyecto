@@ -6,9 +6,9 @@ import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
-public class OMResolver extends javax.swing.JInternalFrame {
+public class Resolver extends javax.swing.JInternalFrame {
 
-    public OMResolver() {
+    public Resolver() {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setBorderInternal();

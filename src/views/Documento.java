@@ -8,11 +8,11 @@ import org.icepdf.ri.common.SwingViewBuilder;
 import org.jdesktop.swingx.border.DropShadowBorder;
 import org.icepdf.ri.common.MyAnnotationCallback;
 
-public class OMDocumento extends javax.swing.JInternalFrame {
+public class Documento extends javax.swing.JInternalFrame {
 
     private JPanel panelVistaPDF;
 
-    public OMDocumento() {
+    public Documento() {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         abrirDocumento("C:\\Users\\Usuario\\Documents\\TareaPROGII\\Proyecto Programacion.pdf");

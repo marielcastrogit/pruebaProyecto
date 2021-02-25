@@ -10,9 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
-public class OMRegistroUsuario extends javax.swing.JInternalFrame {
+public class RegistroUsuario extends javax.swing.JInternalFrame {
 
-    public OMRegistroUsuario() {
+    public RegistroUsuario() {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setBorderInternal();

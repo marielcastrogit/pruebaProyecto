@@ -16,19 +16,19 @@ import models.usuario.Usuario;
 import models.usuario.ValidarContraseña;
 import models.usuario.ValidarEmail;
 import views.MainFrame;
-import views.OMRegistroUsuario;
-import views.OMVerificarCodigo;
+import views.RegistroUsuario;
+import views.VerificarCodigo;
 
 public class RegistroUsuarioController implements MouseListener, KeyListener, ActionListener, FocusListener {
 
-    public static OMRegistroUsuario registrarUsuario;
-    private OMVerificarCodigo verificarCodigo;
+    public static RegistroUsuario registrarUsuario;
+    private VerificarCodigo verificarCodigo;
     private ValidarEmail validacionCorreo;
     private String correoUsuario;
     private ArrayList<Usuario> usuarios;
     private int c;
 
-    public RegistroUsuarioController(OMRegistroUsuario registrarUsuario) {
+    public RegistroUsuarioController(RegistroUsuario registrarUsuario) {
         this.registrarUsuario = registrarUsuario;
         validacionCorreo = new ValidarEmail();
         usuarios = new ArrayList<Usuario>();
@@ -40,7 +40,7 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == registrarUsuario.getLblRetroceder()) {
             registrarUsuario.getLblRetroceder().setBackground(new Color(255, 255, 255, 50));
-            InicioSesionController.om.setVisible(true);
+            InicioSesionController.sesion.setVisible(true);
             MainFrame.pnlMenu.setVisible(true);
             
         }
@@ -61,9 +61,9 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
             System.out.println();
 
             if (registroValido(correoUsuario, usuarioContraseña, comprobarContraseña)) {
-                OMRegistroUsuario.lblInicioIncorrecto.setVisible(false);
+                RegistroUsuario.lblInicioIncorrecto.setVisible(false);
                 registrarUsuario.setVisible(false);
-                verificarCodigo = new OMVerificarCodigo();
+                verificarCodigo = new VerificarCodigo();
                 verificarCodigo.setLocation(35, 18);
                 verificarCodigo.setVisible(true);
                 MainFrame.desktop.add(verificarCodigo);;
@@ -72,7 +72,7 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
                 hilo.start();
 
             } else {
-                OMRegistroUsuario.lblInicioIncorrecto.setText("ERROR AL REGISTRARSE");
+                RegistroUsuario.lblInicioIncorrecto.setText("ERROR AL REGISTRARSE");
             }
         }
     }
@@ -157,15 +157,15 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
 
         boolean valido = validacionCorreo.esValido(registrarUsuario.getTxtEmail().getText());
         if (!valido) {
-            OMRegistroUsuario.lblInicioIncorrecto.setText("Dirección de correo no valida");
-            OMRegistroUsuario.lblInicioIncorrecto.setVisible(true);
+            RegistroUsuario.lblInicioIncorrecto.setText("Dirección de correo no valida");
+            RegistroUsuario.lblInicioIncorrecto.setVisible(true);
         }
 
         if (e.getSource() == registrarUsuario.getTxtContraseña()) {
             String contra = new String(registrarUsuario.getTxtContraseña().getPassword());
             ValidarContraseña.contraseñaValida(contra);
-            OMRegistroUsuario.lblInicioIncorrecto.setText(ValidarContraseña.getMensaje());
-            OMRegistroUsuario.lblInicioIncorrecto.setVisible(true);
+            RegistroUsuario.lblInicioIncorrecto.setText(ValidarContraseña.getMensaje());
+            RegistroUsuario.lblInicioIncorrecto.setVisible(true);
         }
 
         if (e.getSource() == registrarUsuario.getTxtVerificarContraseña()) {
@@ -175,8 +175,8 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
             String usuarioContraseña = new String(contraseñaUsuario);
             String comprobarContraseña = new String(contraseñaComprobar);
             if (!usuarioContraseña.equals(comprobarContraseña)) {
-                OMRegistroUsuario.lblContraseñaComprobacion.setText("Contraseña no coincide");
-                OMRegistroUsuario.lblContraseñaComprobacion.setVisible(true);
+                RegistroUsuario.lblContraseñaComprobacion.setText("Contraseña no coincide");
+                RegistroUsuario.lblContraseñaComprobacion.setVisible(true);
             }
         }
 

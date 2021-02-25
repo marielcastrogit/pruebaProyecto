@@ -1,12 +1,18 @@
 package controllers;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import models.otros.Sonido;
-import models.usuario.EnviarCodigoVerificacion;
+import models.usuario.HiloEnvioMensaje;
 import models.usuario.Usuario;
 import models.usuario.ValidarContraseña;
 import models.usuario.ValidarEmail;
@@ -14,63 +20,66 @@ import views.MainFrame;
 import views.OMRegistroUsuario;
 import views.OMVerificarCodigo;
 
-public class RegistroUsuarioController implements MouseListener, KeyListener {
+public class RegistroUsuarioController implements MouseListener, KeyListener, ActionListener, FocusListener {
 
     private OMRegistroUsuario registrarUsuario;
     private OMVerificarCodigo verificarCodigo;
     private ValidarEmail validacionCorreo;
-    private ValidarContraseña validacionContraseña;
+    private String correoUsuario;
     private ArrayList<Usuario> usuarios;
-    private ArrayList contraseña;
-    private ArrayList contraseñaComprobacion;
+    private int c;
 
     public RegistroUsuarioController(OMRegistroUsuario registrarUsuario) {
         this.registrarUsuario = registrarUsuario;
         validacionCorreo = new ValidarEmail();
         usuarios = new ArrayList<Usuario>();
-        contraseña = new ArrayList();
-        contraseñaComprobacion = new ArrayList();
+        correoUsuario = "";
+        c = 0;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
         if (e.getSource() == registrarUsuario.getBtnRegistrarse()) {
-            System.out.println("REGISTRANDO USUARIO");
+            System.out.println();
 
-            String correoUsuario = registrarUsuario.getTxtEmail().getText();
-            String contraseñaUsuario = "";
-            String contraseñaComprobar = "";
+            correoUsuario = registrarUsuario.getTxtEmail().getText();
+            char contraseñaUsuario[] = registrarUsuario.getTxtContraseña().getPassword();
+            char contraseñaComprobar[] = registrarUsuario.getTxtVerificarContraseña().getPassword();
 
-            for (int i = 0; i < contraseña.size(); i++) {
-                contraseñaUsuario += contraseña.get(i).toString();
-            }
-
-            for (int i = 0; i < contraseñaComprobacion.size(); i++) {
-                contraseñaComprobar += contraseñaComprobacion.get(i).toString();
-            }
-
-            System.out.println("usuario contraseña: " + contraseñaUsuario);
-            System.out.println("usuario contraseña de comprobacion: " + contraseñaComprobar);
-
-            boolean correoValido = validacionCorreo.esValido(correoUsuario);
-            System.out.println("usuario correo: " + registrarUsuario.getTxtEmail().getText() + " es valido? " + correoValido);
-            boolean comprobacionValida = contraseñaUsuario.equals(contraseñaComprobar);
-
-            boolean contraseñaValida = ValidarContraseña.contraseñaValida(contraseñaUsuario);
-
-            System.out.println("es valida la contraseña: " + contraseñaValida);
-            System.out.println("es valida la contraseña de comproacion: " + comprobacionValida);
-
-            if (correoValido && contraseñaValida && comprobacionValida) {
-                verificarCodigo = new OMVerificarCodigo();
+            String usuarioContraseña = new String(contraseñaUsuario);
+            String comprobarContraseña = new String(contraseñaComprobar);
+            
+            System.out.println("usuarioContraseña: " + usuarioContraseña);
+            System.out.println("comprobarContraseña: " + comprobarContraseña);
+            
+            if (registroValido(correoUsuario, usuarioContraseña, comprobarContraseña)) {
+                OMRegistroUsuario.lblInicioIncorrecto.setVisible(false);
                 registrarUsuario.setVisible(false);
-                MainFrame.desktop.add(verificarCodigo);;
+
+                verificarCodigo = new OMVerificarCodigo();
                 verificarCodigo.setLocation(35, 18);
                 verificarCodigo.setVisible(true);
-                EnviarCodigoVerificacion codigo = new EnviarCodigoVerificacion();
-                codigo.enviarCodigo(correoUsuario);
-            }
+                MainFrame.desktop.add(verificarCodigo);;
 
+                Thread hilo = new Thread(new HiloEnvioMensaje(correoUsuario));
+                hilo.start();
+
+            } else {
+                OMRegistroUsuario.lblInicioIncorrecto.setText("ERROR AL REGISTRARSE");
+            }
+        }
+    }
+
+    private boolean registroValido(String correo, String contraseña, String comprobarContraseña) {
+        boolean correoValido = validacionCorreo.esValido(correo);
+        boolean comprobacionValida = contraseña.equals(comprobarContraseña);
+        boolean contraseñaValida = ValidarContraseña.contraseñaValida(contraseña);
+
+        if (correoValido && contraseñaValida && comprobacionValida) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -97,39 +106,12 @@ public class RegistroUsuarioController implements MouseListener, KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
         Sonido.teclado();
-        if (e.getKeyChar() == ' ') {
-            e.consume();
-        }
-
-        if (e.getSource() == registrarUsuario.getTxtContraseña()) {
-
-//            if (e.getKeyChar() == KeyEvent.VK) {
-//                e.consume();
-//                 System.out.println("PEGANDO");
-//            }
-            if (e.getKeyChar() == KeyEvent.VK_BACK_SPACE) {
-                if (!contraseña.isEmpty()) {
-                    contraseña.remove(contraseña.size() - 1);
-                }
-            } else {
-                contraseña.add(e.getKeyChar());
+        if (e.getSource() == registrarUsuario.getTxtEmail()) {
+            if (registrarUsuario.getTxtEmail().getText().equals("Ejemplo: usuario@gmail.com")) {
+                registrarUsuario.getTxtEmail().setText("");
             }
+            registrarUsuario.getTxtEmail().setForeground(new Color(0, 0, 0));
         }
-
-        if (e.getSource() == registrarUsuario.getTxtVerificarContraseña()) {
-//            if (e.getKeyChar() == KeyEvent.VK_PASTE) {
-//                e.consume();
-//                System.out.println("PEGANDO");
-//            }
-            if (e.getKeyChar() == KeyEvent.VK_BACK_SPACE) {
-                if (!contraseñaComprobacion.isEmpty()) {
-                    contraseñaComprobacion.remove(contraseñaComprobacion.size() - 1);
-                }
-            } else {
-                contraseñaComprobacion.add(e.getKeyChar());
-            }
-        }
-
     }
 
     @Override
@@ -139,6 +121,54 @@ public class RegistroUsuarioController implements MouseListener, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == registrarUsuario.getCheckContraseñas()) {
+            if (registrarUsuario.getCheckContraseñas().isSelected()) {
+                registrarUsuario.getTxtContraseña().setEchoChar((char) 0);
+                registrarUsuario.getTxtVerificarContraseña().setEchoChar((char) 0);
+            } else {
+                registrarUsuario.getTxtContraseña().setEchoChar('\u2022');
+                registrarUsuario.getTxtVerificarContraseña().setEchoChar('\u2022');
+            }
+        }
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+
+        boolean valido = validacionCorreo.esValido(registrarUsuario.getTxtEmail().getText());
+        if (!valido) {
+            OMRegistroUsuario.lblInicioIncorrecto.setText("Dirección de correo no valida");
+            OMRegistroUsuario.lblInicioIncorrecto.setVisible(true);
+        }
+
+        if (e.getSource() == registrarUsuario.getTxtContraseña()) {
+            String contra = new String(registrarUsuario.getTxtContraseña().getPassword());
+            ValidarContraseña.contraseñaValida(contra);
+            OMRegistroUsuario.lblInicioIncorrecto.setText(ValidarContraseña.getMensaje());
+            OMRegistroUsuario.lblInicioIncorrecto.setVisible(true);
+        }
+
+        if (e.getSource() == registrarUsuario.getTxtVerificarContraseña()) {
+            char contraseñaUsuario[] = registrarUsuario.getTxtContraseña().getPassword();
+            char contraseñaComprobar[] = registrarUsuario.getTxtVerificarContraseña().getPassword();
+
+            String usuarioContraseña = new String(contraseñaUsuario);
+            String comprobarContraseña = new String(contraseñaComprobar);
+            if (!usuarioContraseña.equals(comprobarContraseña)) {
+                OMRegistroUsuario.lblContraseñaComprobacion.setText("Contraseña no coincide");
+                OMRegistroUsuario.lblContraseñaComprobacion.setVisible(true);
+            }
+        }
 
     }
 

@@ -1,14 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package models.usuario;
 
-/**
- *
- * @author Usuario
- */
-public class HiloEnvioMensaje {
-    
+public class HiloEnvioMensaje implements Runnable {
+
+    private String correoUsuario;
+
+    public HiloEnvioMensaje(String correoUsuario) {
+        this.correoUsuario = correoUsuario;
+    }
+
+    @Override
+    public void run() {
+        EnviarCodigoVerificacion codigo = new EnviarCodigoVerificacion();
+        codigo.enviarCodigo(correoUsuario);
+    }
+
 }

@@ -20,6 +20,7 @@ public class EnviarCodigoVerificacion {
     private Pattern patronCodigo;
     private String mekAppCorreo;
     private String mekAppContraseña;
+    private final String codigoFijo;
 
     public EnviarCodigoVerificacion() {
         codigoAleatorio = 0;
@@ -35,6 +36,8 @@ public class EnviarCodigoVerificacion {
         mekAppCorreo = "";
         mekAppContraseña = "";
         setCodigoAleatorio();
+        codigoFijo = getCodigo();
+        System.out.println("Codigo fijo: " + codigoFijo);
     }
 
     public void setCodigoAleatorio() {
@@ -74,7 +77,7 @@ public class EnviarCodigoVerificacion {
 
             mensaje.addRecipient(Message.RecipientType.TO, usuario);
 
-            mensaje.setSubject(getCodigo());
+            mensaje.setSubject(codigoFijo);
 
             MimeBodyPart cuerpoDelMensaje = new MimeBodyPart();
             cuerpoDelMensaje.setText("Gracias por usar MekApp");
@@ -90,14 +93,14 @@ public class EnviarCodigoVerificacion {
             transporte.sendMessage(mensaje, mensaje.getAllRecipients());
             transporte.close();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("error enviar Email");
         }
     }
-    
-    public boolean esCodigoCorrecto(String codigo){
-        if(patronCodigo.matcher(codigo).matches()){
+
+    public boolean esCodigoCorrecto(String codigo) {
+        if (patronCodigo.matcher(codigo).matches() && codigo.equals(codigoFijo)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

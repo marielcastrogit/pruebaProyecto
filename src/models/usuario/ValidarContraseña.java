@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class ValidarContraseña {
 
-    private String contraseña;
+    private static String mensaje;
 
     /*
     La contrase+a debe tener entre 8 a 16 digitos
@@ -19,6 +19,7 @@ public class ValidarContraseña {
     - Con una expresion regular
      */
     public static boolean contraseñaValida(String contraseña) {
+        mensaje = "";
         Pattern patronMayusculas = Pattern.compile("[A-Z]");
         Pattern patronMinusculas = Pattern.compile("[a-z]");
 
@@ -28,32 +29,38 @@ public class ValidarContraseña {
         int numMinusculas = 0;
         int caracterEspecial = 0;
 
-        boolean terminaConUnEspacio = false;
-        boolean empiezaConUnEspacio = false;
+        boolean contieneEspacios = false;
 
         char[] caracterContraseña = contraseña.toCharArray();
         if (contraseña.length() > 0) {
-            terminaConUnEspacio = caracterContraseña[contraseña.length() - 1] == ' ';
-            empiezaConUnEspacio = caracterContraseña[0] == ' ';
-        }
 
-        boolean contienePalabra = contraseña.contains("contraseña") | (contraseña.contains("password") && contraseña.length() < 10);
-
-        for (int i = 0; i < caracterContraseña.length; i++) {
-
-            //que contenga al menos una mayuscula, una minuscula, es decir un caracter alfanumerico
-            if (patronMayusculas.matcher(caracterContraseña[i] + "").matches()) {
-                numMayusculas++;
-            }
-            if (patronMinusculas.matcher(caracterContraseña[i] + "").matches()) {
-                numMinusculas++;
+            if (contraseña.contains("contraseña") | contraseña.contains("password")) {
+                if (contraseña.length() >= 8 && contraseña.length() <= 10) {
+                    mensaje = "Introduzca una contraseña mas segura";
+                }
             }
 
-            //Trabajando con la tabla ASCII
-            if ((caracterContraseña[i] >= 33 && caracterContraseña[i] <= 47) || (caracterContraseña[i] >= 58 && caracterContraseña[i] <= 64) || (caracterContraseña[i] >= 91 && caracterContraseña[i] <= 95) || (caracterContraseña[i] >= 123 && caracterContraseña[i] <= 126)) {
-                caracterEspecial++;
-            }
+            for (int i = 0; i < caracterContraseña.length; i++) {
 
+                //que contenga al menos una mayuscula, una minuscula, es decir un caracter alfanumerico
+                if (patronMayusculas.matcher(caracterContraseña[i] + "").matches()) {
+                    numMayusculas++;
+                }
+                if (patronMinusculas.matcher(caracterContraseña[i] + "").matches()) {
+                    numMinusculas++;
+                }
+
+                if (caracterContraseña[i] == ' ') {
+                    contieneEspacios = true;
+                    mensaje = "Contraseña no debe contener espacios";
+                }
+                //Trabajando con la tabla ASCII
+                if ((caracterContraseña[i] >= 33 && caracterContraseña[i] <= 47) || (caracterContraseña[i] >= 58 && caracterContraseña[i] <= 64) || (caracterContraseña[i] >= 91 && caracterContraseña[i] <= 95) || (caracterContraseña[i] >= 123 && caracterContraseña[i] <= 126)) {
+                    caracterEspecial++;
+                    System.out.println("es un caracter especial  " + caracterContraseña[i] );
+                }
+
+            }
         }
 
         /*
@@ -62,14 +69,24 @@ public class ValidarContraseña {
         La longitud de la contraseña esta en una longitud de 0 a 16
         No empieza ni termina con un espacio
          */
-        if(contraseña.length()==0){
+        System.out.println("Mayusculas: " + (numMayusculas > 0));
+        System.out.println("Minusculas: " + (numMinusculas > 0));
+        System.out.println("Tamaño de la contraseña: " + longitudContraseña);
+        System.out.println("Contiene espacios:" + !(contieneEspacios));
+        System.out.println("Contiene CaracteresEspeciales: " + (caracterEspecial > 0));
+        System.out.println();
+        if (contraseña.length() == 0) {
             return false;
-        }else if ((numMayusculas > 0) && (numMinusculas > 0) && (longitudContraseña) && !(terminaConUnEspacio)
-                && !(empiezaConUnEspacio) && (caracterEspecial > 0) && !(contienePalabra)) {
+        } else if ((numMayusculas > 0) && (numMinusculas > 0) && (longitudContraseña) && !(contieneEspacios) && (caracterEspecial > 0)) {
             return true;
         } else {
             return false;
         }
 
     }
+
+    public static String getMensaje() {
+        return mensaje;
+    }
+
 }

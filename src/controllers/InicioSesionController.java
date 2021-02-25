@@ -77,9 +77,7 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
     @Override
     public void mouseClicked(MouseEvent e) {
         if (om.isVisible()) {
-            System.out.println("om es visible");
-            if (e.getSource() == om.getLblRegistrarse()) {
-                System.out.println("om es visible");
+            if (e.getSource() == om.getLblRegistrarse()) {;
                 omRegistrarUsuario = new OMRegistroUsuario();
                 om.setVisible(false);
                 MainFrame.desktop.add(omRegistrarUsuario);;

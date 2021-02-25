@@ -2,6 +2,7 @@ package views;
 
 import controllers.RegistroUsuarioController;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -14,6 +15,7 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setBorderInternal();
         setControllers();
+        lblInicioIncorrecto.setVisible(false);
     }
 
     private void setBorderInternal() {
@@ -28,9 +30,17 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
     private void setControllers() {
         ruc = new RegistroUsuarioController(this);
         txtEmail.addKeyListener(ruc);
+        txtEmail.addFocusListener(ruc);
         txtContraseña.addKeyListener(ruc);
+        txtContraseña.addFocusListener(ruc);
         txtVerificarContraseña.addKeyListener(ruc);
+        txtVerificarContraseña.addFocusListener(ruc);
         btnRegistrarse.addMouseListener(ruc);
+        checkContraseñas.addActionListener(ruc);
+    }
+
+    public JCheckBox getCheckContraseñas() {
+        return checkContraseñas;
     }
 
     @SuppressWarnings("unchecked")
@@ -44,6 +54,9 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         txtEmail = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        lblContraseñaComprobacion = new javax.swing.JLabel();
+        lblInicioIncorrecto = new javax.swing.JLabel();
+        checkContraseñas = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnRegistrarse = new javax.swing.JButton();
@@ -83,7 +96,7 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
         jPanel1.setLayout(null);
 
         txtEmail.setBackground(new java.awt.Color(255, 255, 255));
-        txtEmail.setForeground(new java.awt.Color(0, 0, 0));
+        txtEmail.setForeground(new java.awt.Color(204, 204, 204));
         txtEmail.setText("Ejemplo: usuario@gmail.com");
         txtEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jPanel1.add(txtEmail);
@@ -98,10 +111,24 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(240, 50, 41, 16);
 
+        lblContraseñaComprobacion.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        getContentPane().add(lblContraseñaComprobacion);
+        lblContraseñaComprobacion.setBounds(380, 240, 170, 16);
+
+        lblInicioIncorrecto.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(lblInicioIncorrecto);
+        lblInicioIncorrecto.setBounds(240, 30, 360, 20);
+
+        checkContraseñas.setForeground(new java.awt.Color(255, 255, 255));
+        checkContraseñas.setText("Mostrar contraseñas");
+        checkContraseñas.setOpaque(false);
+        getContentPane().add(checkContraseñas);
+        checkContraseñas.setBounds(330, 310, 200, 24);
+
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        jLabel8.setText("y simbolos");
+        jLabel8.setText("y simbolos comunes");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(240, 220, 80, 16);
+        jLabel8.setBounds(240, 220, 120, 16);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLabel7.setText("Usa de 8 a 16 caracteres con una combinacion de letras, números");
@@ -112,7 +139,7 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
         btnRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrarse.setText("Registrarse");
         getContentPane().add(btnRegistrarse);
-        btnRegistrarse.setBounds(350, 330, 110, 30);
+        btnRegistrarse.setBounds(360, 340, 110, 30);
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -158,10 +185,13 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
     public JPasswordField getTxtVerificarContraseña() {
         return txtVerificarContraseña;
     }
+    
+    
 
     private RegistroUsuarioController ruc;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrarse;
+    private javax.swing.JCheckBox checkContraseñas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -173,6 +203,8 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    public static javax.swing.JLabel lblContraseñaComprobacion;
+    public static javax.swing.JLabel lblInicioIncorrecto;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtVerificarContraseña;

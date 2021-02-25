@@ -20,7 +20,7 @@ public class EnviarCodigoVerificacion {
     private Pattern patronCodigo;
     private String mekAppCorreo;
     private String mekAppContraseña;
-    private final String codigoFijo;
+//    private final String codigoFijo;
 
     public EnviarCodigoVerificacion() {
         codigoAleatorio = 0;
@@ -36,8 +36,8 @@ public class EnviarCodigoVerificacion {
         mekAppCorreo = "";
         mekAppContraseña = "";
         setCodigoAleatorio();
-        codigoFijo = getCodigo();
-        System.out.println("Codigo fijo: " + codigoFijo);
+//        codigoFijo = getCodigo();
+//        System.out.println("Codigo fijo: " + codigoFijo);
     }
 
     public void setCodigoAleatorio() {
@@ -77,7 +77,7 @@ public class EnviarCodigoVerificacion {
 
             mensaje.addRecipient(Message.RecipientType.TO, usuario);
 
-            mensaje.setSubject(codigoFijo);
+            mensaje.setSubject(codigo);
 
             MimeBodyPart cuerpoDelMensaje = new MimeBodyPart();
             cuerpoDelMensaje.setText("Gracias por usar MekApp");
@@ -98,7 +98,7 @@ public class EnviarCodigoVerificacion {
     }
 
     public boolean esCodigoCorrecto(String codigo) {
-        if (patronCodigo.matcher(codigo).matches() && codigo.equals(codigoFijo)) {
+        if (patronCodigo.matcher(codigo).matches() && codigo.equals(codigo)) {
             return true;
         } else {
             return false;

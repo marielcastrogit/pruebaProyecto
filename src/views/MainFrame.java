@@ -58,9 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
         desktop = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(774, 581));
         setMinimumSize(new java.awt.Dimension(774, 581));
-        setPreferredSize(new java.awt.Dimension(774, 581));
         getContentPane().setLayout(null);
 
         pnlMenu.setMinimumSize(new java.awt.Dimension(250, 474));
@@ -600,15 +598,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblIconoResolver;
     private javax.swing.JLabel lblIconoUsuario;
     private javax.swing.JLabel lblInicioSesion;
-    private javax.swing.JLabel lblMenu;
+    public static javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblPractica;
     private javax.swing.JLabel lblResolver;
     private javax.swing.JPanel pnlAjustes;
     private javax.swing.JPanel pnlDocumentos;
     private javax.swing.JPanel pnlExamen;
     private javax.swing.JPanel pnlIniciarSesion;
-    private javax.swing.JPanel pnlMenu;
-    private javax.swing.JPanel pnlMostrarMenu;
+    public static javax.swing.JPanel pnlMenu;
+    public static javax.swing.JPanel pnlMostrarMenu;
     private javax.swing.JPanel pnlPractica;
     private javax.swing.JPanel pnlResolver;
     // End of variables declaration//GEN-END:variables

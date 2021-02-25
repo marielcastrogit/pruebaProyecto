@@ -17,7 +17,7 @@ import views.OMRegistroUsuario;
 
 public class InicioSesionController implements KeyListener, ActionListener, MouseListener {
 
-    private OMInicioSesion om;
+    public static OMInicioSesion om;
     private MMInicioSesion mm;
     private Pattern patronEmail;
     private OMRegistroUsuario omRegistrarUsuario;
@@ -83,6 +83,7 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
                 MainFrame.desktop.add(omRegistrarUsuario);;
                 omRegistrarUsuario.setLocation(35, 18);
                 omRegistrarUsuario.setVisible(true);
+                MainFrame.pnlMenu.setVisible(false);
             }
         }
     }

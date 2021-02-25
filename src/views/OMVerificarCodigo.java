@@ -19,6 +19,7 @@ public class OMVerificarCodigo extends javax.swing.JInternalFrame {
         setControllers();
         lblIconoCodigoIncorrecto.setVisible(false);
         lblCodigoIncorrecto.setVisible(false);
+        retornarRegistroUsuario.setBackground(new Color(255, 255, 255, 80));
     }
 
     private void setBordeClickAqui() {
@@ -35,6 +36,8 @@ public class OMVerificarCodigo extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        retornarRegistroUsuario = new javax.swing.JPanel();
+        lblRetroceder = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblCodigoIncorrecto = new javax.swing.JLabel();
         lblIconoCodigoIncorrecto = new javax.swing.JLabel();
@@ -57,6 +60,16 @@ public class OMVerificarCodigo extends javax.swing.JInternalFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoRegistro_1.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 50, 220, 260);
+
+        retornarRegistroUsuario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        retornarRegistroUsuario.setLayout(null);
+
+        lblRetroceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-arrow-pointing-left-35.png"))); // NOI18N
+        retornarRegistroUsuario.add(lblRetroceder);
+        lblRetroceder.setBounds(10, 0, 35, 30);
+
+        getContentPane().add(retornarRegistroUsuario);
+        retornarRegistroUsuario.setBounds(0, 0, 620, 30);
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setOpaque(true);
@@ -160,12 +173,16 @@ public class OMVerificarCodigo extends javax.swing.JInternalFrame {
     public JPanel getPnlReenviarCodigo() {
         return pnlReenviarCodigo;
     }
-    
 
     private void setControllers() {
         vcc = new VerificarCodigoController(this);
         txtCodigo.addKeyListener(vcc);
         btnAcceder.addMouseListener(vcc);
+        lblRetroceder.addMouseListener(vcc);
+    }
+
+    public JLabel getLblRetroceder() {
+        return lblRetroceder;
     }
 
     private VerificarCodigoController vcc;
@@ -181,7 +198,9 @@ public class OMVerificarCodigo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblFondo;
     public static javax.swing.JLabel lblIconoCodigoIncorrecto;
     private javax.swing.JLabel lblReenviarCodigo;
+    private javax.swing.JLabel lblRetroceder;
     private javax.swing.JPanel pnlReenviarCodigo;
+    private javax.swing.JPanel retornarRegistroUsuario;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }

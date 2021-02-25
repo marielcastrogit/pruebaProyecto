@@ -1,8 +1,10 @@
 package views;
 
 import controllers.RegistroUsuarioController;
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -16,6 +18,7 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
         setBorderInternal();
         setControllers();
         lblInicioIncorrecto.setVisible(false);
+        retornarInicioSesion.setBackground(new Color(255, 255, 255, 80));
     }
 
     private void setBorderInternal() {
@@ -37,6 +40,7 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
         txtVerificarContraseña.addFocusListener(ruc);
         btnRegistrarse.addMouseListener(ruc);
         checkContraseñas.addActionListener(ruc);
+        lblRetroceder.addMouseListener(ruc);
     }
 
     public JCheckBox getCheckContraseñas() {
@@ -47,6 +51,8 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        retornarInicioSesion = new javax.swing.JPanel();
+        lblRetroceder = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txtVerificarContraseña = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
@@ -71,6 +77,16 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
         setMinimumSize(new java.awt.Dimension(622, 408));
         setPreferredSize(new java.awt.Dimension(622, 408));
         getContentPane().setLayout(null);
+
+        retornarInicioSesion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        retornarInicioSesion.setLayout(null);
+
+        lblRetroceder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-arrow-pointing-left-35.png"))); // NOI18N
+        retornarInicioSesion.add(lblRetroceder);
+        lblRetroceder.setBounds(10, 0, 35, 30);
+
+        getContentPane().add(retornarInicioSesion);
+        retornarInicioSesion.setBounds(0, 0, 620, 30);
 
         jPanel2.setLayout(null);
 
@@ -185,7 +201,10 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
     public JPasswordField getTxtVerificarContraseña() {
         return txtVerificarContraseña;
     }
-    
+
+    public JLabel getLblRetroceder() {
+        return lblRetroceder;
+    }
     
 
     private RegistroUsuarioController ruc;
@@ -205,6 +224,8 @@ public class OMRegistroUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     public static javax.swing.JLabel lblContraseñaComprobacion;
     public static javax.swing.JLabel lblInicioIncorrecto;
+    private javax.swing.JLabel lblRetroceder;
+    private javax.swing.JPanel retornarInicioSesion;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtVerificarContraseña;

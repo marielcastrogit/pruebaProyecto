@@ -10,7 +10,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import models.otros.Sonido;
 import models.usuario.HiloEnvioMensaje;
 import models.usuario.Usuario;
@@ -22,7 +21,7 @@ import views.OMVerificarCodigo;
 
 public class RegistroUsuarioController implements MouseListener, KeyListener, ActionListener, FocusListener {
 
-    private OMRegistroUsuario registrarUsuario;
+    public static OMRegistroUsuario registrarUsuario;
     private OMVerificarCodigo verificarCodigo;
     private ValidarEmail validacionCorreo;
     private String correoUsuario;
@@ -39,6 +38,12 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == registrarUsuario.getLblRetroceder()) {
+            registrarUsuario.getLblRetroceder().setBackground(new Color(255, 255, 255, 50));
+            InicioSesionController.om.setVisible(true);
+            MainFrame.pnlMenu.setVisible(true);
+            
+        }
 
         if (e.getSource() == registrarUsuario.getBtnRegistrarse()) {
             System.out.println();
@@ -49,14 +54,15 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
 
             String usuarioContraseña = new String(contraseñaUsuario);
             String comprobarContraseña = new String(contraseñaComprobar);
-            
+
             System.out.println("usuarioContraseña: " + usuarioContraseña);
             System.out.println("comprobarContraseña: " + comprobarContraseña);
-            
+
+            System.out.println();
+
             if (registroValido(correoUsuario, usuarioContraseña, comprobarContraseña)) {
                 OMRegistroUsuario.lblInicioIncorrecto.setVisible(false);
                 registrarUsuario.setVisible(false);
-
                 verificarCodigo = new OMVerificarCodigo();
                 verificarCodigo.setLocation(35, 18);
                 verificarCodigo.setVisible(true);
@@ -111,6 +117,10 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
                 registrarUsuario.getTxtEmail().setText("");
             }
             registrarUsuario.getTxtEmail().setForeground(new Color(0, 0, 0));
+        }
+
+        if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+            e.consume();
         }
     }
 

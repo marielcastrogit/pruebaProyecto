@@ -1,10 +1,13 @@
 package controllers;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import models.otros.Sonido;
 import models.usuario.EnviarCodigoVerificacion;
+import views.MainFrame;
 import views.OMVerificarCodigo;
 
 public class VerificarCodigoController implements KeyListener, MouseListener {
@@ -17,6 +20,7 @@ public class VerificarCodigoController implements KeyListener, MouseListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
+        Sonido.teclado();
 
     }
 
@@ -32,14 +36,19 @@ public class VerificarCodigoController implements KeyListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        if (e.getSource() == verificarCodigo.getLblRetroceder()) {
+            verificarCodigo.getLblRetroceder().setBackground(new Color(255, 255, 255, 50));
+            RegistroUsuarioController.registrarUsuario.setVisible(true);
+            MainFrame.pnlMenu.setVisible(false);
+        }
+        
         if (e.getSource() == verificarCodigo.getBtnAcceder()) {
             EnviarCodigoVerificacion codigoVerificar = new EnviarCodigoVerificacion();
             boolean codCorrecto = codigoVerificar.esCodigoCorrecto(verificarCodigo.getTxtCodigo().getText());
-            
-            if(codCorrecto){
+
+            if (codCorrecto) {
                 MainFrameController.iniciarSesionOM.setVisible(true);
-            }else{
+            } else {
                 OMVerificarCodigo.lblCodigoIncorrecto.setVisible(true);
                 OMVerificarCodigo.lblIconoCodigoIncorrecto.setVisible(true);
             }

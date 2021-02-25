@@ -147,12 +147,6 @@ public class MainFrameController implements MouseListener {
                 documentoOM.setVisible(true);
                 internoAnterior = documentoOM;
             }
-//            if (internoAnterior == documentoOM && mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
-//                internoAnterior.setVisible(false);
-//                ajustesMM.setVisible(true);
-//                internoAnterior = ajustesMM;
-//            }
-
         }
 
         if (o == mf.getLblIconoUsuario() || o == mf.getLblInicioSesion() || o == mf.getPnlInicioSesion()) {

@@ -38,9 +38,9 @@ public class MainFrame extends javax.swing.JFrame {
         pnlResolver = new javax.swing.JPanel();
         lblResolver = new javax.swing.JLabel();
         lblIconoResolver = new javax.swing.JLabel();
-        pnlPractica = new javax.swing.JPanel();
-        lblPractica = new javax.swing.JLabel();
-        lblIconoPractica = new javax.swing.JLabel();
+        pnlAcercaNosotros = new javax.swing.JPanel();
+        lblNosotros = new javax.swing.JLabel();
+        lblIconoInfo = new javax.swing.JLabel();
         pnlDocumentos = new javax.swing.JPanel();
         lblDocumentos = new javax.swing.JLabel();
         lblIconoDocumentos = new javax.swing.JLabel();
@@ -189,29 +189,29 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
-        pnlPractica.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlAcercaNosotros.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblPractica.setText("Práctica");
+        lblNosotros.setText("Acerca de nosotros");
 
-        lblIconoPractica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-pencil-35.png"))); // NOI18N
+        lblIconoInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-high-importance-35.png"))); // NOI18N
 
-        javax.swing.GroupLayout pnlPracticaLayout = new javax.swing.GroupLayout(pnlPractica);
-        pnlPractica.setLayout(pnlPracticaLayout);
-        pnlPracticaLayout.setHorizontalGroup(
-            pnlPracticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPracticaLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlAcercaNosotrosLayout = new javax.swing.GroupLayout(pnlAcercaNosotros);
+        pnlAcercaNosotros.setLayout(pnlAcercaNosotrosLayout);
+        pnlAcercaNosotrosLayout.setHorizontalGroup(
+            pnlAcercaNosotrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAcercaNosotrosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblIconoPractica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblIconoInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(lblPractica, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        pnlPracticaLayout.setVerticalGroup(
-            pnlPracticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPracticaLayout.createSequentialGroup()
+        pnlAcercaNosotrosLayout.setVerticalGroup(
+            pnlAcercaNosotrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAcercaNosotrosLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(pnlPracticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPractica, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIconoPractica))
+                .addGroup(pnlAcercaNosotrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIconoInfo))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -249,7 +249,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(pnlMostrarMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(pnlPractica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pnlAcercaNosotros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(pnlDocumentos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(pnlResolver, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(pnlAjustes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -269,7 +269,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(pnlDocumentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnlPractica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlAcercaNosotros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(pnlExamen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(104, Short.MAX_VALUE))
@@ -406,7 +406,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlDocumentos.add(p4);
         p4.setBounds(0, 48, 190, 10);
 
-        pnlPractica.add(p5);
+        pnlAcercaNosotros.add(p5);
         p5.setBounds(0, 48, 190, 10);
 
         pnlExamen.add(p6);
@@ -448,9 +448,9 @@ public class MainFrame extends javax.swing.JFrame {
         lblDocumentos.addMouseListener(mfc);
         lblIconoDocumentos.addMouseListener(mfc);
 
-        pnlPractica.addMouseListener(mfc);
-        lblPractica.addMouseListener(mfc);
-        lblIconoPractica.addMouseListener(mfc);
+        pnlAcercaNosotros.addMouseListener(mfc);
+        lblNosotros.addMouseListener(mfc);
+        lblIconoInfo.addMouseListener(mfc);
 
         pnlExamen.addMouseListener(mfc);
         lblExamen.addMouseListener(mfc);
@@ -522,24 +522,24 @@ public class MainFrame extends javax.swing.JFrame {
         return lblExamen;
     }
 
-    public JLabel getLblPractica() {
-        return lblPractica;
+    public JLabel getLblInfo() {
+        return lblNosotros;
     }
 
     public JLabel getLblIconoExamen() {
         return lblIconoExamen;
     }
 
-    public JLabel getLblIconoPractica() {
-        return lblIconoPractica;
+    public JLabel getLblIconoInfo() {
+        return lblIconoInfo;
     }
 
     public JPanel getPnlExamen() {
         return pnlExamen;
     }
 
-    public JPanel getPnlPractica() {
-        return pnlPractica;
+    public JPanel getPnlInfo() {
+        return pnlAcercaNosotros;
     }
 
     public PanelDegradado getP1() {
@@ -597,20 +597,20 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblIconoAjustes;
     private javax.swing.JLabel lblIconoDocumentos;
     private javax.swing.JLabel lblIconoExamen;
-    private javax.swing.JLabel lblIconoPractica;
+    private javax.swing.JLabel lblIconoInfo;
     private javax.swing.JLabel lblIconoResolver;
     private javax.swing.JLabel lblIconoUsuario;
     private javax.swing.JLabel lblInicioSesion;
     public static javax.swing.JLabel lblMenu;
-    private javax.swing.JLabel lblPractica;
+    private javax.swing.JLabel lblNosotros;
     private javax.swing.JLabel lblResolver;
+    private javax.swing.JPanel pnlAcercaNosotros;
     private javax.swing.JPanel pnlAjustes;
     private javax.swing.JPanel pnlDocumentos;
     private javax.swing.JPanel pnlExamen;
     private javax.swing.JPanel pnlIniciarSesion;
     public static javax.swing.JPanel pnlMenu;
     public static javax.swing.JPanel pnlMostrarMenu;
-    private javax.swing.JPanel pnlPractica;
     private javax.swing.JPanel pnlResolver;
     // End of variables declaration//GEN-END:variables
 }

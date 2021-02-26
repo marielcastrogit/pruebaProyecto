@@ -267,9 +267,8 @@ public class MainFrameController implements MouseListener {
             Sonido.icono();
         }
 
-        if (o == mf.getPnlPractica()
-                || o == mf.getLblPractica() || o == mf.getLblIconoPractica()) {
-            mf.getLblIconoPractica().setSize(100, 45);
+        if (o == mf.getPnlInfo()|| o == mf.getLblInfo() || o == mf.getLblIconoInfo()) {
+            mf.getLblIconoInfo().setSize(100, 45);
             Sonido.icono();
         }
 
@@ -314,9 +313,9 @@ public class MainFrameController implements MouseListener {
             mf.getLblIconoDocumentos().setSize(35, 35);
         }
 
-        if (o == mf.getPnlPractica() || o == mf.getLblPractica() || o == mf.getLblIconoPractica()) {
-            mf.getLblIconoPractica().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-pencil-35.png")));
-            mf.getLblIconoPractica().setSize(35, 35);
+        if (o == mf.getPnlInfo() || o == mf.getLblInfo() || o == mf.getLblIconoInfo()) {
+            mf.getLblIconoInfo().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-high-importance-35.png")));
+            mf.getLblIconoInfo().setSize(35, 35);
         }
 
         if (o == mf.getPnlExamen() || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {

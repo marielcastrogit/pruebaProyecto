@@ -52,7 +52,7 @@ public class FuncionesFrame extends javax.swing.JInternalFrame {
             double[] y = f.evaluar(x);
             grafica.CrearGrafica(func, x, y);
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Chingue su madre" + e.getMessage());
+                JOptionPane.showMessageDialog(this, "Los campos estan vacíos");
             }
                
     

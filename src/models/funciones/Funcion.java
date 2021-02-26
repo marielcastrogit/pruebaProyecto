@@ -8,43 +8,57 @@ package models.funciones;
 import com.bestcode.mathparser.IMathParser;
 import com.bestcode.mathparser.MathParserFactory;
 import java.lang.Math;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Kenneth Granados
  */
 public class Funcion {
+
     String funcion;
-  IMathParser imp = MathParserFactory.create();
+    IMathParser imp = MathParserFactory.create();
 
     public Funcion(String fun) {
         funcion = fun;
         imp.setExpression(fun);
     }
- 
-   public Double Evaluar(double x)throws Exception{
-       double result=Double.NaN;
-       imp.setX(x);
-       result= imp.getValue();
-       return result;
-   }
-   
-   public double [] evaluar(double[] x)throws Exception{
-       int n=x.length;
-       double[] result=new double[n];
-       for (int i = 0; i < n; i++) {
-          result[i] =Evaluar(x[i]);          
-       }
-       return result;
-   }
-   
-   public double[] Rango(double x0,double xn,double d){
-       int n = (int) (Math.abs(xn-x0)/d);
-       double[] result=new double[n];
-       for (int i = 0; i < n; i++) {
-          result[i] =x0;
-          x0+=d;        
-       }
-       return result;
-   }
+
+    public Double Evaluar(double x) throws Exception {
+        double result = Double.NaN;
+        imp.setX(x);
+        result = imp.getValue();
+        return result;
+    }
+
+    public double[] evaluar(double[] x) throws Exception {
+        int n = x.length;
+        double[] result = new double[n];
+        for (int i = 0; i < n; i++) {
+            result[i] = Evaluar(x[i]);
+        }
+        return result;
+    }
+
+    public double[] Rango(double x0, double xn, double d) {
+        double[] result = null;
+        boolean intervaloIgualCero;
+        try {
+            int n = (int) (Math.abs(xn - x0) / d);
+            result = new double[n];
+            for (int i = 0; i < n; i++) {
+                result[i] = x0;
+                x0 += d;
+            }
+            intervaloIgualCero = false;
+        } catch (java.lang.OutOfMemoryError e) {
+            intervaloIgualCero = true;
+        }
+        if (!intervaloIgualCero) {
+            return result;
+        } else {
+            JOptionPane.showMessageDialog(null, "Intervalo no soportado", "Error al graficar", JOptionPane.INFORMATION_MESSAGE);
+        }
+        return null;
+    }
 }

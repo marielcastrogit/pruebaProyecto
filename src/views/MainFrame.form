@@ -53,7 +53,7 @@
                   <Component id="pnlMostrarMenu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="pnlPractica" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="pnlAcercaNosotros" alignment="0" pref="0" max="32767" attributes="0"/>
                       <Component id="pnlDocumentos" alignment="0" pref="0" max="32767" attributes="0"/>
                       <Component id="pnlResolver" alignment="0" pref="0" max="32767" attributes="0"/>
                       <Component id="pnlAjustes" alignment="0" pref="0" max="32767" attributes="0"/>
@@ -76,7 +76,7 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="pnlDocumentos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="pnlPractica" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnlAcercaNosotros" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="pnlExamen" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="104" max="32767" attributes="0"/>
@@ -315,7 +315,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="pnlPractica">
+        <Container class="javax.swing.JPanel" name="pnlAcercaNosotros">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -329,9 +329,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblIconoPractica" max="32767" attributes="0"/>
+                      <Component id="lblIconoInfo" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblPractica" min="-2" pref="113" max="-2" attributes="0"/>
+                      <Component id="lblNosotros" min="-2" pref="113" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -340,8 +340,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblPractica" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="lblIconoPractica" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNosotros" alignment="0" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="lblIconoInfo" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="11" max="32767" attributes="0"/>
                   </Group>
@@ -349,15 +349,15 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblPractica">
+            <Component class="javax.swing.JLabel" name="lblNosotros">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Pr&#xe1;ctica"/>
+                <Property name="text" type="java.lang.String" value="Acerca de nosotros"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblIconoPractica">
+            <Component class="javax.swing.JLabel" name="lblIconoInfo">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/resources/images/icons8-pencil-35.png"/>
+                  <Image iconType="3" name="/resources/images/icons8-high-importance-35.png"/>
                 </Property>
               </Properties>
             </Component>

@@ -12,7 +12,7 @@ public class NewMain {
         100≥20x+15
          */
         System.out.println("DESIGUALDADES LINEALES SIMPLES");
-        String dat = "3x+3<5x+5";
+        String dat = "-x+x<1";
         DesigualdadesLinealesSimples dls = new DesigualdadesLinealesSimples(dat);
         dls.getParte1();
         dls.getSigno();
@@ -22,7 +22,7 @@ public class NewMain {
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
         System.out.println("DESIGUALDADES LINEALES SIMPLES PARENTESIS");
-        String lp = "(7x)-(8x)-2(x+3)+5-x(2+4)-6<0";
+        String lp = "(7x)-(8x)-2(x+3)+5-x(2+4))-6<0";
         DesigualdadesLinealesParentesis dlp = new DesigualdadesLinealesParentesis(lp);
         System.out.println("resultadoLinealParentesis: " + dlp.getResultadoFinal());
 
@@ -35,5 +35,10 @@ public class NewMain {
         String desigualdadCuadratica = "x^2-3+41+7x-3x<0";
         DesigualdadesCuadraticasSimples dcs = new DesigualdadesCuadraticasSimples(desigualdadCuadratica);
         System.out.println(dcs.resolver());
+
+        EvalUtilities evaluador = new EvalUtilities(false, false);
+        IExpr res = evaluador.evaluate("8x<7");
+//        String r = res.toString().replace("*", "").replace("(", "").replace(")", "");
+        System.out.println("resultado: " + res);
     }
 }

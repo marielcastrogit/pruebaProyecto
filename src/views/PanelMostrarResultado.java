@@ -148,6 +148,14 @@ public class PanelMostrarResultado extends javax.swing.JPanel {
         return lblRetroceder;
     }
 
+    public JLabel getLblMostrarIntervalo() {
+        return lblMostrarIntervalo;
+    }
+
+    public JLabel getLblMostrarResultado() {
+        return lblMostrarResultado;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGrafica;
     private javax.swing.JLabel jLabel2;

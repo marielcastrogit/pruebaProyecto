@@ -185,6 +185,11 @@ public class DesigualdadesLinealesSimples {
         System.out.println(x);
         String n = Operacion.operar(getNumeros());
         System.out.println(n);
+         System.out.println("!x.equals(\"+0\")" + !x.equals("+0"));
+         System.out.println("!x.equals(\"-0\")" + !x.equals("-0"));
+          System.out.println("!x.equals(\"0\")" + !x.equals("0"));
+        if(!x.equals("+0") && !x.equals("-0") && !x.equals("0")){
+            
         if (x.startsWith("-")) {
             //Si el coeficiente de la x es un numero negativo entonces se cambia el signo
             //≤' || desigualdad.charAt(i) == '≥'
@@ -202,7 +207,10 @@ public class DesigualdadesLinealesSimples {
         Fraccion f = new Fraccion();
         String dividirFraccion = f.dividirFraccion(n, x);
         return "x " + signo + " " + dividirFraccion;
-
+        }else{
+            System.out.println("Se trata de un cero");
+            return "El coeficiente de x es 0, no es una desigualdad lineal.";
+        }
     }
 
 }

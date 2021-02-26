@@ -11,6 +11,7 @@ public class Resolver extends javax.swing.JInternalFrame {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setBorderInternal();
+        pnlCard.setVisible(false);
         setControllers();
     }
 
@@ -70,9 +71,6 @@ public class Resolver extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//    public JButton getBtnCalcular() {
-//        return btnCalcular;
-//    }
     private void setControllers() {
         rc = new ResolverController(this);
         listaTemas.addItemListener(rc);

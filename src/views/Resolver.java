@@ -4,12 +4,13 @@ import controllers.ResolverController;
 import javax.swing.JComboBox;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
+
 /**
  *
  * @author Mariel
  */
 public class Resolver extends javax.swing.JInternalFrame {
-
+    
     public Resolver() {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
@@ -17,7 +18,7 @@ public class Resolver extends javax.swing.JInternalFrame {
         pnlCard.setVisible(false);
         setControllers();
     }
-
+    
     private void setBorderInternal() {
         DropShadowBorder border = (DropShadowBorder) this.getBorder();
         border.setShowBottomShadow(false);
@@ -26,7 +27,7 @@ public class Resolver extends javax.swing.JInternalFrame {
         border.setShowTopShadow(true);
         border.setShadowSize(15);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -78,11 +79,29 @@ public class Resolver extends javax.swing.JInternalFrame {
         rc = new ResolverController(this);
         listaTemas.addItemListener(rc);
     }
-
+    
     public JComboBox<String> getListaTemas() {
         return listaTemas;
     }
-
+    
+    public void redimensionar(boolean redimensionar) {
+        if (redimensionar) {
+            this.setSize(459, 412);
+            jLabel1.setBounds(20, 50, 240, 16);
+            listaTemas.setBounds(10, 10, 410, 30);
+            pnlTemas.setBounds(10, 70, 430, 50);
+            pnlCard.setBounds(10, 130, 430, 230);
+            lblFondo.setBounds(0, 0, 450, 390);
+        } else {
+            this.setSize(622, 408);
+            listaTemas.setBounds(10, 10, 410, 30);
+            pnlTemas.setBounds(90, 70, 430, 50);
+            jLabel1.setBounds(90, 40, 240, 16);
+            pnlCard.setBounds(90, 140, 430, 230);
+            lblFondo.setBounds(0, 0, 620, 390);
+        }
+        
+    }
     private ResolverController rc;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

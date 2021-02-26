@@ -1,7 +1,5 @@
 package controllers;
 
-import static controllers.MainFrameController.iniciarSesion;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -169,6 +167,7 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
                         if (internoAnterior1.equals("pnlCard")) {
                             pnlCard.setVisible(false);
                         }
+                        funciones.clean();
                         funciones.setVisible(true);
                         internoAnterior = funciones;
                         break;
@@ -310,26 +309,43 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
         if (e.getSource() == EcuacionesCuadraticas.lblRetroceder) {
             ecC.setVisible(false);
             r.getListaTemas().setSelectedItem(null);
-            r.setVisible(true);
             MainFrame.pnlMenu.setSize(49, 502);
             MainFrame.pnlMenu.setVisible(true);
+            MainFrame.desktop.setBounds(65, 103, 690, 440);
+            if (MainFrame.desktop.getWidth() == 690) {
+                r.redimensionar(false);
+            } else {
+                r.redimensionar(true);
+            }
+            r.setVisible(true);
         }
 
         if (e.getSource() == EcuacionesLineales.lblRetroceder) {
             ecl.setVisible(false);
             r.getListaTemas().setSelectedItem(null);
-            r.setVisible(true);
             MainFrame.pnlMenu.setSize(49, 502);
             MainFrame.pnlMenu.setVisible(true);
-
+            MainFrame.desktop.setBounds(65, 103, 690, 440);
+            if (MainFrame.desktop.getWidth() == 690) {
+                r.redimensionar(false);
+            } else {
+                r.redimensionar(true);
+            }
+            r.setVisible(true);
         }
 
         if (e.getSource() == FuncionesFrame.lblRetroceder) {
             funciones.setVisible(false);
             r.getListaTemas().setSelectedItem(null);
-            r.setVisible(true);
             MainFrame.pnlMenu.setSize(49, 502);
             MainFrame.pnlMenu.setVisible(true);
+            MainFrame.desktop.setBounds(65, 103, 690, 440);
+            if (MainFrame.desktop.getWidth() == 690) {
+                r.redimensionar(false);
+            } else {
+                r.redimensionar(true);
+            }
+            r.setVisible(true);
         }
 
     }

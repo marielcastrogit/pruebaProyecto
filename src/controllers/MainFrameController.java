@@ -70,6 +70,7 @@ public class MainFrameController implements MouseListener {
         mf.getjDesktopPane1().add(resolverMM);
         mf.getjDesktopPane1().add(documentoMM);
         internoAnterior = resolver;
+        interno = "Resolver";
 
     }
 
@@ -96,9 +97,9 @@ public class MainFrameController implements MouseListener {
                 if (interno.equals("Ajustes")) {
                     ajustes.redimensionar(true);
                 }
-//                if (interno.equals("Resolver")) {
-//                    iniciarSesion.redimensionar();
-//                }
+                if (interno.equals("Resolver")) {
+                    resolver.redimensionar(true);
+                }
 //                if (interno.equals("Documentos")) {
 //                    iniciarSesion.redimensionar();
 //                }
@@ -116,6 +117,9 @@ public class MainFrameController implements MouseListener {
                 }
                 if (interno.equals("Ajustes")) {
                     ajustes.redimensionar(false);
+                }
+                if (interno.equals("Resolver")) {
+                    resolver.redimensionar(false);
                 }
             }
 
@@ -166,19 +170,25 @@ public class MainFrameController implements MouseListener {
             internoAnterior = ajustes;
         }
 /////////////////////////////CLICK EN EL PANEL DE RESOLVER///////////////////////////////////
-//        if (o == mf.getPnlResolver() || o == mf.getLblResolver() || o == mf.getLblIconoResolver()) {
-//            Sonido.entrada();
-//            ocultarMenu();
-//            resolver.setVisible(true);
-//            if (clic % 2 == 0) {
-//                clic++;
-//            }
-//            if (clic % 2 != 0) {
-//                clic--;
-//            }
-//
-//            interno = "Resolver";
-//        }
+        if (o == mf.getPnlResolver() || o == mf.getLblResolver() || o == mf.getLblIconoResolver()) {
+            Sonido.entrada();
+            ocultarMenu();
+            internoAnterior.setVisible(false);
+            resolver.setVisible(true);
+            if (clic % 2 == 0) {
+                clic++;
+            }
+            if (clic % 2 != 0) {
+                clic--;
+            }
+            if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                resolver.redimensionar(false);
+            } else {
+                resolver.redimensionar(true);
+            }
+            interno = "Resolver";
+            internoAnterior = resolver;
+        }
 /////////////////////////////CLICK EN EL PANEL DE DOCUMENTOS//////////////////////////////////
 //        if (o == mf.getPnlDocumentos() || o == mf.getLblDocumentos() || o == mf.getLblIconoDocumentos()) {
 //            Sonido.entrada();

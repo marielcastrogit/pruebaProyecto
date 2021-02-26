@@ -29,9 +29,8 @@ public class ControlEcLineal implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         r.setA(Integer.parseInt(t.a.getText()));
         r.setB(Integer.parseInt(t.b.getText()));
-        r.setB(Integer.parseInt(t.c.getText()));
-        r.setB(Integer.parseInt(t.d.getText()));
-        r.Lineal();
-        t.respuesta.setText(String.valueOf(r.getResp()));
+        r.setC(Integer.parseInt(t.c.getText()));
+        r.setD(Integer.parseInt(t.d.getText()));
+        t.respuesta.setText(String.valueOf(r.Lineal()));
     }
 }

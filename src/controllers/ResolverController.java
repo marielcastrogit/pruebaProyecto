@@ -262,6 +262,7 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
 
         //Flecha de retroceso en el panel que muestra el resultado que me lleva a escribir el problema
         if (e.getSource() == mostrarResultado.getLblRetroceder()) {
+
             mostrarResultado.setVisible(false);
             r.getListaTemas().setEnabled(true);
             escribirProblema.setVisible(true);
@@ -276,10 +277,12 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
         //////////////////////////////////////////////////////////////////////////
         //Ecuaciones
         if (e.getSource() == EcuacionesCuadraticas.lblRetroceder) {
+            r.getListaTemas().setSelectedItem(null);
             ecC.setVisible(false);
         }
 
         if (e.getSource() == EcuacionesLineales.lblRetroceder) {
+            r.getListaTemas().setSelectedItem(null);
             ecl.setVisible(false);
         }
 

@@ -48,6 +48,7 @@ public class EcuacionesLineales extends javax.swing.JInternalFrame {
         lblSubrayado = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblRetroceder = new javax.swing.JLabel();
+        lblInfo = new javax.swing.JLabel();
 
         setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
         setForeground(java.awt.Color.white);
@@ -115,6 +116,7 @@ public class EcuacionesLineales extends javax.swing.JInternalFrame {
 
         respuesta.setBackground(new java.awt.Color(255, 255, 255));
         respuesta.setForeground(new java.awt.Color(0, 0, 0));
+        respuesta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         respuesta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 respuestaActionPerformed(evt);
@@ -196,6 +198,8 @@ public class EcuacionesLineales extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 0, 600, 30);
+        getContentPane().add(lblInfo);
+        lblInfo.setBounds(30, 330, 570, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -248,6 +252,7 @@ public class EcuacionesLineales extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    public static javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblResultado;
     public static javax.swing.JLabel lblRetroceder;
     private javax.swing.JLabel lblSubrayado;

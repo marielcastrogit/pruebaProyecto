@@ -1,9 +1,10 @@
-
 package models.ecuaciones;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import javax.swing.JOptionPane;
+import views.Ecuaciones.EcuacionesCuadraticas;
+import views.Ecuaciones.EcuacionesLineales;
 
 public class Logica {
 
@@ -15,11 +16,16 @@ public class Logica {
     private int r2;
     private int resp;
 
-   public Logica(){
-       
-   }
-    
-    
+    public Logica() {
+        a = 0;
+        b = 0;
+        c = 0;
+        d = 0;
+        r1 = 0;
+        r2 = 0;
+        resp = 0;
+    }
+
     public int getResp() {
         return resp;
     }
@@ -76,45 +82,57 @@ public class Logica {
         this.r2 = r2;
     }
 
-    public int cuadratica() {
-        try{
-        if (a == 0) {
-            JOptionPane.showMessageDialog(null, "El coeficiente no puede ser igual a 0.");
-        } else {
-            this.d = (int) pow(this.b, 2) - 4 * this.a * this.c;
-            if (this.d <= 0) {
-                r1 = (int) (-this.b + sqrt(this.d)) / (2 * this.a);
-                r2 = (int) (-this.b + sqrt(this.d)) / (2 * this.a);
+    private int calcularR1() {
+        r1 = (int) ((((-1 * this.b) + sqrt(this.d)) / (2 * this.a)));
+        return r1;
+    }
+
+    private int calcularR2() {
+        r2 = (int) ((((-1 * this.b) - sqrt(this.d)) / (2 * this.a)));
+        return r2;
+    }
+
+    public void cuadratica() {
+        try {
+            if (a == 0) {
+               EcuacionesCuadraticas.lblInfo.setText("El coeficiente de x no puede ser igual a 0.");
             } else {
-                JOptionPane.showMessageDialog(null, "El Discriminsnte debe ser positivo.");
+                EcuacionesCuadraticas.lblInfo.setText("");
+                this.d = (int) ((pow(this.b, 2)) - (4 * this.a * this.c));
+                if (this.d == 0) {//si el discriminante es igual a 0 entonces ambas respuestas son las mismas
+                    setR1(calcularR1());
+                    setR2(calcularR1());
+               }
+                
+                if(this.d<0){//si el discriminante es negativo entonces no hay solucion
+                    EcuacionesCuadraticas.lblInfo.setText("No tiene solución en los numeros reales.");
+                }
+                
+                if(this.d>0){//si el discriminante es mayor a 0 entonces las soluciones son diferentes
+                    setR1(calcularR1());
+                    setR2(calcularR2());
+                }
+                
             }
+        } catch (NumberFormatException a) {
         }
-        return 0;
-        }catch(NumberFormatException a){
-        JOptionPane.showMessageDialog(null, "Ingrese Numeros" + a );
+    }
 
-        
-    }
-        return 0;
-      
-    }
-    
-    public int Lineal(){
-       
+    public int Lineal() {
+
         if (a == 0) {
-             JOptionPane.showMessageDialog(null, "No es una ecuacion lineal" );
-
+            EcuacionesLineales.lblInfo.setText("No es una ecuacion lineal");
         } else {
-
-            r1 = a * b;
-            r2 = a * c;
-            resp = (r2 + d) / (r1-1);
+            EcuacionesLineales.lblInfo.setText("");
+            int x = a * b;
+            int y = a * c;
+            int b = x-1;
+            int c = d + y;
             
+            resp = c/b;
         }
-       
-        return 0;
-        
-    }
 
+        return resp;
+    }
 
 }

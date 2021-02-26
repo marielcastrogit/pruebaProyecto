@@ -15,6 +15,7 @@ public class InicioSesion extends javax.swing.JInternalFrame {
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setBorderInternal();
         setControllers();
+        lblInformacionError.setVisible(false);
     }
 
     private void setBorderInternal() {
@@ -31,6 +32,7 @@ public class InicioSesion extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lblIconoUsuario = new javax.swing.JLabel();
+        lblInformacionError = new javax.swing.JLabel();
         pnlEmail = new javax.swing.JPanel();
         txtUsuario = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
@@ -53,6 +55,10 @@ public class InicioSesion extends javax.swing.JInternalFrame {
         lblIconoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-checked-user-male-35.png"))); // NOI18N
         getContentPane().add(lblIconoUsuario);
         lblIconoUsuario.setBounds(110, 90, 35, 35);
+
+        lblInformacionError.setText("Contraseña o email incorrecto");
+        getContentPane().add(lblInformacionError);
+        lblInformacionError.setBounds(220, 270, 300, 16);
 
         pnlEmail.setLayout(null);
 
@@ -94,7 +100,7 @@ public class InicioSesion extends javax.swing.JInternalFrame {
         btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         btnIngresar.setText("Ingresar");
         getContentPane().add(btnIngresar);
-        btnIngresar.setBounds(280, 290, 90, 30);
+        btnIngresar.setBounds(280, 300, 90, 30);
 
         checkContraseña.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         checkContraseña.setForeground(new java.awt.Color(255, 255, 255));
@@ -107,7 +113,7 @@ public class InicioSesion extends javax.swing.JInternalFrame {
         lblCrearCuenta.setForeground(new java.awt.Color(255, 255, 255));
         lblCrearCuenta.setText("Registrate en MekApp");
         getContentPane().add(lblCrearCuenta);
-        lblCrearCuenta.setBounds(250, 326, 270, 30);
+        lblCrearCuenta.setBounds(260, 330, 270, 30);
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
         getContentPane().add(lblFondo);
@@ -145,13 +151,19 @@ public class InicioSesion extends javax.swing.JInternalFrame {
     public void redimensionar(boolean redimensionar) {
         if (redimensionar) {
             setSize(459, 412);
-            lblEmail.setBounds(117, 80, 258, 60);
-            pnlEmail.setBounds(117, 83, 258, 60);
-            lblContraseña.setBounds(117, 158, 258, 60);
-            pnlContraseña.setBounds(117, 161, 258, 60);
-            lblIconoUsuario.setBounds(64, 98, 35, 35);
-            lblIconoContraseña.setBounds(64, 194, 35, 35);
-            lblCrearCuenta.setBounds(203, 302, 120, 16);
+            lblEmail.setBounds(100,60,32,16);
+            pnlEmail.setBounds(100,80,250,60);
+            lblContraseña.setBounds(100,150,70,16);
+            pnlContraseña.setBounds(100,170,250,60);
+            txtUsuario.setBounds(6,15,240,30);
+            lblIconoUsuario.setBounds(60,90, 35, 35);
+            lblIconoContraseña.setBounds(50,180,35,35);
+            lblCrearCuenta.setBounds(180,320,150,30);
+            password.setBounds(6,13,240,30);
+            btnIngresar.setBounds(180,280,90,30);
+            lblInformacionError.setBounds(100,260,250,16);
+            checkContraseña.setBounds(120,230,190,24);
+            
         } else {
             setSize(622, 408);
             lblIconoUsuario.setBounds(110, 90, 35, 35);
@@ -179,6 +191,7 @@ public class InicioSesion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblIconoContraseña;
     private javax.swing.JLabel lblIconoUsuario;
+    private javax.swing.JLabel lblInformacionError;
     private javax.swing.JPasswordField password;
     private javax.swing.JPanel pnlContraseña;
     private javax.swing.JPanel pnlEmail;

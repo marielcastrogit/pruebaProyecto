@@ -1,7 +1,6 @@
 package models.desigualdades.lineales;
 
-import org.matheclipse.core.eval.EvalUtilities;
-import org.matheclipse.core.interfaces.IExpr;
+import models.desigualdades.cuadraticas.DesigualdadesCuadraticasSimples;
 
 public class NewMain {
 
@@ -22,9 +21,9 @@ public class NewMain {
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
         System.out.println("DESIGUALDADES LINEALES SIMPLES PARENTESIS");
-        String lp = "";
-        DesigualdadesLinealesParentesis dlp = new DesigualdadesLinealesParentesis(lp);
-        System.out.println("resultadoLinealParentesis: " + dlp.getResultadoFinal());
+//        String lp = "";
+//        DesigualdadesLinealesParentesis dlp = new DesigualdadesLinealesParentesis(lp);
+//        System.out.println("resultadoLinealParentesis: " + dlp.getResultadoFinal());
 
         System.out.println();
         System.out.println("DESIGUALDADES CUADRATICAS");
@@ -32,13 +31,14 @@ public class NewMain {
         //2x^2-3+41-x^2+7x-3x-8x
         //x^2-5x+4<32-x^2
         //x^2-3+41-x^2+7x-3x<-8x
-        String desigualdadCuadratica = "x^2-3+41+7x-3x<0";
+        //x^2-x^2+7x-4<0
+        String desigualdadCuadratica = "x^2-x^2+7x-4<0";
         DesigualdadesCuadraticasSimples dcs = new DesigualdadesCuadraticasSimples(desigualdadCuadratica);
         System.out.println(dcs.resolver());
 
-        EvalUtilities evaluador = new EvalUtilities(false, false);
-        IExpr res = evaluador.evaluate("8x<7");
-//        String r = res.toString().replace("*", "").replace("(", "").replace(")", "");
-        System.out.println("resultado: " + res);
+//        EvalUtilities evaluador = new EvalUtilities(false, false);
+//        IExpr res = evaluador.evaluate("x^2-x^2<0");
+////        String r = res.toString().replace("*", "").replace("(", "").replace(")", "");
+//        System.out.println("resultado: " + res);
     }
 }

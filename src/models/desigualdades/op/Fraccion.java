@@ -1,4 +1,4 @@
-package models.desigualdades.lineales;
+package models.desigualdades.op;
 
 public class Fraccion {
 

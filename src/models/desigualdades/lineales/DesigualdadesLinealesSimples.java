@@ -1,6 +1,8 @@
 package models.desigualdades.lineales;
 //@author Mariel Castro
 
+import models.desigualdades.op.Operacion;
+import models.desigualdades.op.Fraccion;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 

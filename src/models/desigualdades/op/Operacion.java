@@ -1,4 +1,4 @@
-package models.desigualdades.lineales;
+package models.desigualdades.op;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;

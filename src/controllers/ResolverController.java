@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
-import models.desigualdades.lineales.DesigualdadesCuadraticasSimples;
+import models.desigualdades.cuadraticas.DesigualdadesCuadraticasSimples;
 import models.desigualdades.lineales.DesigualdadesLinealesParentesis;
 import models.desigualdades.lineales.DesigualdadesLinealesSimples;
 import models.otros.Sonido;
@@ -98,7 +98,6 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
     private void resolverDesigualdadLineal(String txtEscribirProblema) {
 
         Pattern patronLinealSimple = Pattern.compile("(([+-]*\\d*x{1})|([+-]*\\d{1,}x*))+[<|>|≥|≤](([+-]*\\d*x{1})|([+-]*\\d{1,}x*))+");
-        Pattern patronLinealParentesis = Pattern.compile("");
 
 //        int noCoincide = 0; //si no coincide con ninguna expresion regular
         if (patronLinealSimple.matcher(txtEscribirProblema).matches()) {//es de las que no tienen parentesis
@@ -125,11 +124,21 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
             }
         }
 
-        if (txtEscribirProblema.contains("x^2")) {
-            DesigualdadesCuadraticasSimples dcs = new DesigualdadesCuadraticasSimples(txtEscribirProblema);
-             mostrarResultado.getLblMostrarResultado().setText(dcs.resolver());
+        if (txtEscribirProblema.contains("x^2") && !txtEscribirProblema.contains(")") && !txtEscribirProblema.contains("(")) {
+            try {
+                DesigualdadesCuadraticasSimples dcs = new DesigualdadesCuadraticasSimples(txtEscribirProblema);
+                mostrarResultado.getLblMostrarResultado().setText(dcs.resolver());
+            } catch (Exception ex) {
+            }
         }
 
+    }
+
+    private void resolverDesigualdadCuadratica(String txtEscribirProblema) {
+        if (txtEscribirProblema.contains("x^2") && !txtEscribirProblema.contains(")") && !txtEscribirProblema.contains("(")) {
+                DesigualdadesCuadraticasSimples dcs = new DesigualdadesCuadraticasSimples(txtEscribirProblema);
+                mostrarResultado.getLblMostrarResultado().setText(dcs.resolver());
+        }
     }
 
     private boolean numCorrectoParentesis(String cadena) {
@@ -175,10 +184,20 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
 
             //Si estamos trabajando con desigualdades lineales: 
             if (r.getListaTemas().getSelectedItem().toString().equals("Desigualdades Lineales")) {
-                resolverDesigualdadLineal(escribirProblema.getTxtEscribirProblema().getText());
+                try {
+                    resolverDesigualdadLineal(escribirProblema.getTxtEscribirProblema().getText());
+                } catch (Exception ex) {
+                }
             }
 
             //Si estamos trabajando con desigualdades cuadraticas: 
+            if (r.getListaTemas().getSelectedItem().toString().equals("Desigualdades Cuadráticas")) {
+                try {
+                    resolverDesigualdadCuadratica(escribirProblema.getTxtEscribirProblema().getText());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
 
         //Boton que me lleva a ver la grafica:

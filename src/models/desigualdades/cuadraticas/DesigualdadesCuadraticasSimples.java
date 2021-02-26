@@ -1,7 +1,8 @@
-package models.desigualdades.lineales;
+package models.desigualdades.cuadraticas;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+import models.desigualdades.lineales.DesigualdadesLinealesSimples;
 import org.matheclipse.core.eval.EvalUtilities;
 import org.matheclipse.core.interfaces.IExpr;
 
@@ -12,9 +13,7 @@ public class DesigualdadesCuadraticasSimples {
 
     public DesigualdadesCuadraticasSimples(String cadena) {
         this.cadena = cadena;
-        System.out.println("esta es la cadena: " + cadena);
         cadena = getParte1() + getParte3();
-        System.out.println("esta es la cadena: " + cadena);
         terminoA = "";
         c1 = cadena;
         a = "";
@@ -132,7 +131,7 @@ public class DesigualdadesCuadraticasSimples {
     }
 
     private boolean esLineal() {
-        if (terminoA.equals("0")) {
+        if (terminoA.equals("0") | terminoA.equals("")) {
             return true;
         } else {
             return false;
@@ -269,28 +268,39 @@ public class DesigualdadesCuadraticasSimples {
     }
 
     public String resolver() {
-        getDiscriminante();
-        String resultado = "", x1 = "", x2, x;
-        if (discriminante < 0) {
-            resultado = " No hay valores de\n x que hagan a la  \n ecuacion verdadera";
-        }
+        if (!esLineal()) {
+            System.out.println("NO ES LINEAL");
+            getDiscriminante();
+            String resultado = "", x1 = "", x2, x;
+            if (discriminante < 0) {
+                resultado = " No hay valores de\n x que hagan a la  \n ecuacion verdadera";
+            }
 
-        if (discriminante == 0) {
-            resultado = "x = " + formulaX1();
-        }
+            if (discriminante == 0) {
+                resultado = "x = " + formulaX1();
+            }
 
-        if (discriminante > 0) {
-            resultado = "x = " + formulaX1() + " x = " + formulaX2();
-        }
+            if (discriminante > 0) {
+                resultado = "x = " + formulaX1() + " x = " + formulaX2();
+            }
 
-        if (terminoA.equals("0")) {
-            String ec = getA() + c1 + getSigno() + 0;
-            EvalUtilities evaluador = new EvalUtilities(false, true);
-            IExpr res = evaluador.evaluate(ec);
-            String r = res.toString().replace("*", "").replace("(", "").replace(")", "");
-            resultado = r.toString();
+            if (terminoA.equals("0")) {
+                String ec = getA() + c1 + getSigno() + 0;
+                EvalUtilities evaluador = new EvalUtilities(false, true);
+                IExpr res = evaluador.evaluate(ec);
+                String r = res.toString().replace("*", "").replace("(", "").replace(")", "");
+                resultado = r.toString();
+            }
+        } else {
+            if (terminoA.isEmpty() && c.contains("x")) {
+                DesigualdadesLinealesSimples dls = new DesigualdadesLinealesSimples(c);
+                resultado = dls.resultado();
+            } else {
+                EvalUtilities evaluador = new EvalUtilities(false, true);
+                IExpr res = evaluador.evaluate(cadena);
+                resultado = res.toString();
+            }
         }
-
         return resultado;
     }
 

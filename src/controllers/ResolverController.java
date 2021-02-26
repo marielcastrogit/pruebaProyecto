@@ -1,6 +1,6 @@
 package controllers;
 
-import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
+import models.desigualdades.lineales.DesigualdadesCuadraticasSimples;
 import models.desigualdades.lineales.DesigualdadesLinealesParentesis;
 import models.desigualdades.lineales.DesigualdadesLinealesSimples;
 import models.otros.Sonido;
@@ -107,12 +108,46 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
             dls.getParte3();
             mostrarResultado.getLblMostrarResultado().setText(dls.resultado());
         }
-//para desigualdades lineales con parentesis: 
+
+        //para desigualdades lineales con parentesis: 
         if (txtEscribirProblema.contains("(") | txtEscribirProblema.contains(")")) {
-            DesigualdadesLinealesParentesis dlp = new DesigualdadesLinealesParentesis(txtEscribirProblema);
-            mostrarResultado.getLblMostrarResultado().setText(dlp.getResultadoFinal());
+            if (numCorrectoParentesis(txtEscribirProblema)) {
+                try {
+                    DesigualdadesLinealesParentesis dlp = new DesigualdadesLinealesParentesis(txtEscribirProblema);
+                    mostrarResultado.getLblMostrarResultado().setText(dlp.getResultadoFinal());
+                } catch (Exception ex) {
+                    mostrarResultado.getLblMostrarResultado().setFont(new java.awt.Font("Dialog", Font.BOLD, 12));
+                    mostrarResultado.getLblMostrarResultado().setText("No es lineal");
+                }
+            } else {
+                mostrarResultado.getLblMostrarResultado().setFont(new java.awt.Font("Dialog", Font.BOLD, 12));
+                mostrarResultado.getLblMostrarResultado().setText("Ubicación de paréntesis incorrecta");
+            }
         }
 
+        if (txtEscribirProblema.contains("x^2")) {
+            DesigualdadesCuadraticasSimples dcs = new DesigualdadesCuadraticasSimples(txtEscribirProblema);
+             mostrarResultado.getLblMostrarResultado().setText(dcs.resolver());
+        }
+
+    }
+
+    private boolean numCorrectoParentesis(String cadena) {
+        char[] toCharArray = cadena.toCharArray();
+        int numParentesisApertura = 0, numParentesisCierre = 0;
+        for (int i = 0; i < toCharArray.length; i++) {
+            if (toCharArray[i] == '(') {
+                numParentesisApertura++;
+            }
+            if (toCharArray[i] == ')') {
+                numParentesisCierre++;
+            }
+        }
+        if (numParentesisApertura == numParentesisCierre) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

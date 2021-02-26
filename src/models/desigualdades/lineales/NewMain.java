@@ -22,7 +22,7 @@ public class NewMain {
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
         System.out.println("DESIGUALDADES LINEALES SIMPLES PARENTESIS");
-        String lp = "(7x)-(8x)-2(x+3)+5-x(2+4))-6<0";
+        String lp = "";
         DesigualdadesLinealesParentesis dlp = new DesigualdadesLinealesParentesis(lp);
         System.out.println("resultadoLinealParentesis: " + dlp.getResultadoFinal());
 

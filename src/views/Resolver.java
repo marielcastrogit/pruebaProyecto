@@ -1,8 +1,7 @@
 package views;
 
-import javax.swing.JButton;
+import controllers.ResolverController;
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
@@ -12,6 +11,7 @@ public class Resolver extends javax.swing.JInternalFrame {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setBorderInternal();
+        setControllers();
     }
 
     private void setBorderInternal() {
@@ -28,12 +28,10 @@ public class Resolver extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jTextField2 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        txtProblema = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        listTemas = new javax.swing.JComboBox<>();
+        pnlTemas = new javax.swing.JPanel();
+        listaTemas = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        btnCalcular = new javax.swing.JButton();
+        pnlCard = new javax.swing.JPanel();
         lblFondo = new javax.swing.JLabel();
 
         jTextField2.setText("jTextField2");
@@ -45,64 +43,52 @@ public class Resolver extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(622, 408));
         getContentPane().setLayout(null);
 
-        jPanel1.setLayout(null);
+        pnlTemas.setLayout(null);
 
-        txtProblema.setBackground(new java.awt.Color(255, 255, 255));
-        txtProblema.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(txtProblema);
-        txtProblema.setBounds(6, 4, 428, 30);
+        listaTemas.setBackground(new java.awt.Color(255, 255, 255));
+        listaTemas.setForeground(new java.awt.Color(0, 0, 0));
+        pnlTemas.add(listaTemas);
+        listaTemas.setBounds(10, 10, 410, 30);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(80, 180, 440, 40);
+        getContentPane().add(pnlTemas);
+        pnlTemas.setBounds(90, 70, 430, 50);
 
-        jPanel2.setLayout(null);
-
-        listTemas.setBackground(new java.awt.Color(255, 255, 255));
-        listTemas.setForeground(new java.awt.Color(0, 0, 0));
-        listTemas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
-        jPanel2.add(listTemas);
-        listTemas.setBounds(10, 10, 330, 30);
-
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(130, 260, 350, 50);
-
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel1.setText("Eliga el tema");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(130, 240, 228, 16);
+        jLabel1.setBounds(90, 40, 240, 16);
 
-        btnCalcular.setBackground(new java.awt.Color(0, 0, 0));
-        btnCalcular.setForeground(new java.awt.Color(255, 255, 255));
-        btnCalcular.setText("Calcular");
-        getContentPane().add(btnCalcular);
-        btnCalcular.setBounds(240, 340, 120, 24);
+        pnlCard.setLayout(new java.awt.CardLayout());
+        getContentPane().add(pnlCard);
+        pnlCard.setBounds(90, 140, 430, 230);
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
+        lblFondo.setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
         getContentPane().add(lblFondo);
         lblFondo.setBounds(0, 0, 620, 390);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public JButton getBtnCalcular() {
-        return btnCalcular;
+//    public JButton getBtnCalcular() {
+//        return btnCalcular;
+//    }
+    private void setControllers() {
+        rc = new ResolverController(this);
+        listaTemas.addItemListener(rc);
     }
 
-    public JComboBox<String> getListTemas() {
-        return listTemas;
+    public JComboBox<String> getListaTemas() {
+        return listaTemas;
     }
 
-    public JTextField getTxtProblema() {
-        return txtProblema;
-    }
-
+    private ResolverController rc;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCalcular;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblFondo;
-    private javax.swing.JComboBox<String> listTemas;
-    private javax.swing.JTextField txtProblema;
+    private javax.swing.JComboBox<String> listaTemas;
+    public static javax.swing.JPanel pnlCard;
+    private javax.swing.JPanel pnlTemas;
     // End of variables declaration//GEN-END:variables
 }

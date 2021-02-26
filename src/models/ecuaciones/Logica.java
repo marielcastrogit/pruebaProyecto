@@ -3,8 +3,8 @@ package models.ecuaciones;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import javax.swing.JOptionPane;
-import views.Ecuaciones.EcuacionesCuadraticas;
-import views.Ecuaciones.EcuacionesLineales;
+import views.ecuacion.EcuacionesCuadraticas;
+import views.ecuacion.EcuacionesLineales;
 
 public class Logica {
 

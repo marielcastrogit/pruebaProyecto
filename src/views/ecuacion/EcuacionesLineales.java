@@ -1,4 +1,4 @@
-package views.Ecuaciones;
+package views.ecuacion;
 
 import controllers.ecuaciones.ControlEcLineal;
 import javax.swing.plaf.basic.BasicInternalFrameUI;

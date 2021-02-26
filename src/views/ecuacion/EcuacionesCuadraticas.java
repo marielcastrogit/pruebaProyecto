@@ -1,4 +1,4 @@
-package views.Ecuaciones;
+package views.ecuacion;
 
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import controllers.ecuaciones.ControlEcCuadratica;

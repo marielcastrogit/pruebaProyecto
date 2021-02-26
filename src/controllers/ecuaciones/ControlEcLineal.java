@@ -8,7 +8,7 @@ package controllers.ecuaciones;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import models.ecuaciones.Logica;
-import views.Ecuaciones.EcuacionesLineales;
+import views.ecuacion.EcuacionesLineales;
 
 /**
  *

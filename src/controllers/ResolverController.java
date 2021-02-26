@@ -52,6 +52,7 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
     private void setControllersPanelEscribir() {//lugar en el cual se escribe el problema
         escribirProblema.getTxtEscribirProblema().addKeyListener(this);//que se esta misma clase la que se encargue de escuchar al teclado
         escribirProblema.getBtnResultado().addMouseListener(this);
+        escribirProblema.getBtnResultado().setEnabled(false);
     }
 
     private void setControllersPanelResultado() {//se resuelve el problema y se muestra
@@ -136,8 +137,8 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
 
     private void resolverDesigualdadCuadratica(String txtEscribirProblema) {
         if (txtEscribirProblema.contains("x^2") && !txtEscribirProblema.contains(")") && !txtEscribirProblema.contains("(")) {
-                DesigualdadesCuadraticasSimples dcs = new DesigualdadesCuadraticasSimples(txtEscribirProblema);
-                mostrarResultado.getLblMostrarResultado().setText(dcs.resolver());
+            DesigualdadesCuadraticasSimples dcs = new DesigualdadesCuadraticasSimples(txtEscribirProblema);
+            mostrarResultado.getLblMostrarResultado().setText(dcs.resolver());
         }
     }
 
@@ -178,9 +179,11 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
     public void mouseClicked(MouseEvent e) {
         //Boton de mostrar resultado, panel en el cual se escribe el problema: 
         if (e.getSource() == escribirProblema.getBtnResultado()) {
-            escribirProblema.setVisible(false);
-            mostrarResultado.setVisible(true);
-            r.getListaTemas().setEnabled(false);
+            if (!escribirProblema.getTxtEscribirProblema().getText().isEmpty()) {
+                escribirProblema.setVisible(false);
+                mostrarResultado.setVisible(true);
+                r.getListaTemas().setEnabled(false);
+            }
 
             //Si estamos trabajando con desigualdades lineales: 
             if (r.getListaTemas().getSelectedItem().toString().equals("Desigualdades Lineales")) {
@@ -199,6 +202,7 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
                 }
             }
         }
+        //////////////////////////////////////////////////////////////////////////////////////////
 
         //Boton que me lleva a ver la grafica:
         if (e.getSource() == mostrarResultado.getBtnGrafica()) {
@@ -234,6 +238,13 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        if(e.getSource() == escribirProblema.getBtnResultado()){
+            if(!escribirProblema.getTxtEscribirProblema().getText().isEmpty()){
+                escribirProblema.getBtnResultado().setEnabled(true);
+            }else{
+                escribirProblema.getBtnResultado().setEnabled(false);
+            }
+        }
 
     }
 

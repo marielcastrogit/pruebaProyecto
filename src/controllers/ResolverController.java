@@ -121,6 +121,13 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
             if (e.getSource() == r.getListaTemas()) {
                 switch (r.getListaTemas().getSelectedItem().toString()) {
                     case "Ecuaciones Lineales":
+                        //Con esta instruccion logramos ocultar el menu: 
+                        if (MainFrame.desktop.getWidth() == 495) {
+                            MainFrame.desktop.setBounds(65, 103, 690, 440);
+                        }
+                        MainFrame.pnlMenu.setVisible(false);
+
+                        //----------------------------------------
                         if (internoAnterior1.equals("pnlCard")) {
                             pnlCard.setVisible(false);
                         }
@@ -130,6 +137,11 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
                         internoAnterior = ecl;
                         break;
                     case "Ecuaciones Cuadráticas":
+                        if (MainFrame.desktop.getWidth() == 495) {
+                            MainFrame.desktop.setBounds(65, 103, 690, 440);
+                        }
+                        MainFrame.pnlMenu.setVisible(false);
+
                         if (internoAnterior1.equals("pnlCard")) {
                             pnlCard.setVisible(false);
                         }
@@ -149,6 +161,11 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
                         internoAnterior1 = "pnlCard";
                         break;
                     case "Funciones":
+                        if (MainFrame.desktop.getWidth() == 495) {
+                            MainFrame.desktop.setBounds(65, 103, 690, 440);
+                        }
+                        MainFrame.pnlMenu.setVisible(false);
+
                         if (internoAnterior1.equals("pnlCard")) {
                             pnlCard.setVisible(false);
                         }
@@ -262,7 +279,6 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
                 try {
                     resolverDesigualdadCuadratica(escribirProblema.getTxtEscribirProblema().getText());
                 } catch (Exception ex) {
-                    ex.printStackTrace();
                 }
             }
         }
@@ -292,18 +308,28 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
         //////////////////////////////////////////////////////////////////////////
         //Ecuaciones
         if (e.getSource() == EcuacionesCuadraticas.lblRetroceder) {
-            r.getListaTemas().setSelectedItem(null);
             ecC.setVisible(false);
+            r.getListaTemas().setSelectedItem(null);
+            r.setVisible(true);
+            MainFrame.pnlMenu.setSize(49, 502);
+            MainFrame.pnlMenu.setVisible(true);
         }
 
         if (e.getSource() == EcuacionesLineales.lblRetroceder) {
-            r.getListaTemas().setSelectedItem(null);
             ecl.setVisible(false);
-        }
-        
-        if(e.getSource() == FuncionesFrame.lblRetroceder){
             r.getListaTemas().setSelectedItem(null);
+            r.setVisible(true);
+            MainFrame.pnlMenu.setSize(49, 502);
+            MainFrame.pnlMenu.setVisible(true);
+
+        }
+
+        if (e.getSource() == FuncionesFrame.lblRetroceder) {
             funciones.setVisible(false);
+            r.getListaTemas().setSelectedItem(null);
+            r.setVisible(true);
+            MainFrame.pnlMenu.setSize(49, 502);
+            MainFrame.pnlMenu.setVisible(true);
         }
 
     }

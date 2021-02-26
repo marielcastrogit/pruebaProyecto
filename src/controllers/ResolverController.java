@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
+import models.desigualdades.lineales.DesigualdadesLinealesParentesis;
 import models.desigualdades.lineales.DesigualdadesLinealesSimples;
 import models.otros.Sonido;
 import views.PanelEscribir;
@@ -99,7 +100,6 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
         Pattern patronLinealParentesis = Pattern.compile("");
 
 //        int noCoincide = 0; //si no coincide con ninguna expresion regular
-
         if (patronLinealSimple.matcher(txtEscribirProblema).matches()) {//es de las que no tienen parentesis
             DesigualdadesLinealesSimples dls = new DesigualdadesLinealesSimples(txtEscribirProblema);
             dls.getParte1();
@@ -107,8 +107,12 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
             dls.getParte3();
             mostrarResultado.getLblMostrarResultado().setText(dls.resultado());
         }
-        
-        
+//para desigualdades lineales con parentesis: 
+        if (txtEscribirProblema.contains("(") | txtEscribirProblema.contains(")")) {
+            DesigualdadesLinealesParentesis dlp = new DesigualdadesLinealesParentesis(txtEscribirProblema);
+            mostrarResultado.getLblMostrarResultado().setText(dlp.getResultadoFinal());
+        }
+
     }
 
     @Override

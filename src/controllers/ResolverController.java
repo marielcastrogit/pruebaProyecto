@@ -24,6 +24,7 @@ import views.desigualdades.PanelGraficaDesigualdades;
 import views.desigualdades.PanelMostrarResultado;
 import views.Resolver;
 import static views.Resolver.pnlCard;
+import views.funcion.FuncionesFrame;
 
 public class ResolverController implements ItemListener, KeyListener, MouseListener {
 
@@ -37,6 +38,8 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
     //Ecuaciones: 
     private EcuacionesLineales ecl;
     private EcuacionesCuadraticas ecC;
+    //Funciones: 
+    private FuncionesFrame funciones;
 
     public ResolverController(Resolver r) {
         this.r = r;
@@ -63,6 +66,13 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
         MainFrame.desktop.add(ecl);
         MainFrame.desktop.add(ecC);
         controlEcuaciones();
+
+        //Funciones: 
+        funciones = new FuncionesFrame();
+        funciones.setLocation(35, 18);
+        funciones.setVisible(false);
+        MainFrame.desktop.add(funciones);
+        FuncionesFrame.lblRetroceder.addMouseListener(this);
 
     }
 
@@ -139,6 +149,11 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
                         internoAnterior1 = "pnlCard";
                         break;
                     case "Funciones":
+                        if (internoAnterior1.equals("pnlCard")) {
+                            pnlCard.setVisible(false);
+                        }
+                        funciones.setVisible(true);
+                        internoAnterior = funciones;
                         break;
                 }
             }
@@ -284,6 +299,11 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
         if (e.getSource() == EcuacionesLineales.lblRetroceder) {
             r.getListaTemas().setSelectedItem(null);
             ecl.setVisible(false);
+        }
+        
+        if(e.getSource() == FuncionesFrame.lblRetroceder){
+            r.getListaTemas().setSelectedItem(null);
+            funciones.setVisible(false);
         }
 
     }

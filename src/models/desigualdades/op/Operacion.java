@@ -2,7 +2,10 @@ package models.desigualdades.op;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-
+/**
+ *
+ * @author Mariel
+ */
 public class Operacion {
 
     public static double sumar(double a, double b) {

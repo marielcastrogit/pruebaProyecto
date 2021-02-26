@@ -1,5 +1,8 @@
 package models.usuario;
-
+/**
+ *
+ * @author Mariel
+ */
 public class PruebaUsuario {
 
     public static void main(String[] args) {

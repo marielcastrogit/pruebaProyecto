@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author marielC
+ * @author Mariel
  */
 public class PanelDegradado extends JPanel {
 

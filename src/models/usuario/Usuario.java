@@ -1,5 +1,8 @@
 package models.usuario;
-
+/**
+ *
+ * @author Mariel
+ */
 public class Usuario {
 
     private String correo;

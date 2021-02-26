@@ -1,5 +1,8 @@
 package models.usuario;
-
+/**
+ *
+ * @author Mariel
+ */
 import java.util.regex.Pattern;
 
 public class ValidarContraseña {

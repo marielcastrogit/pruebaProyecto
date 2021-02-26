@@ -3,7 +3,10 @@ package models.desigualdades.lineales;
 import java.util.ArrayList;
 import org.matheclipse.core.eval.EvalUtilities;
 import org.matheclipse.core.interfaces.IExpr;
-
+/**
+ *
+ * @author Mariel
+ */
 public class DesigualdadesLinealesParentesis {
 
     private String cadena, c, t, signo;

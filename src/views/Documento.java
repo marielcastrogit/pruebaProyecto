@@ -7,7 +7,10 @@ import org.icepdf.ri.common.SwingController;
 import org.icepdf.ri.common.SwingViewBuilder;
 import org.jdesktop.swingx.border.DropShadowBorder;
 import org.icepdf.ri.common.MyAnnotationCallback;
-
+/**
+ *
+ * @author Mariel
+ */
 public class Documento extends javax.swing.JInternalFrame {
 
     private JPanel panelVistaPDF;

@@ -1,10 +1,12 @@
 
-package views;
+package views.desigualdades;
 
 import java.awt.Color;
 import javax.swing.JLabel;
-
-
+/**
+ *
+ * @author Mariel
+ */
 public class PanelGraficaDesigualdades extends javax.swing.JPanel {
 
     public PanelGraficaDesigualdades() {

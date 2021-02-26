@@ -1,5 +1,8 @@
 package models.usuario;
-
+/**
+ *
+ * @author Mariel
+ */
 public class PruebaValidarContraseña {
 
     public static void main(String[] args) {

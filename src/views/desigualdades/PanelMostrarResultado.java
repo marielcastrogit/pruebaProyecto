@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views;
+package views.desigualdades;
 
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import org.jdesktop.swingx.border.DropShadowBorder;
-
+/**
+ *
+ * @author Mariel
+ */
 public class PanelMostrarResultado extends javax.swing.JPanel {
 
     public PanelMostrarResultado() {
@@ -64,7 +66,7 @@ public class PanelMostrarResultado extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(80, 34, 258, 90);
+        jPanel1.setBounds(80, 34, 0, 90);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
@@ -103,7 +105,7 @@ public class PanelMostrarResultado extends javax.swing.JPanel {
         );
 
         add(jPanel2);
-        jPanel2.setBounds(80, 140, 257, 80);
+        jPanel2.setBounds(80, 140, 0, 80);
 
         btnGrafica.setBackground(new java.awt.Color(0, 0, 0));
         btnGrafica.setForeground(new java.awt.Color(255, 255, 255));

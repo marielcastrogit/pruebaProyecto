@@ -1,7 +1,10 @@
 package models.desigualdades.lineales;
 
 import models.desigualdades.cuadraticas.DesigualdadesCuadraticasSimples;
-
+/**
+ *
+ * @author Mariel
+ */
 public class NewMain {
 
     public static void main(String[] args) {

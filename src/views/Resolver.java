@@ -4,7 +4,10 @@ import controllers.ResolverController;
 import javax.swing.JComboBox;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
-
+/**
+ *
+ * @author Mariel
+ */
 public class Resolver extends javax.swing.JInternalFrame {
 
     public Resolver() {

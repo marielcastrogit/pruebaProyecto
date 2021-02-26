@@ -9,7 +9,10 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
-
+/**
+ *
+ * @author Mariel
+ */
 public class VerificarCodigo extends javax.swing.JInternalFrame {
 
     public VerificarCodigo() {

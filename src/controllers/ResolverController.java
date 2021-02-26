@@ -1,5 +1,7 @@
 package controllers;
 
+import static controllers.MainFrameController.iniciarSesion;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -9,25 +11,38 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JInternalFrame;
 import models.desigualdades.cuadraticas.DesigualdadesCuadraticasSimples;
 import models.desigualdades.lineales.DesigualdadesLinealesParentesis;
 import models.desigualdades.lineales.DesigualdadesLinealesSimples;
 import models.otros.Sonido;
+import views.Ecuaciones.EcuacionesCuadraticas;
+import views.Ecuaciones.EcuacionesLineales;
+import views.MainFrame;
 import views.PanelEscribir;
-import views.PanelGraficaDesigualdades;
-import views.PanelMostrarResultado;
+import views.desigualdades.PanelGraficaDesigualdades;
+import views.desigualdades.PanelMostrarResultado;
 import views.Resolver;
+import static views.Resolver.pnlCard;
 
 public class ResolverController implements ItemListener, KeyListener, MouseListener {
 
     private Resolver r;
+    //Desigualdades: 
     private PanelEscribir escribirProblema;
     private PanelMostrarResultado mostrarResultado;
     private PanelGraficaDesigualdades mostrarGraficaDesigualdades;
+    private JInternalFrame internoAnterior;
+    private String internoAnterior1;
+    //Ecuaciones: 
+    private EcuacionesLineales ecl;
+    private EcuacionesCuadraticas ecC;
 
     public ResolverController(Resolver r) {
         this.r = r;
         setItemsLista();//establezco los items de la lista
+
+        //Desigualdades: 
         escribirProblema = new PanelEscribir();
         mostrarResultado = new PanelMostrarResultado();
         mostrarGraficaDesigualdades = new PanelGraficaDesigualdades();
@@ -35,6 +50,20 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
         setControllersPanelEscribir();
         setControllersPanelResultado();
         setControllersPanelGrafica();
+        internoAnterior = new JInternalFrame();
+        internoAnterior1 = "";
+
+        //Ecuaciones: 
+        ecl = new EcuacionesLineales();
+        ecC = new EcuacionesCuadraticas();
+        ecl.setLocation(35, 18);
+        ecC.setLocation(35, 18);
+        ecl.setVisible(false);
+        ecC.setVisible(false);
+        MainFrame.desktop.add(ecl);
+        MainFrame.desktop.add(ecC);
+        controlEcuaciones();
+
     }
 
     private void setItemsLista() {
@@ -64,6 +93,11 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
         mostrarGraficaDesigualdades.getLblRetroceder().addMouseListener(this);
     }
 
+    private void controlEcuaciones() {
+        EcuacionesCuadraticas.lblRetroceder.addMouseListener(this);
+        EcuacionesLineales.lblRetroceder.addMouseListener(this);
+    }
+
     private void limpiarDesigualdades() {
         escribirProblema.getTxtEscribirProblema().setText("");
         mostrarResultado.getLblMostrarIntervalo().setText("");
@@ -77,17 +111,32 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
             if (e.getSource() == r.getListaTemas()) {
                 switch (r.getListaTemas().getSelectedItem().toString()) {
                     case "Ecuaciones Lineales":
+                        if (internoAnterior1.equals("pnlCard")) {
+                            pnlCard.setVisible(false);
+                        }
+                        internoAnterior.setVisible(false);
+                        ecl.limpiar();
+                        ecl.setVisible(true);
+                        internoAnterior = ecl;
                         break;
                     case "Ecuaciones Cuadráticas":
-
+                        if (internoAnterior1.equals("pnlCard")) {
+                            pnlCard.setVisible(false);
+                        }
+                        internoAnterior.setVisible(false);
+                        ecC.limpiar();
+                        ecC.setVisible(true);
+                        internoAnterior = ecC;
                         break;
                     case "Desigualdades Lineales":
                         limpiarDesigualdades();
                         Resolver.pnlCard.setVisible(true);
+                        internoAnterior1 = "pnlCard";
                         break;
                     case "Desigualdades Cuadráticas":
                         limpiarDesigualdades();
                         Resolver.pnlCard.setVisible(true);
+                        internoAnterior1 = "pnlCard";
                         break;
                     case "Funciones":
                         break;
@@ -224,6 +273,16 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
             mostrarResultado.setVisible(true);
         }
 
+        //////////////////////////////////////////////////////////////////////////
+        //Ecuaciones
+        if (e.getSource() == EcuacionesCuadraticas.lblRetroceder) {
+            ecC.setVisible(false);
+        }
+
+        if (e.getSource() == EcuacionesLineales.lblRetroceder) {
+            ecl.setVisible(false);
+        }
+
     }
 
     @Override
@@ -238,10 +297,10 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        if(e.getSource() == escribirProblema.getBtnResultado()){
-            if(!escribirProblema.getTxtEscribirProblema().getText().isEmpty()){
+        if (e.getSource() == escribirProblema.getBtnResultado()) {
+            if (!escribirProblema.getTxtEscribirProblema().getText().isEmpty()) {
                 escribirProblema.getBtnResultado().setEnabled(true);
-            }else{
+            } else {
                 escribirProblema.getBtnResultado().setEnabled(false);
             }
         }

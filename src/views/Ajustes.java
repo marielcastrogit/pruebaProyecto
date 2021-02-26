@@ -7,7 +7,10 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-
+/**
+ *
+ * @author Mariel
+ */
 public class Ajustes extends javax.swing.JInternalFrame {
 
     public Ajustes() {

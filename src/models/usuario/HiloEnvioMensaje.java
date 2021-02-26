@@ -1,5 +1,8 @@
 package models.usuario;
-
+/**
+ *
+ * @author Mariel
+ */
 public class HiloEnvioMensaje implements Runnable {
 
     private String correoUsuario;

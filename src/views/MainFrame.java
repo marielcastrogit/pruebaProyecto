@@ -8,7 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import models.otros.PanelDegradado;
 import org.jdesktop.swingx.border.DropShadowBorder;
-
+/**
+ *
+ * @author Mariel
+ */
 public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {

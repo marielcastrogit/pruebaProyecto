@@ -16,7 +16,7 @@ import views.Resolver;
 
 public class MainFrameController implements MouseListener {
 
-    private final MainFrame mf;
+    protected static MainFrame mf;
     private int clic;
     private JInternalFrame internoAnterior;
     public static InicioSesion iniciarSesion;
@@ -78,6 +78,7 @@ public class MainFrameController implements MouseListener {
         interno = "Resolver";
 
     }
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -347,5 +348,6 @@ public class MainFrameController implements MouseListener {
             mf.getLblIconoExamen().setSize(35, 35);
         }
     }
+
 
 }

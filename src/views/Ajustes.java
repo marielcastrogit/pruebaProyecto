@@ -1,5 +1,6 @@
 package views;
 
+import controllers.AjustesControllers;
 import models.otros.LabelCircular;
 import models.otros.PanelDegradado;
 import org.jdesktop.swingx.border.DropShadowBorder;
@@ -7,6 +8,7 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  *
  * @author Mariel
@@ -19,7 +21,8 @@ public class Ajustes extends javax.swing.JInternalFrame {
         setBorderInternal();
         setPanelDegradado();
         setLabelFoto();
-
+        setControllers();
+        btnTemaAnterior.setVisible(false);
     }
     private LabelCircular lc;
 
@@ -67,6 +70,16 @@ public class Ajustes extends javax.swing.JInternalFrame {
         }
     }
 
+    private void setControllers() {
+        ac = new AjustesControllers(this);
+        lblSonido.addMouseListener(ac);//quitar sonido
+        lc.addMouseListener(ac);//label de la foto
+        btnTemaAnterior.addMouseListener(ac);
+        btnSiguienteTema.addMouseListener(ac);
+        btnAplicarTema.addMouseListener(ac);
+    }
+    private AjustesControllers ac;
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -77,7 +90,7 @@ public class Ajustes extends javax.swing.JInternalFrame {
         btnTemaAnterior = new javax.swing.JLabel();
         btnAplicarTema = new javax.swing.JButton();
         pnlUsuario = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        lblSonido = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
@@ -86,61 +99,35 @@ public class Ajustes extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(622, 408));
         getContentPane().setLayout(null);
 
+        pnlTemas.setLayout(null);
+
         pnlMostrarTemas.setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
         pnlMostrarTemas.setLayout(new java.awt.CardLayout());
+        pnlTemas.add(pnlMostrarTemas);
+        pnlMostrarTemas.setBounds(68, 36, 180, 174);
 
         btnSiguienteTema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-next-35.png"))); // NOI18N
+        pnlTemas.add(btnSiguienteTema);
+        btnSiguienteTema.setBounds(260, 100, 35, 35);
 
         btnTemaAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-previous-35.png"))); // NOI18N
+        pnlTemas.add(btnTemaAnterior);
+        btnTemaAnterior.setBounds(21, 100, 35, 35);
 
         btnAplicarTema.setBackground(new java.awt.Color(0, 0, 0));
         btnAplicarTema.setForeground(new java.awt.Color(255, 255, 255));
         btnAplicarTema.setText("Aplicar tema");
-
-        javax.swing.GroupLayout pnlTemasLayout = new javax.swing.GroupLayout(pnlTemas);
-        pnlTemas.setLayout(pnlTemasLayout);
-        pnlTemasLayout.setHorizontalGroup(
-            pnlTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTemasLayout.createSequentialGroup()
-                .addGroup(pnlTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlTemasLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btnTemaAnterior)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlMostrarTemas, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSiguienteTema))
-                    .addGroup(pnlTemasLayout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(btnAplicarTema)))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-        pnlTemasLayout.setVerticalGroup(
-            pnlTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTemasLayout.createSequentialGroup()
-                .addGroup(pnlTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlTemasLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(pnlMostrarTemas, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlTemasLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(btnSiguienteTema))
-                    .addGroup(pnlTemasLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(btnTemaAnterior)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAplicarTema)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
+        pnlTemas.add(btnAplicarTema);
+        btnAplicarTema.setBounds(100, 220, 100, 24);
 
         getContentPane().add(pnlTemas);
         pnlTemas.setBounds(10, 40, 320, 270);
 
         pnlUsuario.setLayout(null);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-audio-35.png"))); // NOI18N
-        pnlUsuario.add(jLabel4);
-        jLabel4.setBounds(40, 0, 35, 70);
+        lblSonido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-audio-35.png"))); // NOI18N
+        pnlUsuario.add(lblSonido);
+        lblSonido.setBounds(40, 0, 35, 70);
 
         getContentPane().add(pnlUsuario);
         pnlUsuario.setBounds(340, 40, 230, 70);
@@ -154,12 +141,12 @@ public class Ajustes extends javax.swing.JInternalFrame {
 
     private PanelDegradado p;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAplicarTema;
-    private javax.swing.JLabel btnSiguienteTema;
-    private javax.swing.JLabel btnTemaAnterior;
+    public static javax.swing.JButton btnAplicarTema;
+    public static javax.swing.JLabel btnSiguienteTema;
+    public static javax.swing.JLabel btnTemaAnterior;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel pnlMostrarTemas;
+    public static javax.swing.JLabel lblSonido;
+    public static javax.swing.JPanel pnlMostrarTemas;
     private javax.swing.JPanel pnlTemas;
     private javax.swing.JPanel pnlUsuario;
     // End of variables declaration//GEN-END:variables

@@ -1,5 +1,7 @@
 package views;
 
+import controllers.AjustesControllers;
+import static controllers.AjustesControllers.tema;
 import controllers.MainFrameController;
 import java.awt.Color;
 import java.awt.Image;
@@ -7,7 +9,9 @@ import java.awt.Toolkit;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import models.otros.PanelDegradado;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
@@ -420,14 +424,42 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public static void main(String args[]) {
-        try {
-            UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-        }
+//        try {
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+//        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+//        }
+//        try {
+//            UIManager.setLookAndFeel(new AluminiumLookAndFeel());
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
 
+//        try {
+//            UIManager.setLookAndFeel(new AeroLookAndFeel());
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        try {
+//            UIManager.setLookAndFeel(new AcrylLookAndFeel());
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        try {
+//            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarculaLaf");
+//        } catch (IllegalAccessException | javax.swing.UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException ex) {
+//
+//        }
+        try {
+
+            UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+
+        } catch (IllegalAccessException | javax.swing.UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException ex) {
+
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                MainFrame n = new MainFrame();
+                n.setVisible(true);
             }
         });
     }
@@ -569,6 +601,7 @@ public class MainFrame extends javax.swing.JFrame {
     public JDesktopPane getjDesktopPane1() {
         return desktop;
     }
+
 
     private MainFrameController mfc, mfc2;
 

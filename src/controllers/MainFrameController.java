@@ -8,6 +8,7 @@ import models.otros.Sonido;
 import views.AcercaDeNosotros;
 import views.Ajustes;
 import views.DocumentoPrincipal;
+import views.Examen;
 import views.MMDocumento;
 import views.MMResolver;
 import views.MainFrame;
@@ -24,9 +25,7 @@ public class MainFrameController implements MouseListener {
     private Ajustes ajustes;
     private DocumentoPrincipal documento;
     private AcercaDeNosotros info;
-
-    private MMResolver resolverMM;
-    private MMDocumento documentoMM;
+    private Examen examen;
 
     private String interno;
 
@@ -44,41 +43,33 @@ public class MainFrameController implements MouseListener {
         ajustes = new Ajustes();
         documento = new DocumentoPrincipal();
         info = new AcercaDeNosotros();
+        examen = new Examen();
 
+        examen.setVisible(false);
         iniciarSesion.setVisible(false);
         resolver.setVisible(true);
         ajustes.setVisible(false);
         documento.setVisible(false);
         info.setVisible(false);
 
+        examen.setLocation(35, 18);
         iniciarSesion.setLocation(35, 18);
         resolver.setLocation(35, 18);
         ajustes.setLocation(35, 18);;
         documento.setLocation(35, 18);;
         info.setLocation(35, 18);
 
+        mf.getjDesktopPane1().add(examen);
         mf.getjDesktopPane1().add(iniciarSesion);
         mf.getjDesktopPane1().add(resolver);
         mf.getjDesktopPane1().add(ajustes);
         mf.getjDesktopPane1().add(documento);
         mf.getjDesktopPane1().add(info);
-        //MM - Mostrar Menu
-        resolverMM = new MMResolver();
-        documentoMM = new MMDocumento();
 
-        resolverMM.setVisible(false);
-        documentoMM.setVisible(false);
-
-        resolverMM.setLocation(20, 18);
-        documentoMM.setLocation(20, 18);
-
-        mf.getjDesktopPane1().add(resolverMM);
-        mf.getjDesktopPane1().add(documentoMM);
         internoAnterior = resolver;
         interno = "Resolver";
 
     }
-
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -93,7 +84,7 @@ public class MainFrameController implements MouseListener {
                 mostrarMenu();
             }
 
-            System.out.println("INTERNO ANTERIOR: " + internoAnterior);
+            
             if (mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
                 System.out.println("PANEL DE 495 POR 440");
 
@@ -112,9 +103,9 @@ public class MainFrameController implements MouseListener {
                 if (interno.equals("Info")) {
                     info.redimensionar(true);
                 }
-//                if (interno.equals("Examen")) {
-//                    iniciarSesion.redimensionar();
-//                }
+                if (interno.equals("Examen")) {
+                    examen.redimensionar(true);
+                }
             } else if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
 
                 if (interno.equals("Iniciar Sesion")) {
@@ -132,6 +123,9 @@ public class MainFrameController implements MouseListener {
                 if (interno.equals("Info")) {
                     info.redimensionar(false);
                 }
+                if (interno.equals("Examen")) {
+                    examen.redimensionar(false);
+                }
             }
 
         }
@@ -139,8 +133,6 @@ public class MainFrameController implements MouseListener {
         if (o == mf.getLblIconoUsuario() || o == mf.getLblInicioSesion() || o == mf.getPnlInicioSesion()) {
             Sonido.entrada();
             ocultarMenu();
-            System.out.println("INTERNO ANTERIOR: " + internoAnterior);
-
             internoAnterior.setVisible(false);
             iniciarSesion.setVisible(true);
             if (clic % 2 == 0) {
@@ -162,8 +154,6 @@ public class MainFrameController implements MouseListener {
         if (o == mf.getPnlAjustes() || o == mf.getLblAjustes() || o == mf.getLblIconoAjustes()) {
             Sonido.entrada();
             ocultarMenu();
-            System.out.println("INTERNO ANTERIOR: " + internoAnterior);
-
             internoAnterior.setVisible(false);
             ajustes.setVisible(true);
             if (clic % 2 == 0) {
@@ -348,6 +338,5 @@ public class MainFrameController implements MouseListener {
             mf.getLblIconoExamen().setSize(35, 35);
         }
     }
-
 
 }

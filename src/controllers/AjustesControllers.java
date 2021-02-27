@@ -30,6 +30,7 @@ public class AjustesControllers implements MouseListener {
     private JPanel panelAnterior;
     public static String tema;
     private int x;
+    private MainFrame mf;
 
     public AjustesControllers(Ajustes ajustes) {
         this.ajustes = ajustes;

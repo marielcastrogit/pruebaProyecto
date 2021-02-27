@@ -212,12 +212,12 @@ public class MainFrameController implements MouseListener {
 
             internoAnterior = documento;
         }
-///////////////////////////////CLICK EN EL PANEL DE PRACTICA//////////////////////////////////
+///////////////////////////////CLICK EN EL PANEL DE INFORMACION//////////////////////////////////
         if (o == mf.getPnlInfo() || o == mf.getLblInfo() || o == mf.getLblIconoInfo()) {
             Sonido.entrada();
             ocultarMenu();
 
-            info.setVisible(false);
+            internoAnterior.setVisible(false);
             info.setVisible(true);
             if (clic % 2 == 0) {
                 clic++;
@@ -235,18 +235,28 @@ public class MainFrameController implements MouseListener {
             internoAnterior = info;
         }
 /////////////////////////////CLICK EN EL PANEL DE EXAMENES//////////////////////////////////
-//        if (o == mf.getPnlExamen() || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {
-//            Sonido.entrada();
-//            ocultarMenu();
-//            resolver.setVisible(true);
-//            if (clic % 2 == 0) {
-//                clic++;
-//            }
-//            if (clic % 2 != 0) {
-//                clic--;
-//            }
-//            interno = "Examen";
-//        }
+        if (o == mf.getPnlExamen() || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {
+            Sonido.entrada();
+            ocultarMenu();
+
+            internoAnterior.setVisible(false);
+            examen.setVisible(true);
+            
+            if (clic % 2 == 0) {
+                clic++;
+            }
+            if (clic % 2 != 0) {
+                clic--;
+            }
+            if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                examen.redimensionar(false);
+            } else {
+                examen.redimensionar(true);
+            }
+            interno = "Examen";
+
+            internoAnterior = examen;
+        }
 
     }
 

@@ -73,7 +73,7 @@ public class Examen extends javax.swing.JInternalFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEmpezarExamen;
+    public static javax.swing.JButton btnEmpezarExamen;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,20 +17,24 @@ import views.funcion.ExamenFrame;
  */
 public class ExamenPrincipalController implements ActionListener {
 
-    private Examen ex;
+    public static Examen ex;
+    private ExamenFrame ef;
 
     public ExamenPrincipalController(Examen ex) {
         this.ex = ex;
+        ef = new ExamenFrame();
+        ef.setLocation(35, 18);
+        ef.setVisible(false);
+        MainFrame.desktop.add(ef);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ExamenFrame ef = new ExamenFrame();
-        ef.setVisible(true);
-        ef.setLocation(35,18);
-        MainFrame.desktop.add(ef);
-        MainFrame.pnlMenu.setVisible(false);
-
+        if (e.getSource() == Examen.btnEmpezarExamen) {
+            ex.setVisible(false);
+            ef.setVisible(true);
+            MainFrame.pnlMenu.setVisible(false);
+        }
     }
 
 }

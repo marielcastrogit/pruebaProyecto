@@ -5,6 +5,7 @@
  */
 package controllers.examen;
 
+import controllers.ExamenPrincipalController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -32,7 +33,9 @@ public class ExamenController implements ActionListener {
             case "Terminar":
                 ef.Resultado();
                 ef.FinTiempo();
-                ef.dispose();
+//                ef.dispose();
+                ef.setVisible(false);
+                ExamenPrincipalController.ex.setVisible(true);
                 MainFrame.pnlMenu.setVisible(true);
                 break;
             case "Avanzar":

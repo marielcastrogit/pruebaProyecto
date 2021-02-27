@@ -1,7 +1,5 @@
 package views;
 
-import controllers.AjustesControllers;
-import static controllers.AjustesControllers.tema;
 import controllers.MainFrameController;
 import java.awt.Color;
 import java.awt.Image;
@@ -9,9 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import models.otros.PanelDegradado;
 import org.jdesktop.swingx.border.DropShadowBorder;
 

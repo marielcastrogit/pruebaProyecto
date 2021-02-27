@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import views.Examen;
 import views.MainFrame;
-import views.funcion.ExamenFrame;
+import views.funcion.Examen2Frame;
 
 /**
  *
@@ -18,11 +18,11 @@ import views.funcion.ExamenFrame;
 public class ExamenPrincipalController implements ActionListener {
 
     public static Examen ex;
-    private ExamenFrame ef;
+    private Examen2Frame ef;
 
     public ExamenPrincipalController(Examen ex) {
         this.ex = ex;
-        ef = new ExamenFrame();
+        ef = new Examen2Frame();
         ef.setLocation(35, 18);
         ef.setVisible(false);
         MainFrame.desktop.add(ef);
@@ -33,6 +33,8 @@ public class ExamenPrincipalController implements ActionListener {
         if (e.getSource() == Examen.btnEmpezarExamen) {
             ex.setVisible(false);
             ef.setVisible(true);
+            ef.InicioTiempo();
+            ef.iniciarCronometro();
             MainFrame.pnlMenu.setVisible(false);
         }
     }

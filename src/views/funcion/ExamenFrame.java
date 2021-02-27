@@ -9,6 +9,7 @@ package views.funcion;
 import controllers.examen.ExamenController;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import models.examen.Cronometro;
 import models.examen.DatosExamen;
 
@@ -26,6 +27,7 @@ public class ExamenFrame extends javax.swing.JInternalFrame {
         this.setSize(622,408);
         initComponents();
         setupController();
+          ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         String[] b = de.setSepRespuesta(pos);
         questionLabel.setText(de.getPregunta(0));
             buttonGroup1.clearSelection();

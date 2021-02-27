@@ -1,9 +1,9 @@
-
 package views.funcion;
 
 import controllers.examen.Examen2Controller;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import models.examen.Cronometro2;
 import models.examen.Datos2;
 
@@ -11,41 +11,43 @@ import models.examen.Datos2;
  *
  * @author Kenneth Granados
  */
-public class Examen2Frame extends javax.swing.JInternalFrame{
+public class Examen2Frame extends javax.swing.JInternalFrame {
 
     Examen2Controller e2c;
-    public static int hora=0,minutos=0,segundos=0;
-    public static boolean inicio=true;
-     boolean corriendo=false;
-      Datos2 de= new Datos2();
+    public static int hora = 0, minutos = 0, segundos = 0;
+    public static boolean inicio = true;
+    boolean corriendo = false;
+    Datos2 de = new Datos2();
 
     public Examen2Frame() {
+        this.setSize(622,408);
         initComponents();
         setupController();
+        ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         String[] b = de.setSepRespuesta(pos);
-           questionLabel.setText(de.getPregunta(0));
-            buttonGroup1.clearSelection();
-            resp1RadioButton.setText(b[0]);
-            resp2RadioButton.setText(b[1]);
-            resp3RadioButton.setText(b[2]);
-            resp4RadioButton.setText(b[3]);
-            resp1RadioButton.requestFocus();
+        questionLabel.setText(de.getPregunta(0));
+        buttonGroup1.clearSelection();
+        resp1RadioButton.setText(b[0]);
+        resp2RadioButton.setText(b[1]);
+        resp3RadioButton.setText(b[2]);
+        resp4RadioButton.setText(b[3]);
+        resp1RadioButton.requestFocus();
     }
-  
-    public final void setupController(){
+
+    public final void setupController() {
 
         e2c = new Examen2Controller(this);
         regresarButton.addActionListener(e2c);
         avanzarButton.addActionListener(e2c);
         terminarButton.addActionListener(e2c);
     }
-    int pos=0;
-   
-    Object [] select ={"","","","","" };
-    
-    public void AvanceData(){
-        
-        if (pos <5 ) {
+    int pos = 0;
+
+    Object[] select = {"", "", "", "", ""};
+
+    public void AvanceData() {
+
+        if (pos < 5) {
             pos++;
             questionLabel.setText(de.getPregunta(pos));
             String[] b = de.setSepRespuesta(pos);
@@ -59,17 +61,17 @@ public class Examen2Frame extends javax.swing.JInternalFrame{
             Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(null, "Ya no hay mas preguntas");
         }
- 
-    }
-    
-    public void RegresarData(){
 
-        if (pos >0) {
-             pos--;
+    }
+
+    public void RegresarData() {
+
+        if (pos > 0) {
+            pos--;
         } else {
-          
+
         }
-        
+
         if (pos > -1) {
 
             questionLabel.setText(de.getPregunta(pos));
@@ -81,47 +83,48 @@ public class Examen2Frame extends javax.swing.JInternalFrame{
             resp4RadioButton.setText(b[3]);
             resp1RadioButton.requestFocus();
         } else {
-             Toolkit.getDefaultToolkit().beep();
-             JOptionPane.showMessageDialog(null, "No se puede regresar");
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(null, "No se puede regresar");
         }
     }
-    
+
     public void Resultado() {
-        
-        int calif=0;
+
+        int calif = 0;
         for (int i = 0; i < 5; i++) {
             if (select[i].equals(de.getRespuesta(i))) {
-                calif= calif + 1;
+                calif = calif + 1;
             }
         }
-        calif= calif * 2;
-        JOptionPane.showMessageDialog(null, "La calificacion es: "+calif);
+        calif = calif * 2;
+        JOptionPane.showMessageDialog(null, "La calificacion es: " + calif);
     }
-    
-    public void InicioTiempo(){
-        if (corriendo==false) {
-            inicio=true;
-            corriendo=false;
+
+    public void InicioTiempo() {
+        if (corriendo == false) {
+            inicio = true;
+            corriendo = false;
             iniciarCronometro();
         }
     }
-    
-     public void FinTiempo(){
-            inicio=false;
-            corriendo=false;
-             hora=0;
-            minutos=0;
-           segundos=0;
-           
+
+    public void FinTiempo() {
+        inicio = false;
+        corriendo = false;
+        hora = 0;
+        minutos = 0;
+        segundos = 0;
+
     }
-  
-     public void iniciarCronometro() {
-         if (inicio==true) {
-             Cronometro2 c2 = new Cronometro2(cronometroLabel);
-             c2.start();
-         }
-     
-     }
+
+    public void iniciarCronometro() {
+        if (inicio == true) {
+            Cronometro2 c2 = new Cronometro2(cronometroLabel);
+            c2.start();
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -143,22 +146,28 @@ public class Examen2Frame extends javax.swing.JInternalFrame{
         resp4RadioButton = new javax.swing.JRadioButton();
         cronometroLabel = new javax.swing.JLabel();
 
-        setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
+        setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
         setTitle("Examen de ecuaciones");
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Pregunta");
 
-        questionLabel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        questionLabel.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        questionLabel.setForeground(new java.awt.Color(255, 255, 255));
         questionLabel.setText("Pregunta?");
 
+        regresarButton.setBackground(new java.awt.Color(0, 0, 0));
+        regresarButton.setForeground(new java.awt.Color(255, 255, 255));
         regresarButton.setText("<<Regresar");
         regresarButton.setActionCommand("Regresar");
 
+        terminarButton.setBackground(new java.awt.Color(0, 0, 0));
+        terminarButton.setForeground(new java.awt.Color(255, 255, 255));
         terminarButton.setText("Terminar");
 
+        avanzarButton.setBackground(new java.awt.Color(0, 0, 0));
+        avanzarButton.setForeground(new java.awt.Color(255, 255, 255));
         avanzarButton.setText("Avanzar>>");
         avanzarButton.setToolTipText("");
         avanzarButton.setActionCommand("Avanzar");
@@ -191,7 +200,7 @@ public class Examen2Frame extends javax.swing.JInternalFrame{
             }
         });
 
-        cronometroLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        cronometroLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         cronometroLabel.setText("00:00:00");
         cronometroLabel.setToolTipText("");
 
@@ -199,6 +208,14 @@ public class Examen2Frame extends javax.swing.JInternalFrame{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(regresarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(terminarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(avanzarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,20 +227,13 @@ public class Examen2Frame extends javax.swing.JInternalFrame{
                             .addComponent(resp1RadioButton))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(questionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cronometroLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(regresarButton)
-                .addGap(35, 35, 35)
-                .addComponent(terminarButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(avanzarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(170, 170, 170))
+                        .addGap(37, 37, 37))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(questionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,9 +242,9 @@ public class Examen2Frame extends javax.swing.JInternalFrame{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cronometroLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(questionLabel)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(resp1RadioButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(resp2RadioButton)
@@ -242,12 +252,12 @@ public class Examen2Frame extends javax.swing.JInternalFrame{
                 .addComponent(resp3RadioButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(resp4RadioButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(avanzarButton)
-                    .addComponent(regresarButton)
-                    .addComponent(terminarButton))
-                .addContainerGap())
+                    .addComponent(terminarButton)
+                    .addComponent(regresarButton))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -277,10 +287,10 @@ public class Examen2Frame extends javax.swing.JInternalFrame{
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel questionLabel;
     private javax.swing.JButton regresarButton;
-    private javax.swing.JRadioButton resp1RadioButton;
-    private javax.swing.JRadioButton resp2RadioButton;
-    private javax.swing.JRadioButton resp3RadioButton;
-    private javax.swing.JRadioButton resp4RadioButton;
+    public static javax.swing.JRadioButton resp1RadioButton;
+    public static javax.swing.JRadioButton resp2RadioButton;
+    public static javax.swing.JRadioButton resp3RadioButton;
+    public static javax.swing.JRadioButton resp4RadioButton;
     private javax.swing.JButton terminarButton;
     // End of variables declaration//GEN-END:variables
 }

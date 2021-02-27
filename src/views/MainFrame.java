@@ -1,9 +1,13 @@
 package views;
 
+import com.jtattoo.plaf.noire.NoireLookAndFeel;
+import controllers.AjustesControllers;
 import controllers.MainFrameController;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,9 +23,31 @@ public class MainFrame extends javax.swing.JFrame {
 
     public MainFrame() {
         initComponents();
-        iniciar();
         Image icono = Toolkit.getDefaultToolkit().getImage("icons8-maxcdn-96.png");
         setIconImage(icono);
+        iniciar();
+        setSombraPanel();
+        setSombraMenu();
+        setPanelsDegradados();
+
+        Ajustes.pnlMostrarTemas.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (AjustesControllers.sTema1.isVisible()) {
+                    System.out.println("S1");
+                }
+
+                if (AjustesControllers.sTema2.isVisible()) {
+                    System.out.println("S2");
+                }
+
+                if (AjustesControllers.sTema3.isVisible()) {
+                    System.out.println("S3");
+                }
+            }
+            
+           
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -420,45 +446,20 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public static void main(String args[]) {
-//        try {
-//            UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
-//        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-//        }
-//        try {
-//            UIManager.setLookAndFeel(new AluminiumLookAndFeel());
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-
-//        try {
-//            UIManager.setLookAndFeel(new AeroLookAndFeel());
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        try {
-//            UIManager.setLookAndFeel(new AcrylLookAndFeel());
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        try {
-//            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarculaLaf");
-//        } catch (IllegalAccessException | javax.swing.UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException ex) {
-//
-//        }
         try {
-
-            UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
-
-        } catch (IllegalAccessException | javax.swing.UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException ex) {
-
+            UIManager.setLookAndFeel(new NoireLookAndFeel());
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
         }
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MainFrame n = new MainFrame();
-                n.setVisible(true);
+                MainFrame mf = new MainFrame();
+                mf.setVisible(true);
+
             }
         });
     }
+    public static boolean s = false;
 
     private void setControllers() {
         mfc = new MainFrameController(this);
@@ -488,7 +489,10 @@ public class MainFrame extends javax.swing.JFrame {
         lblExamen.addMouseListener(mfc);
         lblIconoExamen.addMouseListener(mfc);
         desktop.addMouseListener(mfc);
+
     }
+
+    private MainFrameController mfc;
 
     public JLabel getLblAjustes() {
         return lblIconoAjustes;
@@ -597,9 +601,6 @@ public class MainFrame extends javax.swing.JFrame {
     public JDesktopPane getjDesktopPane1() {
         return desktop;
     }
-
-
-    private MainFrameController mfc, mfc2;
 
     private PanelDegradado p1;
     private PanelDegradado p2;

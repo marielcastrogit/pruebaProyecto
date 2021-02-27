@@ -230,7 +230,7 @@ public class RegistroUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblRetroceder;
     private javax.swing.JPanel retornarInicioSesion;
     private javax.swing.JPasswordField txtContraseña;
-    private javax.swing.JTextField txtEmail;
+    public static javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtVerificarContraseña;
     // End of variables declaration//GEN-END:variables
 }

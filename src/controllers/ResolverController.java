@@ -253,6 +253,9 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
     @Override
     public void keyTyped(KeyEvent e) {
         Sonido.teclado();
+        if(e.getKeyChar() == ' ' ){
+            e.consume();
+        }
     }
 
     @Override
@@ -281,6 +284,10 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
                     resolverDesigualdadLineal(escribirProblema.getTxtEscribirProblema().getText());
                 } catch (Exception ex) {
                 }
+
+                if (mostrarResultado.getLblMostrarResultado().getText().isEmpty()) {
+                    mostrarResultado.getLblMostrarResultado().setText("Solucion no encontrada");
+                }
             }
 
             //Si estamos trabajando con desigualdades cuadraticas: 
@@ -288,6 +295,10 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
                 try {
                     resolverDesigualdadCuadratica(escribirProblema.getTxtEscribirProblema().getText());
                 } catch (Exception ex) {
+                }
+
+                if (mostrarResultado.getLblMostrarResultado().getText().isEmpty()) {
+                    mostrarResultado.getLblMostrarResultado().setText("Solucion no encontrada");
                 }
             }
         }

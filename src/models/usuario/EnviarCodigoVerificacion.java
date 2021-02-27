@@ -11,6 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+
 /**
  *
  * @author Mariel
@@ -19,17 +20,19 @@ public class EnviarCodigoVerificacion {
 
     private int codigoAleatorio;
     private String codigo;
+    private final String code;
     private ArrayList codigos;
     private Pattern patronCodigo;
     private String mekAppCorreo;
     private String mekAppContraseña;
-//    private final String codigoFijo;
+//    private final String codigoFijo, codF;
 
     public EnviarCodigoVerificacion() {
         codigoAleatorio = 0;
         codigos = new ArrayList();
         codigos.add("M");//M de MekApp
-        codigo = "";
+        code = getCode().replace("null", "");
+        System.out.println("code: " + code);
         /*
         M el codigo debe contener una M al inicio 
         \d seguido de digitos entre 0-9
@@ -38,29 +41,39 @@ public class EnviarCodigoVerificacion {
         patronCodigo = Pattern.compile("M\\d{6}");
         mekAppCorreo = "";
         mekAppContraseña = "";
-        setCodigoAleatorio();
-//        codigoFijo = getCodigo();
-//        System.out.println("Codigo fijo: " + codigoFijo);
     }
+//
+//    public void setCodigoAleatorio() {
+//        for (int i = 0; i < 6; i++) {// un codigo de 6 digitos
+//            codigoAleatorio = (int) (Math.random() * 10);        //numero entre 0 y 9;
+//            codigos.add(codigoAleatorio);
+//        }
+//    }
 
-    public void setCodigoAleatorio() {
+//    public String getCodigo() {
+//        setCodigoAleatorio();
+//        for (int i = 0; i < codigos.size(); i++) {
+//            codigo += codigos.get(i).toString();
+//        }
+//        System.out.println("CODIGO getcodigo: " + codigo);
+//        return codigo;
+//    }
+    private String getCode() {
         for (int i = 0; i < 6; i++) {// un codigo de 6 digitos
             codigoAleatorio = (int) (Math.random() * 10);        //numero entre 0 y 9;
             codigos.add(codigoAleatorio);
+            codigo += codigos.get(i);
         }
-    }
-
-    public String getCodigo() {
-        for (int i = 0; i < codigos.size(); i++) {
-            codigo += codigos.get(i).toString();
-        }
+        System.out.println("codigo: " + codigo);
         return codigo;
     }
 
     public void enviarCodigo(String correoUsuario) {
+
+//        codigo = getCodigo();
         mekAppCorreo = "mekapp41@gmail.com";
         mekAppContraseña = "proyecto123";
-
+//System.out.println("CODIGO enviar codigo: " + codigo);
         Properties configPropiedades = new Properties();
         configPropiedades.put("mail.smtp.host", "smtp.gmail.com");
         configPropiedades.put("mail.smtp.starttls.enable", "true");
@@ -80,8 +93,8 @@ public class EnviarCodigoVerificacion {
 
             mensaje.addRecipient(Message.RecipientType.TO, usuario);
 
-            mensaje.setSubject(codigo);
-
+            mensaje.setSubject(code);
+//System.out.println("CODIGO mensaje: " + codigo);
             MimeBodyPart cuerpoDelMensaje = new MimeBodyPart();
             cuerpoDelMensaje.setText("Gracias por usar MekApp");
 
@@ -98,10 +111,12 @@ public class EnviarCodigoVerificacion {
         } catch (Exception ex) {
             System.out.println("error enviar Email");
         }
+
     }
 
     public boolean esCodigoCorrecto(String codigo) {
-        if (patronCodigo.matcher(codigo).matches() && codigo.equals(codigo)) {
+        System.out.println("codigo: " + codigo + "code: " + code);
+        if (patronCodigo.matcher(codigo).matches() || codigo.equals(this.code)) {
             return true;
         } else {
             return false;

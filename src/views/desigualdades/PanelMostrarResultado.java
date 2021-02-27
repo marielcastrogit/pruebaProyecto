@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 public class PanelMostrarResultado extends javax.swing.JPanel {
 
     public PanelMostrarResultado() {
+        
         initComponents();
         pnlRetroceder.setBackground(new Color(0,0,0,100));
     }
@@ -66,7 +67,7 @@ public class PanelMostrarResultado extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(80, 34, 0, 90);
+        jPanel1.setBounds(80, 34, 258, 90);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
@@ -105,7 +106,7 @@ public class PanelMostrarResultado extends javax.swing.JPanel {
         );
 
         add(jPanel2);
-        jPanel2.setBounds(80, 140, 0, 80);
+        jPanel2.setBounds(80, 140, 257, 80);
 
         btnGrafica.setBackground(new java.awt.Color(0, 0, 0));
         btnGrafica.setForeground(new java.awt.Color(255, 255, 255));

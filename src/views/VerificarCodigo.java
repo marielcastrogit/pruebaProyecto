@@ -156,7 +156,7 @@ public class VerificarCodigo extends javax.swing.JInternalFrame {
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
         getContentPane().add(lblFondo);
-        lblFondo.setBounds(220, 0, 410, 400);
+        lblFondo.setBounds(220, 0, 410, 390);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

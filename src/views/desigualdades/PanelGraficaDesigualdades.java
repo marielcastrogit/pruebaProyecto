@@ -12,7 +12,7 @@ public class PanelGraficaDesigualdades extends javax.swing.JPanel {
     public PanelGraficaDesigualdades() {
         initComponents();
          pnlRetroceder.setBackground(new Color(0,0,0, 100));
-    }
+    } 
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

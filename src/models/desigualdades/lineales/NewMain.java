@@ -14,7 +14,7 @@ public class NewMain {
         100≥20x+15
          */
         System.out.println("DESIGUALDADES LINEALES SIMPLES");
-        String dat = "-x+x<1";
+        String dat = "x-9>-5x+10";
         DesigualdadesLinealesSimples dls = new DesigualdadesLinealesSimples(dat);
         dls.getParte1();
         dls.getSigno();
@@ -35,8 +35,9 @@ public class NewMain {
         //x^2-5x+4<32-x^2
         //x^2-3+41-x^2+7x-3x<-8x
         //x^2-x^2+7x-4<0
-        String desigualdadCuadratica = "x^2-x^2+7x-4<0";
+        String desigualdadCuadratica = "x^2-3+41-x^2+7x-3x<-8x";
         DesigualdadesCuadraticasSimples dcs = new DesigualdadesCuadraticasSimples(desigualdadCuadratica);
+        
         System.out.println(dcs.resolver());
 
 //        EvalUtilities evaluador = new EvalUtilities(false, false);

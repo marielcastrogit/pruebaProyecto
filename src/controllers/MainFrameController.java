@@ -15,7 +15,7 @@ import views.Resolver;
 
 public class MainFrameController implements MouseListener {
 
-    protected static MainFrame mf;
+    public static MainFrame mf;
     private int clic;
     private JInternalFrame internoAnterior;
     public static InicioSesion iniciarSesion;

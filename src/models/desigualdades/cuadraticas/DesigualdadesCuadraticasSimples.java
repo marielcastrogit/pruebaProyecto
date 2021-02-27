@@ -117,7 +117,10 @@ public class DesigualdadesCuadraticasSimples {
                         break f1;
                     }
                 }
-            }
+                    
+                    }
+            
+            System.out.println(terminoA);
             if (terminoA.equals("")) {
                 terminoA = "+1";
             }
@@ -125,12 +128,14 @@ public class DesigualdadesCuadraticasSimples {
             if (terminoA.equals("-")) {
                 terminoA = "-1";
             }
+            
         }
         return terminoA;
 
     }
 
     private boolean esLineal() {
+        getA();
         if (terminoA.equals("0") | terminoA.equals("")) {
             return true;
         } else {
@@ -139,8 +144,8 @@ public class DesigualdadesCuadraticasSimples {
     }
 
     public void setABC() {
-        String desigualdadC = getA() + c1;
         if (!esLineal()) {
+            String desigualdadC = terminoA + c1;
             if (terminoA.startsWith("-")) {
                 char[] toCharArray = desigualdadC.toCharArray();
                 for (int i = 0; i < desigualdadC.length(); i++) {

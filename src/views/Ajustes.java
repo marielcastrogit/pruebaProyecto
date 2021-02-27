@@ -6,6 +6,7 @@ import models.otros.PanelDegradado;
 import org.jdesktop.swingx.border.DropShadowBorder;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -55,6 +56,10 @@ public class Ajustes extends javax.swing.JInternalFrame {
         lc.setLineColor(new java.awt.Color(20, 194, 115));
         lc.setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-no-image-64.png")));
         pnlUsuario.add(lc);
+    }
+
+    public static JButton getBtnAplicarTema() {
+        return btnAplicarTema;
     }
 
     public void redimensionar(boolean redimensionar) {

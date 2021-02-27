@@ -7,7 +7,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import models.otros.Sonido;
 import models.usuario.EnviarCodigoVerificacion;
+import models.usuario.HiloEnvioMensaje;
 import views.MainFrame;
+import views.RegistroUsuario;
 import views.VerificarCodigo;
 
 public class VerificarCodigoController implements KeyListener, MouseListener {
@@ -43,8 +45,9 @@ public class VerificarCodigoController implements KeyListener, MouseListener {
         }
         
         if (e.getSource() == verificarCodigo.getBtnAcceder()) {
-            EnviarCodigoVerificacion codigoVerificar = new EnviarCodigoVerificacion();
-            boolean codCorrecto = codigoVerificar.esCodigoCorrecto(verificarCodigo.getTxtCodigo().getText());
+//            EnviarCodigoVerificacion codigoVerificar = new EnviarCodigoVerificacion();
+//            codigoVerificar.enviarCodigo(RegistroUsuario.txtEmail.getText());
+            boolean codCorrecto = HiloEnvioMensaje.codigo.esCodigoCorrecto((verificarCodigo.getTxtCodigo().getText()));
 
             if (codCorrecto) {
                 MainFrameController.iniciarSesion.setVisible(true);

@@ -72,12 +72,6 @@ public class ValidarContraseña {
         La longitud de la contraseña esta en una longitud de 0 a 16
         No empieza ni termina con un espacio
          */
-        System.out.println("Mayusculas: " + (numMayusculas > 0));
-        System.out.println("Minusculas: " + (numMinusculas > 0));
-        System.out.println("Tamaño de la contraseña: " + longitudContraseña);
-        System.out.println("Contiene espacios:" + !(contieneEspacios));
-        System.out.println("Contiene CaracteresEspeciales: " + (caracterEspecial > 0));
-        System.out.println();
         if (contraseña.length() == 0) {
             return false;
         } else if ((numMayusculas > 0) && (numMinusculas > 0) && (longitudContraseña) && !(contieneEspacios) && (caracterEspecial > 0)) {

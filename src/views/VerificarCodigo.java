@@ -4,11 +4,9 @@ import controllers.VerificarCodigoController;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-import org.jdesktop.swingx.border.DropShadowBorder;
+
 /**
  *
  * @author Mariel
@@ -18,21 +16,12 @@ public class VerificarCodigo extends javax.swing.JInternalFrame {
     public VerificarCodigo() {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-        setBordeClickAqui();
         setControllers();
         lblIconoCodigoIncorrecto.setVisible(false);
         lblCodigoIncorrecto.setVisible(false);
         retornarRegistroUsuario.setBackground(new Color(255, 255, 255, 80));
     }
 
-    private void setBordeClickAqui() {
-        Border border = pnlReenviarCodigo.getBorder();
-        ((DropShadowBorder) border).setShowBottomShadow(true);
-        ((DropShadowBorder) border).setShowLeftShadow(false);
-        ((DropShadowBorder) border).setShowRightShadow(false);
-        ((DropShadowBorder) border).setShowTopShadow(false);
-        ((DropShadowBorder) border).setShadowColor(Color.WHITE);
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -46,9 +35,6 @@ public class VerificarCodigo extends javax.swing.JInternalFrame {
         lblIconoCodigoIncorrecto = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnAcceder = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        pnlReenviarCodigo = new javax.swing.JPanel();
-        lblReenviarCodigo = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtCodigo = new javax.swing.JTextField();
@@ -96,32 +82,13 @@ public class VerificarCodigo extends javax.swing.JInternalFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Hemos enviado un código de verificacion a tu correo ");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(260, 40, 310, 20);
+        jLabel4.setBounds(270, 90, 310, 20);
 
         btnAcceder.setBackground(new java.awt.Color(0, 0, 0));
         btnAcceder.setForeground(new java.awt.Color(255, 255, 255));
         btnAcceder.setText("Acceder");
         getContentPane().add(btnAcceder);
         btnAcceder.setBounds(380, 270, 100, 30);
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("No recibiste el correo de verificacion?");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(260, 76, 230, 20);
-
-        pnlReenviarCodigo.setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
-        pnlReenviarCodigo.setOpaque(false);
-        pnlReenviarCodigo.setLayout(null);
-
-        lblReenviarCodigo.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        lblReenviarCodigo.setForeground(new java.awt.Color(255, 255, 255));
-        lblReenviarCodigo.setText("Reenviar código");
-        pnlReenviarCodigo.add(lblReenviarCodigo);
-        lblReenviarCodigo.setBounds(10, 5, 100, 20);
-
-        getContentPane().add(pnlReenviarCodigo);
-        pnlReenviarCodigo.setBounds(490, 70, 120, 30);
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -169,14 +136,6 @@ public class VerificarCodigo extends javax.swing.JInternalFrame {
         return btnAcceder;
     }
 
-    public JLabel getLblReenviarCodigo() {
-        return lblReenviarCodigo;
-    }
-
-    public JPanel getPnlReenviarCodigo() {
-        return pnlReenviarCodigo;
-    }
-
     private void setControllers() {
         vcc = new VerificarCodigoController(this);
         txtCodigo.addKeyListener(vcc);
@@ -193,16 +152,13 @@ public class VerificarCodigo extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAcceder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JLabel lblCodigoIncorrecto;
     private javax.swing.JLabel lblFondo;
     public static javax.swing.JLabel lblIconoCodigoIncorrecto;
-    private javax.swing.JLabel lblReenviarCodigo;
     private javax.swing.JLabel lblRetroceder;
-    private javax.swing.JPanel pnlReenviarCodigo;
     private javax.swing.JPanel retornarRegistroUsuario;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables

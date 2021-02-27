@@ -88,7 +88,7 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
                     String emailG = VerificarCodigoController.usuarios.get(i).getCorreo();
                     String contraseñaG = VerificarCodigoController.usuarios.get(i).getContraseña();
 
-                    if (email.equals(emailG) && contraseña.equals(contraseña)) {
+                    if (email.equals(emailG) && contraseña.equals(contraseñaG)) {
                         usuarioActivo = true;
                         break f1;
                     }
@@ -103,6 +103,7 @@ public class InicioSesionController implements KeyListener, ActionListener, Mous
                 }
                 MainFrame.desktop.setBackground(new Color(0, 0, 0));
                 mf.getPnlMenu().setSize(49, 502);
+                mf.getPnlMenu().setVisible(true);
                 mf.getjDesktopPane1().setBounds(65, 103, 690, 440);
                 MainFrame.lblIconoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/cerrarSesion.png")));
                 MainFrame.lblInicioSesion.setText("Cerrar sesion");

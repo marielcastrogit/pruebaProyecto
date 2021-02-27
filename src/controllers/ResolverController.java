@@ -18,7 +18,6 @@ import views.ecuacion.EcuacionesCuadraticas;
 import views.ecuacion.EcuacionesLineales;
 import views.MainFrame;
 import views.desigualdades.PanelEscribir;
-import views.desigualdades.PanelGraficaDesigualdades;
 import views.desigualdades.PanelMostrarResultado;
 import views.Resolver;
 import static views.Resolver.pnlCard;
@@ -30,7 +29,6 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
     //Desigualdades: 
     private PanelEscribir escribirProblema;
     private PanelMostrarResultado mostrarResultado;
-    private PanelGraficaDesigualdades mostrarGraficaDesigualdades;
     private JInternalFrame internoAnterior;
     private String internoAnterior1;
     //Ecuaciones: 
@@ -46,11 +44,9 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
         //Desigualdades: 
         escribirProblema = new PanelEscribir();
         mostrarResultado = new PanelMostrarResultado();
-        mostrarGraficaDesigualdades = new PanelGraficaDesigualdades();
         agregarPaneles();
         setControllersPanelEscribir();
         setControllersPanelResultado();
-        setControllersPanelGrafica();
         internoAnterior = new JInternalFrame();
         internoAnterior1 = "";
 
@@ -83,7 +79,6 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
     private void agregarPaneles() {
         Resolver.pnlCard.add(escribirProblema);
         Resolver.pnlCard.add(mostrarResultado);
-        Resolver.pnlCard.add(mostrarGraficaDesigualdades);
     }
 
     private void setControllersPanelEscribir() {//lugar en el cual se escribe el problema
@@ -93,12 +88,7 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
     }
 
     private void setControllersPanelResultado() {//se resuelve el problema y se muestra
-        mostrarResultado.getBtnGrafica().addMouseListener(this);
         mostrarResultado.getLblRetroceder().addMouseListener(this);
-    }
-
-    private void setControllersPanelGrafica() {
-        mostrarGraficaDesigualdades.getLblRetroceder().addMouseListener(this);
     }
 
     private void controlEcuaciones() {
@@ -108,7 +98,7 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
 
     private void limpiarDesigualdades() {
         escribirProblema.getTxtEscribirProblema().setText("");
-        mostrarResultado.getLblMostrarIntervalo().setText("");
+
         mostrarResultado.getLblMostrarResultado().setText("");
     }
 
@@ -253,7 +243,7 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
     @Override
     public void keyTyped(KeyEvent e) {
         Sonido.teclado();
-        if(e.getKeyChar() == ' ' ){
+        if (e.getKeyChar() == ' ') {
             e.consume();
         }
     }
@@ -305,12 +295,6 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
         //////////////////////////////////////////////////////////////////////////////////////////
 
         //Boton que me lleva a ver la grafica:
-        if (e.getSource() == mostrarResultado.getBtnGrafica()) {
-            mostrarResultado.setVisible(false);
-            mostrarGraficaDesigualdades.setVisible(true);
-            r.getListaTemas().setEnabled(false);
-        }
-
         //Flecha de retroceso en el panel que muestra el resultado que me lleva a escribir el problema
         if (e.getSource() == mostrarResultado.getLblRetroceder()) {
 
@@ -320,11 +304,6 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
         }
 
         //Flecha de retroceso en el panel de las graficas que me lleva a ver el resultado
-        if (e.getSource() == mostrarGraficaDesigualdades.getLblRetroceder()) {
-            mostrarGraficaDesigualdades.setVisible(false);
-            mostrarResultado.setVisible(true);
-        }
-
         //////////////////////////////////////////////////////////////////////////
         //Ecuaciones
         if (e.getSource() == EcuacionesCuadraticas.lblRetroceder) {

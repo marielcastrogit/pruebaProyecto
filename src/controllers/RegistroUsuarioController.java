@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import models.otros.Sonido;
 import models.usuario.HiloEnvioMensaje;
 import models.usuario.Usuario;
@@ -24,7 +25,7 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
     public static RegistroUsuario registrarUsuario;
     private VerificarCodigo verificarCodigo;
     private ValidarEmail validacionCorreo;
-    public static String correoUsuario, usuarioContraseña ;
+    public static String correoUsuario, usuarioContraseña;
     private ArrayList<Usuario> usuarios;
     private int c;
 
@@ -51,19 +52,23 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
         }
 
         if (e.getSource() == registrarUsuario.getBtnRegistrarse()) {
-            System.out.println();
 
             correoUsuario = registrarUsuario.getTxtEmail().getText();
             char contraseñaUsuario[] = registrarUsuario.getTxtContraseña().getPassword();
             char contraseñaComprobar[] = registrarUsuario.getTxtVerificarContraseña().getPassword();
 
-             usuarioContraseña = new String(contraseñaUsuario);
+            usuarioContraseña = new String(contraseñaUsuario);
             String comprobarContraseña = new String(contraseñaComprobar);
 
-            System.out.println("usuarioContraseña: " + usuarioContraseña);
-            System.out.println("comprobarContraseña: " + comprobarContraseña);
-
-            System.out.println();
+            if (controllers.VerificarCodigoController.usuarios != null) {
+                if (VerificarCodigoController.usuarios.size() > 0) {
+                    for (int i = 0; i < VerificarCodigoController.usuarios.size(); i++) {
+                        if (VerificarCodigoController.usuarios.get(i).getCorreo().equals(correoUsuario)) {
+                            JOptionPane.showMessageDialog(null, "Este correo ya existe");
+                        }
+                    }
+                }
+            }
 
             if (registroValido(correoUsuario, usuarioContraseña, comprobarContraseña)) {
                 RegistroUsuario.lblInicioIncorrecto.setVisible(false);

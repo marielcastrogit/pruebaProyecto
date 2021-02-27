@@ -27,10 +27,6 @@ public class PanelMostrarResultado extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         lblMostrarResultado = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        lblMostrarIntervalo = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        btnGrafica = new javax.swing.JButton();
         pnlRetroceder = new javax.swing.JPanel();
         lblRetroceder = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -67,52 +63,7 @@ public class PanelMostrarResultado extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-        jPanel1.setBounds(80, 34, 258, 90);
-
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel2.setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
-
-        lblMostrarIntervalo.setBackground(new java.awt.Color(255, 255, 255));
-        lblMostrarIntervalo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        lblMostrarIntervalo.setForeground(new java.awt.Color(0, 0, 0));
-        lblMostrarIntervalo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMostrarIntervalo.setOpaque(true);
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Intervalo solucion: ");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(lblMostrarIntervalo, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblMostrarIntervalo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        add(jPanel2);
-        jPanel2.setBounds(80, 140, 257, 80);
-
-        btnGrafica.setBackground(new java.awt.Color(0, 0, 0));
-        btnGrafica.setForeground(new java.awt.Color(255, 255, 255));
-        btnGrafica.setText("Grafica");
-        add(btnGrafica);
-        btnGrafica.setBounds(350, 170, 60, 30);
+        jPanel1.setBounds(80, 70, 258, 90);
 
         pnlRetroceder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -143,29 +94,18 @@ public class PanelMostrarResultado extends javax.swing.JPanel {
         jLabel4.setBounds(0, 0, 430, 230);
     }// </editor-fold>//GEN-END:initComponents
 
-    public JButton getBtnGrafica() {
-        return btnGrafica;
-    }
-
     public JLabel getLblRetroceder() {
         return lblRetroceder;
     }
 
-    public JLabel getLblMostrarIntervalo() {
-        return lblMostrarIntervalo;
-    }
 
     public JLabel getLblMostrarResultado() {
         return lblMostrarResultado;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGrafica;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblMostrarIntervalo;
     private javax.swing.JLabel lblMostrarResultado;
     private javax.swing.JLabel lblRetroceder;
     private javax.swing.JPanel pnlRetroceder;

@@ -1,5 +1,6 @@
 package controllers;
 
+import static controllers.MainFrameController.mf;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -45,13 +46,18 @@ public class VerificarCodigoController implements KeyListener, MouseListener {
             RegistroUsuarioController.registrarUsuario.setVisible(true);
             MainFrame.pnlMenu.setVisible(false);
         }
-        
+
         if (e.getSource() == verificarCodigo.getBtnAcceder()) {
             boolean codCorrecto = HiloEnvioMensaje.codigo.esCodigoCorrecto((verificarCodigo.getTxtCodigo().getText()));
 
             if (codCorrecto) {
                 usuarios.add(new Usuario(RegistroUsuarioController.correoUsuario, RegistroUsuarioController.usuarioContraseña));
-                MainFrameController.iniciarSesion.setVisible(true);  
+                verificarCodigo.setVisible(false);
+                MainFrameController.iniciarSesion.setVisible(true);
+                mf.getPnlMenu().setVisible(true);
+                mf.getPnlMenu().setSize(49, 502);
+                mf.getjDesktopPane1().setBounds(65, 103, 690, 440);
+
             } else {
                 VerificarCodigo.lblCodigoIncorrecto.setVisible(true);
                 VerificarCodigo.lblIconoCodigoIncorrecto.setVisible(true);

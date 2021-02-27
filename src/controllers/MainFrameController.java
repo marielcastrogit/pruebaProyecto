@@ -5,8 +5,9 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import models.otros.Sonido;
+import views.AcercaDeNosotros;
 import views.Ajustes;
-import views.Documento;
+import views.DocumentoPrincipal;
 import views.MMDocumento;
 import views.MMResolver;
 import views.MainFrame;
@@ -21,7 +22,8 @@ public class MainFrameController implements MouseListener {
     public static InicioSesion iniciarSesion;
     private Resolver resolver;
     private Ajustes ajustes;
-    private Documento documento;
+    private DocumentoPrincipal documento;
+    private AcercaDeNosotros info;
 
     private MMResolver resolverMM;
     private MMDocumento documentoMM;
@@ -40,23 +42,26 @@ public class MainFrameController implements MouseListener {
         iniciarSesion = new InicioSesion();
         resolver = new Resolver();
         ajustes = new Ajustes();
-        documento = new Documento();
+        documento = new DocumentoPrincipal();
+        info = new AcercaDeNosotros();
 
         iniciarSesion.setVisible(false);
         resolver.setVisible(true);
         ajustes.setVisible(false);
         documento.setVisible(false);
+        info.setVisible(false);
 
         iniciarSesion.setLocation(35, 18);
         resolver.setLocation(35, 18);
         ajustes.setLocation(35, 18);;
         documento.setLocation(35, 18);;
+        info.setLocation(35, 18);
 
         mf.getjDesktopPane1().add(iniciarSesion);
         mf.getjDesktopPane1().add(resolver);
         mf.getjDesktopPane1().add(ajustes);
         mf.getjDesktopPane1().add(documento);
-
+        mf.getjDesktopPane1().add(info);
         //MM - Mostrar Menu
         resolverMM = new MMResolver();
         documentoMM = new MMDocumento();
@@ -100,17 +105,16 @@ public class MainFrameController implements MouseListener {
                 if (interno.equals("Resolver")) {
                     resolver.redimensionar(true);
                 }
-//                if (interno.equals("Documentos")) {
-//                    iniciarSesion.redimensionar();
-//                }
-//                if (interno.equals("Practica")) {
-//                    iniciarSesion.redimensionar();
-//                }
+                if (interno.equals("Documentos")) {
+                    documento.redimensionar(true);
+                }
+                if (interno.equals("Acerca de nosotos")) {
+                    info.redimensionar(true);
+                }
 //                if (interno.equals("Examen")) {
 //                    iniciarSesion.redimensionar();
 //                }
             } else if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
-                System.out.println("PANEL DE 690 POR 440");
 
                 if (interno.equals("Iniciar Sesion")) {
                     iniciarSesion.redimensionar(false);
@@ -120,6 +124,12 @@ public class MainFrameController implements MouseListener {
                 }
                 if (interno.equals("Resolver")) {
                     resolver.redimensionar(false);
+                }
+                if (interno.equals("Documentos")) {
+                    documento.redimensionar(false);
+                }
+                if (interno.equals("Acerca de nosotos")) {
+                    info.redimensionar(false);
                 }
             }
 
@@ -190,33 +200,49 @@ public class MainFrameController implements MouseListener {
             internoAnterior = resolver;
         }
 /////////////////////////////CLICK EN EL PANEL DE DOCUMENTOS//////////////////////////////////
-//        if (o == mf.getPnlDocumentos() || o == mf.getLblDocumentos() || o == mf.getLblIconoDocumentos()) {
-//            Sonido.entrada();
-//            ocultarMenu();
-//            resolver.setVisible(true);
-//            if (clic % 2 == 0) {
-//                clic++;
-//            }
-//            if (clic % 2 != 0) {
-//                clic--;
-//            }
-//
-//            interno = "Documentos";
-//        }
+        if (o == mf.getPnlDocumentos() || o == mf.getLblDocumentos() || o == mf.getLblIconoDocumentos()) {
+            Sonido.entrada();
+            ocultarMenu();
+
+            internoAnterior.setVisible(false);
+            documento.setVisible(true);
+            if (clic % 2 == 0) {
+                clic++;
+            }
+            if (clic % 2 != 0) {
+                clic--;
+            }
+            if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                documento.redimensionar(false);
+            } else {
+                documento.redimensionar(true);
+            }
+            interno = "Documento";
+
+            internoAnterior = documento;
+        }
 ///////////////////////////////CLICK EN EL PANEL DE PRACTICA//////////////////////////////////
-//        if (o == mf.getPnlPractica() || o == mf.getLblPractica() || o == mf.getLblIconoPractica()) {
-//            Sonido.entrada();
-//            ocultarMenu();
-//            resolver.setVisible(true);
-//            if (clic % 2 == 0) {
-//                clic++;
-//            }
-//            if (clic % 2 != 0) {
-//                clic--;
-//            }
-//
-//            interno = "Practica";
-//        }
+        if (o == mf.getPnlInfo() || o == mf.getLblInfo() || o == mf.getLblIconoInfo()) {
+            Sonido.entrada();
+            ocultarMenu();
+
+            internoAnterior.setVisible(false);
+            info.setVisible(true);
+            if (clic % 2 == 0) {
+                clic++;
+            }
+            if (clic % 2 != 0) {
+                clic--;
+            }
+            if (mf.getjDesktopPane1().getWidth() == 690 && mf.getjDesktopPane1().getHeight() == 440) {
+                info.redimensionar(false);
+            } else {
+                info.redimensionar(true);
+            }
+            interno = "Acerca de nosotros";
+
+            internoAnterior = info;
+        }
 /////////////////////////////CLICK EN EL PANEL DE EXAMENES//////////////////////////////////
 //        if (o == mf.getPnlExamen() || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {
 //            Sonido.entrada();
@@ -267,14 +293,12 @@ public class MainFrameController implements MouseListener {
             Sonido.icono();
         }
 
-        if (o == mf.getPnlInfo()|| o == mf.getLblInfo() || o == mf.getLblIconoInfo()) {
+        if (o == mf.getPnlInfo() || o == mf.getLblInfo() || o == mf.getLblIconoInfo()) {
             mf.getLblIconoInfo().setSize(100, 45);
             Sonido.icono();
         }
 
-        if (o
-                == mf.getPnlExamen()
-                || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {
+        if (o == mf.getPnlExamen() || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {
             mf.getLblIconoExamen().setSize(100, 45);
             Sonido.icono();
         }
@@ -321,7 +345,6 @@ public class MainFrameController implements MouseListener {
         if (o == mf.getPnlExamen() || o == mf.getLblExamen() || o == mf.getLblIconoExamen()) {
             mf.getLblIconoExamen().setIcon(new ImageIcon(getClass().getResource("/resources/images/icons8-test-passed-35.png")));
             mf.getLblIconoExamen().setSize(35, 35);
-
         }
     }
 

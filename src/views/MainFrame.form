@@ -351,7 +351,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lblNosotros">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Acerca de nosotros"/>
+                <Property name="text" type="java.lang.String" value="Sobre nosotros"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblIconoInfo">

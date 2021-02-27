@@ -2,12 +2,15 @@ package views;
 
 import controllers.MainFrameController;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import models.otros.PanelDegradado;
 import org.jdesktop.swingx.border.DropShadowBorder;
+
 /**
  *
  * @author Mariel
@@ -17,6 +20,8 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         iniciar();
+        Image icono = Toolkit.getDefaultToolkit().getImage("icons8-maxcdn-96.png");
+        setIconImage(icono);
     }
 
     @SuppressWarnings("unchecked")
@@ -191,7 +196,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         pnlAcercaNosotros.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblNosotros.setText("Acerca de nosotros");
+        lblNosotros.setText("Sobre nosotros");
 
         lblIconoInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/icons8-high-importance-35.png"))); // NOI18N
 
@@ -431,7 +436,6 @@ public class MainFrame extends javax.swing.JFrame {
         mfc = new MainFrameController(this);
 
         lblMenu.addMouseListener(mfc);
-
         pnlIniciarSesion.addMouseListener(mfc);
         lblInicioSesion.addMouseListener(mfc);
         lblIconoUsuario.addMouseListener(mfc);

@@ -1,4 +1,4 @@
-package views;
+package views.desigualdades;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;

@@ -17,7 +17,7 @@ import models.otros.Sonido;
 import views.ecuacion.EcuacionesCuadraticas;
 import views.ecuacion.EcuacionesLineales;
 import views.MainFrame;
-import views.PanelEscribir;
+import views.desigualdades.PanelEscribir;
 import views.desigualdades.PanelGraficaDesigualdades;
 import views.desigualdades.PanelMostrarResultado;
 import views.Resolver;
@@ -149,12 +149,22 @@ public class ResolverController implements ItemListener, KeyListener, MouseListe
                         internoAnterior = ecC;
                         break;
                     case "Desigualdades Lineales":
+                        if (MainFrame.desktop.getWidth() == 495) {
+                            MainFrame.desktop.setBounds(65, 103, 690, 440);
+                        }
+                        MainFrame.pnlMenu.setSize(49, 502);
                         limpiarDesigualdades();
+                        r.redimensionar(false);
                         Resolver.pnlCard.setVisible(true);
                         internoAnterior1 = "pnlCard";
                         break;
                     case "Desigualdades Cuadráticas":
+                        if (MainFrame.desktop.getWidth() == 495) {
+                            MainFrame.desktop.setBounds(65, 103, 690, 440);
+                        }
+                        MainFrame.pnlMenu.setSize(49, 502);
                         limpiarDesigualdades();
+                        r.redimensionar(false);
                         Resolver.pnlCard.setVisible(true);
                         internoAnterior1 = "pnlCard";
                         break;

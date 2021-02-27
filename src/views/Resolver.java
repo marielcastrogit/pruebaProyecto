@@ -88,8 +88,8 @@ public class Resolver extends javax.swing.JInternalFrame {
         if (redimensionar) {
             this.setSize(459, 412);
             jLabel1.setBounds(20, 50, 240, 16);
-            listaTemas.setBounds(10, 10, 410, 30);
-            pnlTemas.setBounds(10, 70, 430, 50);
+            listaTemas.setBounds(10, 10, 390, 30);
+            pnlTemas.setBounds(10, 70, 410, 50);
             pnlCard.setBounds(10, 130, 430, 230);
             lblFondo.setBounds(0, 0, 450, 390);
         } else {

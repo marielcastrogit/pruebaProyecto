@@ -5,6 +5,9 @@
  */
 package views;
 
+import java.awt.Font;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  *
  * @author Usuario
@@ -16,6 +19,9 @@ public class AcercaDeNosotros extends javax.swing.JInternalFrame {
      */
     public AcercaDeNosotros() {
         initComponents();
+        ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+        this.setSize(622, 408);
+         lblFondo.setBounds(0, 0, 622, 408);
     }
 
     /**
@@ -34,7 +40,7 @@ public class AcercaDeNosotros extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
         setMaximumSize(new java.awt.Dimension(622, 408));
@@ -82,16 +88,39 @@ public class AcercaDeNosotros extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(140, 290, 70, 20);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 622, 408);
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
+        getContentPane().add(lblFondo);
+        lblFondo.setBounds(0, 0, 622, 380);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public void redimensionar(boolean redimensionar) {
+        if (redimensionar) {
+            this.setSize(459, 412);
+            jLabel6.setFont(new Font("Dialog", Font.BOLD, 12));
+            jLabel6.setBounds(30, 20, 410, 16);
+            jLabel2.setBounds(180, 50, 100, 90);
+            jLabel3.setBounds(30, 180, 390, 20);
+            jLabel4.setBounds(30, 210, 380, 19);
+            jLabel5.setBounds(30, 240, 390, 19);
+            jLabel8.setBounds(30, 270, 70, 20);
+            jLabel7.setBounds(100, 370, 250, 19);
+            lblFondo.setBounds(0, 0, 459, 412);
+        } else {
+            this.setSize(622, 408);
+            jLabel3.setBounds(140, 200, 390, 20);
+            jLabel4.setBounds(140, 230, 380, 19);
+            jLabel5.setBounds(140, 260, 390, 19);
+            jLabel6.setFont(new Font("Dialog", Font.BOLD, 14));
+            jLabel6.setBounds(70, 60, 470, 19);
+            jLabel2.setBounds(250, 90, 100, 90);
+            jLabel7.setBounds(200, 350, 250, 19);
+            jLabel8.setBounds(140, 290, 70, 20);
+            lblFondo.setBounds(0, 0, 622, 410);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -99,5 +128,6 @@ public class AcercaDeNosotros extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lblFondo;
     // End of variables declaration//GEN-END:variables
 }

@@ -31,11 +31,15 @@ public class ExamenPrincipalController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == Examen.btnEmpezarExamen) {
+            if (MainFrame.desktop.getWidth() == 495) {
+                MainFrame.desktop.setBounds(65, 103, 690, 440);
+            }
             ex.setVisible(false);
             ef.setVisible(true);
             ef.InicioTiempo();
             ef.iniciarCronometro();
             MainFrame.pnlMenu.setVisible(false);
+
         }
     }
 

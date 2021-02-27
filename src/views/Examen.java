@@ -6,7 +6,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
 public class Examen extends javax.swing.JInternalFrame {
-
+    
     public Examen() {
         initComponents();
         this.setSize(622, 408);
@@ -14,14 +14,14 @@ public class Examen extends javax.swing.JInternalFrame {
         setBorderInternal();
         setUpControllers();
     }
-
+    
     private void setUpControllers() {
-
+        
         ec = new ExamenPrincipalController(this);
         btnEmpezarExamen.addActionListener(ec);
-
+        
     }
-
+    
     private ExamenPrincipalController ec;
 
     /**
@@ -37,13 +37,13 @@ public class Examen extends javax.swing.JInternalFrame {
         border.setShowTopShadow(true);
         border.setShadowSize(15);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         btnEmpezarExamen = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setBorder(new org.jdesktop.swingx.border.DropShadowBorder());
         setMaximumSize(new java.awt.Dimension(622, 408));
@@ -57,23 +57,27 @@ public class Examen extends javax.swing.JInternalFrame {
         getContentPane().add(btnEmpezarExamen);
         btnEmpezarExamen.setBounds(210, 180, 210, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 620, 390);
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/fondoOM.png"))); // NOI18N
+        lblFondo.setText("jLabel1");
+        getContentPane().add(lblFondo);
+        lblFondo.setBounds(0, 0, 620, 390);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     public void redimensionar(boolean redimensionar) {
         if (redimensionar) {
-
+            this.setSize(459,412);
+            btnEmpezarExamen.setBounds(110, 170, 210, 40);
+            lblFondo.setBounds(0, 0, 459, 412);
         } else {
-
+            this.setSize(622,408);
+            lblFondo.setBounds(0, 0, 622, 408);
+            btnEmpezarExamen.setBounds(210, 180, 210, 40);
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btnEmpezarExamen;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblFondo;
     // End of variables declaration//GEN-END:variables
 }

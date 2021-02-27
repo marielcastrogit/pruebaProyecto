@@ -34,6 +34,10 @@ public class Examen2Controller implements ActionListener {
                 e2f.Resultado();
                 e2f.FinTiempo();
                 e2f.setVisible(false);
+                MainFrame.pnlMenu.setSize(49, 502);
+                MainFrame.pnlMenu.setVisible(true);
+                MainFrame.desktop.setBounds(65, 103, 690, 440);
+                ExamenPrincipalController.ex.redimensionar(false);
                 ExamenPrincipalController.ex.setVisible(true);
                 MainFrame.pnlMenu.setVisible(true);
                 break;

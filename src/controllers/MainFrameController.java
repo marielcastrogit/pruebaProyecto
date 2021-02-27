@@ -9,8 +9,6 @@ import views.AcercaDeNosotros;
 import views.Ajustes;
 import views.DocumentoPrincipal;
 import views.Examen;
-import views.MMDocumento;
-import views.MMResolver;
 import views.MainFrame;
 import views.InicioSesion;
 import views.Resolver;

@@ -195,9 +195,9 @@ public class InicioSesion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblIconoContraseña;
     private javax.swing.JLabel lblIconoUsuario;
     private javax.swing.JLabel lblInformacionError;
-    private javax.swing.JPasswordField password;
+    public static javax.swing.JPasswordField password;
     private javax.swing.JPanel pnlContraseña;
     private javax.swing.JPanel pnlEmail;
-    private javax.swing.JTextField txtUsuario;
+    public static javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

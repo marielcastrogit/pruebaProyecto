@@ -24,7 +24,7 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
     public static RegistroUsuario registrarUsuario;
     private VerificarCodigo verificarCodigo;
     private ValidarEmail validacionCorreo;
-    private String correoUsuario;
+    public static String correoUsuario, usuarioContraseña ;
     private ArrayList<Usuario> usuarios;
     private int c;
 
@@ -57,7 +57,7 @@ public class RegistroUsuarioController implements MouseListener, KeyListener, Ac
             char contraseñaUsuario[] = registrarUsuario.getTxtContraseña().getPassword();
             char contraseñaComprobar[] = registrarUsuario.getTxtVerificarContraseña().getPassword();
 
-            String usuarioContraseña = new String(contraseñaUsuario);
+             usuarioContraseña = new String(contraseñaUsuario);
             String comprobarContraseña = new String(contraseñaComprobar);
 
             System.out.println("usuarioContraseña: " + usuarioContraseña);

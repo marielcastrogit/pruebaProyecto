@@ -1,13 +1,10 @@
 package views;
 
 import com.jtattoo.plaf.noire.NoireLookAndFeel;
-import controllers.AjustesControllers;
 import controllers.MainFrameController;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,25 +26,6 @@ public class MainFrame extends javax.swing.JFrame {
         setSombraPanel();
         setSombraMenu();
         setPanelsDegradados();
-
-        Ajustes.pnlMostrarTemas.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (AjustesControllers.sTema1.isVisible()) {
-                    System.out.println("S1");
-                }
-
-                if (AjustesControllers.sTema2.isVisible()) {
-                    System.out.println("S2");
-                }
-
-                if (AjustesControllers.sTema3.isVisible()) {
-                    System.out.println("S3");
-                }
-            }
-            
-           
-        });
     }
 
     @SuppressWarnings("unchecked")
@@ -459,7 +437,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
-    public static boolean s = false;
+   
 
     private void setControllers() {
         mfc = new MainFrameController(this);
@@ -633,8 +611,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblIconoExamen;
     private javax.swing.JLabel lblIconoInfo;
     private javax.swing.JLabel lblIconoResolver;
-    private javax.swing.JLabel lblIconoUsuario;
-    private javax.swing.JLabel lblInicioSesion;
+    public static javax.swing.JLabel lblIconoUsuario;
+    public static javax.swing.JLabel lblInicioSesion;
     public static javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblNosotros;
     private javax.swing.JLabel lblResolver;
@@ -642,7 +620,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel pnlAjustes;
     private javax.swing.JPanel pnlDocumentos;
     private javax.swing.JPanel pnlExamen;
-    private javax.swing.JPanel pnlIniciarSesion;
+    public static javax.swing.JPanel pnlIniciarSesion;
     public static javax.swing.JPanel pnlMenu;
     public static javax.swing.JPanel pnlMostrarMenu;
     private javax.swing.JPanel pnlResolver;

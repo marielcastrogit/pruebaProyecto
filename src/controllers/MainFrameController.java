@@ -82,7 +82,6 @@ public class MainFrameController implements MouseListener {
                 mostrarMenu();
             }
 
-            
             if (mf.getjDesktopPane1().getWidth() == 495 && mf.getjDesktopPane1().getHeight() == 440) {
                 System.out.println("PANEL DE 495 POR 440");
 
@@ -147,6 +146,10 @@ public class MainFrameController implements MouseListener {
             interno = "Iniciar Sesion";
 
             internoAnterior = iniciarSesion;
+
+            if (InicioSesionController.usuarioActivo || MainFrame.lblInicioSesion.getText().equals("Cerrar sesion")) {
+
+            }
         }
 /////////////////////////////CLICK EN EL LABEL DE AJUSTES///////////////////////////////////
         if (o == mf.getPnlAjustes() || o == mf.getLblAjustes() || o == mf.getLblIconoAjustes()) {
@@ -239,7 +242,7 @@ public class MainFrameController implements MouseListener {
 
             internoAnterior.setVisible(false);
             examen.setVisible(true);
-            
+
             if (clic % 2 == 0) {
                 clic++;
             }

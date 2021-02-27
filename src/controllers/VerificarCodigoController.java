@@ -5,17 +5,21 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import models.otros.Sonido;
 import models.usuario.HiloEnvioMensaje;
+import models.usuario.Usuario;
 import views.MainFrame;
 import views.VerificarCodigo;
 
 public class VerificarCodigoController implements KeyListener, MouseListener {
 
     private VerificarCodigo verificarCodigo;
+    public static ArrayList<Usuario> usuarios;
 
     public VerificarCodigoController(VerificarCodigo verificarCodigo) {
         this.verificarCodigo = verificarCodigo;
+        usuarios = new ArrayList<Usuario>();
     }
 
     @Override
@@ -46,7 +50,8 @@ public class VerificarCodigoController implements KeyListener, MouseListener {
             boolean codCorrecto = HiloEnvioMensaje.codigo.esCodigoCorrecto((verificarCodigo.getTxtCodigo().getText()));
 
             if (codCorrecto) {
-                MainFrameController.iniciarSesion.setVisible(true);
+                usuarios.add(new Usuario(RegistroUsuarioController.correoUsuario, RegistroUsuarioController.usuarioContraseña));
+                MainFrameController.iniciarSesion.setVisible(true);  
             } else {
                 VerificarCodigo.lblCodigoIncorrecto.setVisible(true);
                 VerificarCodigo.lblIconoCodigoIncorrecto.setVisible(true);

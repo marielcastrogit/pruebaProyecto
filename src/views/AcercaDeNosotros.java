@@ -38,7 +38,6 @@ public class AcercaDeNosotros extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lblFondo = new javax.swing.JLabel();
 
@@ -77,11 +76,6 @@ public class AcercaDeNosotros extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(250, 90, 100, 90);
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel7.setText("Nos seguimos actualizando para ti");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(200, 350, 250, 19);
-
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("gráficas.");
@@ -104,7 +98,6 @@ public void redimensionar(boolean redimensionar) {
             jLabel4.setBounds(30, 210, 380, 19);
             jLabel5.setBounds(30, 240, 390, 19);
             jLabel8.setBounds(30, 270, 70, 20);
-            jLabel7.setBounds(100, 370, 250, 19);
             lblFondo.setBounds(0, 0, 459, 412);
         } else {
             this.setSize(622, 408);
@@ -114,9 +107,8 @@ public void redimensionar(boolean redimensionar) {
             jLabel6.setFont(new Font("Dialog", Font.BOLD, 14));
             jLabel6.setBounds(70, 60, 470, 19);
             jLabel2.setBounds(250, 90, 100, 90);
-            jLabel7.setBounds(200, 350, 250, 19);
             jLabel8.setBounds(140, 290, 70, 20);
-            lblFondo.setBounds(0, 0, 622, 410);
+            lblFondo.setBounds(0, 0, 622, 408);
         }
     }
 
@@ -126,7 +118,6 @@ public void redimensionar(boolean redimensionar) {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblFondo;
     // End of variables declaration//GEN-END:variables

@@ -1,7 +1,6 @@
 package views;
 
 import controllers.DocumentoController;
-import java.awt.CheckboxGroup;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
@@ -9,20 +8,20 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  * @author Mariel
  */
 public class DocumentoPrincipal extends javax.swing.JInternalFrame {
-    
+
     public DocumentoPrincipal() {
         initComponents();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         setControllers();
     }
-    
+
     private void setControllers() {
         dc = new DocumentoController(this);
         btnVerDocumento.addMouseListener(dc);
     }
-    
+
     private DocumentoController dc;
-    
+
     public void redimensionar(boolean redimensionar) {
         if (redimensionar) {
             System.out.println("HACIENDO MAS PEQUEÑO");
@@ -30,7 +29,7 @@ public class DocumentoPrincipal extends javax.swing.JInternalFrame {
             jLabel1.setBounds(0, 0, 450, 390);
             jPanel1.setBounds(10, 20, 250, 290);
             jPanel2.setBounds(260, 20, 180, 120);
-            btnVerDocumento.setBounds(160, 330, 160, 30);    
+            btnVerDocumento.setBounds(160, 330, 160, 30);
         } else {
             this.setSize(622, 408);
             ecLineales.setBounds(20, 30, 160, 28);
@@ -45,7 +44,7 @@ public class DocumentoPrincipal extends javax.swing.JInternalFrame {
             jLabel1.setBounds(0, 0, 622, 408);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

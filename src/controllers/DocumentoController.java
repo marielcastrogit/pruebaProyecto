@@ -1,7 +1,5 @@
 package controllers;
 
-import static controllers.InicioSesionController.sesion;
-import static controllers.RegistroUsuarioController.registrarUsuario;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -9,7 +7,6 @@ import models.otros.Sonido;
 import views.Documento;
 import views.DocumentoPrincipal;
 import views.MainFrame;
-import views.RegistroUsuario;
 
 public class DocumentoController implements MouseListener {
 

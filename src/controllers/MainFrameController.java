@@ -108,7 +108,7 @@ public class MainFrameController implements MouseListener {
                 if (interno.equals("Documentos")) {
                     documento.redimensionar(true);
                 }
-                if (interno.equals("Acerca de nosotos")) {
+                if (interno.equals("Info")) {
                     info.redimensionar(true);
                 }
 //                if (interno.equals("Examen")) {
@@ -128,7 +128,7 @@ public class MainFrameController implements MouseListener {
                 if (interno.equals("Documentos")) {
                     documento.redimensionar(false);
                 }
-                if (interno.equals("Acerca de nosotos")) {
+                if (interno.equals("Info")) {
                     info.redimensionar(false);
                 }
             }
@@ -226,7 +226,7 @@ public class MainFrameController implements MouseListener {
             Sonido.entrada();
             ocultarMenu();
 
-            internoAnterior.setVisible(false);
+            info.setVisible(false);
             info.setVisible(true);
             if (clic % 2 == 0) {
                 clic++;
@@ -239,7 +239,7 @@ public class MainFrameController implements MouseListener {
             } else {
                 info.redimensionar(true);
             }
-            interno = "Acerca de nosotros";
+            interno = "Info";
 
             internoAnterior = info;
         }
